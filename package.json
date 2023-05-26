@@ -1,0 +1,23 @@
+{
+  "name": "weatherly",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "description": "returns the weather conditions",
+  "dependencies": {
+    "axios": "^1.4.0",
+    "body-parser": "^1.20.1",
+    "cheerio": "^1.0.0-rc.12",
+    "ejs": "^3.1.8",
+    "express": "^4.18.2",
+    "fs": "^0.0.1-security",
+    "request": "^2.88.2",
+    "scrapingbee": "^1.7.3",
+    "shopify-api-node": "^3.12.5",
+    "xlsx": "^0.18.5"
+  }
+}

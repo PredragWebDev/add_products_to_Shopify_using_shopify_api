@@ -1,0 +1,2425 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head id="Head1"><meta http-equiv="X-UA-Compatible" content="IE=9" /><meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" /><meta id="viewport" name="viewport" /><link href="CSS/loginstyle.css" rel="stylesheet" type="text/css" /><link href="Images/light.ico" rel="shortcut icon" type="image/x-icon" /><link href="../1style.css" rel="stylesheet" type="text/css" /><link href="1style.css" rel="stylesheet" type="text/css" /><link href="Images/light.ico" rel="shortcut icon" type="image/x-icon" /><link href="CSS/Mainstyle.css" rel="stylesheet" type="text/css" /><link href="CSS/ringsalestyle.css" rel="stylesheet" type="text/css" />
+    <style type="text/css">
+        .style1 {
+            font-size: 14px;
+            font-family: Arial, Helvetica, sans-serif;
+            color: #164B7F;
+            font-weight: bold; 
+        }
+
+        .style5 {
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 10pt;
+            color: #b7ddff;
+            font-weight: bold;
+        }
+
+        .style10 {
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 11px;
+            color: #b7ddff;
+        }
+
+        .style101 {
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 11px;
+            font-weight: bold;
+            color: #b7ddff;
+        }
+
+        a:link {
+            color: #b7ddff;
+            text-decoration: none;
+        }
+
+        a:link {
+            color: #b7ddff;
+            text-decoration: none;
+        }
+
+        a:link {
+            color: #b7ddff;
+            text-decoration: none;
+        }
+
+        a:visited {
+            color: #b7ddff;
+            text-decoration: none;
+        }
+
+        a:hover {
+            color: #b7ddff;
+            text-decoration: none;
+        }
+
+        a:active {
+            color: #b7ddff;
+            text-decoration: none;
+        }
+
+        .style6 {
+            font-size: 13px;
+        }
+
+        .checkboxall {
+            font-size: 12px;
+            font-family: Arial;
+            color: Black;
+        }
+
+        .caps {
+            position: absolute;
+            visibility: hidden;
+            z-index: 10000;
+        }
+
+        .textboxall {
+            font-size: 12px;
+            font-family: Arial;
+            color: Black;
+        }
+
+        .modalBackground {
+            background-color: Gray;
+            filter: alpha(opacity=70);
+        }
+
+        .modalPopup {
+            background-color: #ffffff;
+            border-width: 3px;
+            border-style: solid;
+            border-color: Gray;
+            padding: 3px;
+            width: 300px;
+        }
+
+        .stylePopupHeader {
+            font-size: 12px;
+            font-family: Arial, Helvetica, sans-serif;
+            font-weight: bold;
+            color: White;
+        }
+
+        .stylePopuplabel {
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 12px;
+            color: #577386;
+        }
+
+        .dragMe {
+            background-color: #FFFFFF;
+            background-image: url("images/header-opened.png" );
+            font-weight: bold;
+            height: 21px;
+            text-align: center;
+            width: 100%;
+        }
+
+        .displaykeyboard {
+            background-image: url("icon small/Keyboard Images/bgimgbig copy.png" );
+            background-repeat: no-repeat;
+            bottom: 20px;
+        }
+
+        .centered {
+            position: fixed;
+            width: 100px;
+            left: 25%;
+            top: 127px;
+            margin-left: -50px;
+        }
+
+        .stylenews {
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 11px;
+            color: #143190;
+        }
+
+        .stylenews_title {
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 12px;
+            color: Black;
+            cursor: pointer;
+            padding: 5px;
+        }
+
+        .grd tbody tr th {
+            border-top: solid 1px black;
+            border-bottom: solid 1px black;
+            border-left: none;
+            border-right: none;
+        }
+
+        .altr {
+            padding: 5px;
+        }
+
+        .stylenews_news {
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 12px;
+            color: white;
+            background-color: #239cE5;
+        }
+
+        .cursor {
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 12px;
+            color: Black;
+            cursor: pointer;
+        }
+
+        .style55 {
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 12px;
+            color: #FF9900;
+            font-weight: bold;
+        }
+
+        .style102 {
+            height: 333px;
+        }
+
+        .txtbox {
+            border-top-left-radius: 10px;
+            border-top-right-radius: 10px;
+            border-bottom-left-radius: 10px;
+            border-bottom-right-radius: 10px;
+        }
+
+        .footer {
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            vertical-align: top;
+            padding-left: 7px;
+            background-color: lightblue;
+        }
+    </style>
+    <link href="style.css" rel="stylesheet" type="text/css" />
+    
+    <style type="text/css">
+        .IOSAlert {
+            width: 75%;
+            position: fixed;
+            top: 20%;
+            left: 12.5%;
+            padding: 0.3% 1% 0.3% 1%;
+            display: none;
+            z-index: 1002;
+            background-color: white;
+            border-radius: 10px;
+        }
+
+        .IOSAlert_new {
+            width: 40%;
+            position: fixed;
+            top: 20%;
+            left: 28%;
+            padding: 0.3% 1% 0.3% 1%;
+            display: none;
+            z-index: 1002;
+            background-color: white;
+            border-radius: 10px;
+        }
+
+        .black_overlay {
+            display: none;
+            position: fixed;
+            top: 0%;
+            left: 0px;
+            width: 200%;
+            height: 200%;
+            background-color: black;
+            z-index: 1001;
+            -moz-opacity: 0.8;
+            opacity: .80;
+            filter: alpha(opacity=80);
+        }
+    </style>
+    <script type="text/javascript">
+
+        var isMobile = {
+            ipad: function () {
+                return navigator.userAgent.match(/iPad/i);
+            },
+            iphone: function () {
+                return navigator.userAgent.match(/iPhone/i);
+            }
+        };
+        function RestrictSafariZoom() {
+            // var mobile_timer = false, viewport = document.getElementById('viewport');
+            var isSafari = navigator.userAgent.match(/Safari/i) != null;
+            if (isSafari == true) {
+                var deviceWidth, landscape = Math.abs(window.orientation) == 90
+                // workaround for strange screen.height on the iPhone (v3.1.3)
+                if (window.screen.width == 320) deviceWidth = landscape ? 480 : 320
+                else deviceWidth = window.screen[landscape ? "height" : "width"]
+
+                // return deviceWidth / window.innerWidth
+                var z = deviceWidth / window.innerWidth;
+                if (z > 1) {
+                    document.getElementById('MainIOSAlertBox').focus();
+                    var sViewport = '';
+                    document.getElementById('viewport').setAttribute('content', 'width=device-width,initial-scale=1.0,maximum-scale=1.0, minimum-scale=1, user-scalable=0');
+
+                }
+            }
+        }
+        function showWebstoreAlert() {
+            document.getElementById('fade').style.display = 'inline';
+            document.getElementById('alertwebstore').style.display = 'inline';
+            document.getElementById("btnRedirectfromLogin").click();
+        }
+        function getDeviceType() {
+            if (document.getElementById('txtuserid').value == "" || document.getElementById('hdnPassword').value == "" || document.getElementById('hdnStore').value == "") {
+                document.getElementById('txtuserid').focus();
+                if (Page_ClientValidate()) {
+                }
+                return false;
+            }
+
+            if (isMobile.ipad()) {
+                document.getElementById('fade').style.display = 'inline';
+                document.getElementById('MainIOSAlertBox').style.display = 'inline';
+                document.getElementById('devicetype').innerHTML = 'iPad.';
+                document.getElementById('devicetype1').innerHTML = 'iPad';
+                document.getElementById('downloadAnchor').setAttribute('href', 'https://itunes.apple.com/in/app/lightning-online-pos-for-ipad/id572520867?mt=8');
+                return false;
+            }
+            else if (isMobile.iphone()) {
+                //RestrictSafariZoom();
+                document.getElementById('MainIOSAlertBox').setAttribute('class', 'IOSAlert_new');
+                document.getElementById('fade').style.display = 'inline';
+                document.getElementById('MainIOSAlertBox').style.display = 'inline';
+                document.getElementById('downloadAnchor').setAttribute('href', 'https://itunes.apple.com/in/app/lightning-online-pos-for-iphone/id895847954?mt=8');
+
+                return false;
+            }
+            else {
+                document.getElementById("btnDeviceLogin").click();
+          }
+  }
+  function cancelDownload() {
+      document.getElementById('fade').style.display = 'none';
+      document.getElementById('MainIOSAlertBox').style.display = 'none';
+      document.getElementById("btnDeviceLogin").click();
+    }
+
+    </script>
+    
+    
+    <style type="text/css">
+        .zoomp {
+            position: fixed;
+            top: 2vh;
+            right: 2vh;
+            background-color: white;
+            border: 0.2vh solid orange;
+            width: 65vh;
+            height: 9vh;
+            line-height: 1vh;
+            font-size: 2vh;
+            padding: 1vh 0vh 0vh 1vh;
+            font: arial,sans-serif;
+            z-index: 99;
+        }
+    </style>
+    <script type="text/javascript">
+        window.onload = function () {
+            checkb();
+        };
+        window.onresize = function () {
+            checkb();
+        };
+        function isMacintosh() {
+            return navigator.platform.indexOf('Mac') > -1
+        }
+        function checkb() {
+            if (isMobile.iphone() || isMobile.ipad()) {
+                return false;
+            }
+            var isSafari = navigator.vendor && navigator.vendor.indexOf('Apple') > -1;
+            if ((navigator.userAgent.indexOf("MSIE") != -1) || (!!document.documentMode == true)) //IF IE > 10
+            {
+                var deviceXDPI = screen.deviceXDPI;
+                if (deviceXDPI > 96) {
+                    getScale('1.2');
+                } else if (deviceXDPI < 96) {
+                    getScale('0.8');
+                }
+                else {
+                    getScale('1');
+                }
+            }
+            else if (isSafari == true) {
+                screenOrientedWidth = screen.width;
+                if (window.orientation == 90) {
+                    screenOrientedWidth = screen.height;
+                }
+                var char = screenOrientedWidth / window.innerWidth;
+                getScale(char);
+            }
+            else {
+                getScale(window.devicePixelRatio);
+            }
+        }
+        function getScale(scale) {
+            var isSafari = navigator.vendor && navigator.vendor.indexOf('Apple') > -1;
+            if (isMobile.ipad() || isMobile.iphone()) {
+                if (scale > 1) {
+                    zoomAlert("<img src='Images/login/notification_warning.png' style='width:6vh;height:6vh;float:left;margin:0vh 2vh 0vh 0vh;' /><div style='width:82%;float:right'><p style='line-height:1.3vh;margin-top:2.5vh;'>Your Browser seems to be <strong>zoomed in</strong>.</p></div>", 5000);
+                    document.getElementById("zoompop").style.width = '50vh';
+                }
+                else if (scale < 1) {
+                    zoomAlert("<img src='Images/login/notification_warning.png' style='width:6vh;height:6vh;float:left;margin:0vh 2vh 0vh 0vh;' /><div style='width:82%;float:right'><p style='line-height:1.3vh;margin-top:2.5vh;'>Your Browser seems to be <strong>zoomed out</strong>.</p></div>", 5000);
+                    document.getElementById("zoompop").style.width = '50vh';
+                }
+                else {
+                    document.getElementById('zoompop').style.display = 'none';
+                }
+            }
+            else if (isMacintosh() == true) {
+                if (scale > 1) {
+                    zoomAlert("<img src='Images/login/notification_warning.png' style='width:6vh;height:6vh;float:left;margin:0vh 0vh 0vh 0vh;' /><div style='width:88%;float:right'><p style='line-height:1.3vh;margin-top:1vh;'>Your Browser seems to be <strong>zoomed in</strong>.</p><p style='line-height:1.3vh'> Press Command & 0 at the same time to reset it.</p></div>", 5000);
+                }
+                else if (scale < 1) {
+                    zoomAlert("<img src='Images/login/notification_warning.png' style='width:6vh;height:6vh;float:left;margin:0vh 0vh 0vh 0vh;' /><div style='width:88%;float:right'><p style='line-height:1.3vh;margin-top:1vh;'>Your Browser seems to be <strong>zoomed out</strong>.</p><p style='line-height:1.3vh'> Press Command & 0 at the same time to reset it.</p></div>", 5000);
+                }
+                else {
+                    document.getElementById('zoompop').style.display = 'none';
+                }
+            }
+            else {
+                if (scale > 1) {
+                    zoomAlert("<img src='Images/login/notification_warning.png' style='width:6vh;height:6vh;float:left;margin:0vh 0vh 0vh 0vh;' /><div style='width:88%;float:right'><p style='line-height:1.3vh;margin-top:1vh;'>Your Browser seems to be <strong>zoomed in</strong>.</p><p style='line-height:1.3vh'> Press CTRL & 0 at the same time to reset it.</p></div>", 5000);
+                }
+                else if (scale < 1) {
+                    zoomAlert("<img src='Images/login/notification_warning.png' style='width:6vh;height:6vh;float:left;margin:0vh 0vh 0vh 0vh;' /><div style='width:88%;float:right'><p style='line-height:1.3vh;margin-top:1vh;'>Your Browser seems to be <strong>zoomed out</strong>.</p><p style='line-height:1.3vh'> Press CTRL & 0 at the same time to reset it.</p></div>", 5000);
+                }
+                else {
+                    document.getElementById('zoompop').style.display = 'none';
+                }
+            }
+        }
+        function zoomAlert(msg, duration) {
+
+            document.getElementById("zoompop").style.display = 'inline';
+            var el = document.getElementById("divmsg");
+            el.innerHTML = msg;
+        }
+        function setUserCredentials(emppass, store) {
+            document.getElementById('txtpwd').value = emppass;
+            document.getElementById('txtstore').value = store;
+        }
+        function ClearUserCredentials() {
+            document.getElementById('txtpwd').value = '';
+            document.getElementById('txtstore').value = '';
+        }
+    </script>
+    
+    <script type="text/javascript">
+        window.onerror = handleerror;
+        function handleerror() {
+
+            return true;
+        }
+        if (window.document.addEventListener) {
+            window.document.addEventListener("keydown", keyDownHandler, false);
+        } else {
+            window.document.attachEvent("onkeydown", keyDownHandler);
+
+        }
+
+        function changecolor(evevt, from) {
+            if (from == 'focus')
+                evevt.style.backgroundColor = "#F4FA58";
+            else
+                evevt.style.backgroundColor = "White";
+        }
+
+        function keyDownHandler(e) {
+            if (/Firefox[\/\s](\d+\.\d+)/.test(navigator.userAgent)) {
+
+                e = e || window.event;
+                if (String.fromCharCode(e.keyCode || e.which).toUpperCase() === 'F' && (e.ctrlKey || e.metaKey)) {
+                    e.preventDefault();
+                }
+                return true;
+
+            }
+        }
+
+        function openOnlineEdition() {
+            window.open('https://pos.cperfect.net/?empID=JD&password=amQ1MDU=&storeno=1000', '_blank', 'width=1000,height=700,top=5,left=5,resizable=1,status=0,toolbar=0');
+
+        }
+
+        var url = document.location.href;
+        //var title = "Lightning Online Point of Sale - Log In";
+        var title = "Lightning Online Point of Sale"
+        function addtofavorite() {
+            //debugger;
+            try {
+                bookmark(url, title);
+                return false;
+            }
+            catch (err) {
+
+            }
+
+        }
+        function passwordValidation(txtPass, txtPass2) {
+            var password = txtPass.value;
+            var length = password.length;
+            //        if (length >= 7 && password.match(/[A-Z]/g) && password.match(/[0-9]/g) && password.match(/[!,@,#,$,%,^,*,?,_,~,-]/g)) {//alert('');
+            if (length >= 7) {//alert('');
+                return true;
+            }
+            else {//alert('');
+                alert('The Password must contain at least Seven characters.');
+                txtPass.value = '';
+                txtPass2.value = '';
+                txtPass2.focus();
+                return false;
+            }
+        }
+
+        function PasswordCheck(s, e) {
+            var txtid = document.getElementById('txtnewpassword');
+            var txtid2 = document.getElementById('txtnewpasswordverify');
+            var bol;
+            bol = passwordValidation(txtid, txtid2);
+            if (bol == true) {
+                e.IsValid = true;
+                return true;
+            }
+            else {
+                e.IsValid = false;
+                return false;
+            }
+        }
+        function setfocus() {
+
+            setTimeout("document.getElementById('txtnewpassword').focus();", 1000);
+
+        }
+        function onpressev(evt, id) {
+
+
+
+            var e = evt ? evt : window.event;
+
+            var KeyCode = evt.which ? evt.which : evt.keyCode;
+
+            if (evt.keyCode == 13 || evt.which == 13) {
+                if (id == 'txtnewpassword') {
+
+                    document.getElementById('hdntxtqtyfocus').value = 0;
+
+                }
+
+                if (id == 'txtnewpasswordverify') {
+
+                    document.getElementById('imgok1').click();
+                }
+
+
+            }
+            return true;
+        }
+
+        function onfocusid(controlid) {
+            try {
+                txtid = controlid;
+                if (txtid == 'txtnewpassword') {
+
+                }
+                if (txtid == 'txtnewpasswordverify' && document.getElementById('hdntxtqtyfocus').value == 0) {
+
+                    document.getElementById('txtnewpassword').focus();
+                    document.getElementById('txtnewpassword').select();
+                    document.getElementById('hdntxtqtyfocus').value = 1;
+
+                }
+                else {
+                    document.getElementById(txtid).select();
+                }
+
+            }
+            catch (err) {
+            }
+        }
+
+        function bookmark(url, title) {
+            //debugger;
+            var ua = navigator.userAgent.toLowerCase();
+            var isKonq = (ua.indexOf('konqueror') != -1);
+            var isSafari = (ua.indexOf('webkit') != -1);
+            var isMac = (ua.indexOf('mac') != -1);
+            var buttonStr = isMac ? 'Command/Cmd' : 'CTRL';
+
+            if (window.external && (!document.createTextNode || (typeof (window.external.AddFavorite) == 'unknown'))) {
+
+                window.external.AddFavorite(url, title);
+            }
+            else if (window.sidebar) {
+                window.sidebar.addPanel(title, url, "");
+            }
+            else if (window.opera) {
+
+                alert('You need to press CTRL + B to bookmark our site.');
+            }
+            else if (isKonq) {
+                alert('You need to press CTRL + B to bookmark our site.');
+            }
+            else if (window.home || isSafari) {
+                alert('You need to press ' + buttonStr + ' + D to bookmark our site.');
+            }
+            else if (!window.print || isMac) {
+                alert('You need to press Command/Cmd + D to bookmark our site.');
+            }
+            else {
+                alert('In order to bookmark this site you need to do so manually ' + 'through your browser.');
+            }
+            return false;
+        }
+        function RestrictSpace(e) {
+            if (e.charCode == 32 || e.keyCode == 32 || e.which == 32) {
+                return false;
+                e.returnValue = false;
+            }
+            else {
+                return true;
+            }
+        }
+
+        function clickEnter(e) {
+            if (RestrictSpace(e) == true) {
+                if (e.which || e.keyCode) {
+                    if ((e.which == 13) || (e.keyCode == 13)) {
+                        if (Page_ClientValidate("login")) {
+                            __doPostBack('lnkLogin', '');
+                            return false;
+                        }
+                    }
+                }
+            }
+            else {
+                return false;
+            }
+
+        }
+
+        function getfocus() {
+            // debugger
+            //document.getElementById('txtuserid').focus();
+            // alert(1);
+            document.getElementById('txtuserid').focus();
+
+        }
+        function alertfocus(msg) {
+            //debugger
+            var x = msg;
+            alert(x);
+            setTimeout(function () { document.getElementById('txtuserid').focus(); }, 10);
+            return true;
+
+
+        }
+
+
+        function clear_field() {
+            document.getElementById("txtuserid").value = "";
+            document.getElementById("txtpwd").value = "";
+            document.getElementById("txtstore").value = "";
+            document.getElementById("txtuserid").focus();
+            return false;
+        }
+        function over(ele) {
+            ele.style.background = '#CEE6FF';
+        }
+
+
+
+        function out(ele) {
+            ele.style.background = 'white';
+        }
+        var line0 = ['`', '1', '2', '3', '4', '5', '6', '7', '8', '9', '0', '-', '=', 'Backspace'];
+        var line0s = ['~', '!', '@', '#', '$', '%', '^', '&amp;', '*', '(', ')', '_', '+', 'Backspace'];
+        var line1 = ['Tab', 'q', 'w', 'e', 'r', 't', 'y', 'u', 'i', 'o', 'p', '[', ']', '\\', ''];
+        var line1s = ['Tab', 'Q', 'W', 'E', 'R', 'T', 'Y', 'U', 'I', 'O', 'P', '{', '}', '|', ''];
+        var line2 = ['Caps', 'a', 's', 'd', 'f', 'g', 'h', 'j', 'k', 'l', ';', '\'', '', 'Enter'];
+        var line2s = ['Caps', 'A', 'S', 'D', 'F', 'G', 'H', 'J', 'K', 'L', ':', '"', '', 'Enter'];
+        var line3 = ['Shift', 'z', 'x', 'c', 'v', 'b', 'n', 'm', ',', '.', '/', 'Shift'];
+        var line3s = ['Shift', 'Z', 'X', 'C', 'V', 'B', 'N', 'M', '&lt;', '&gt;', '?', 'Shift'];
+        var shift = 0;
+        var caps = 0;
+        var filter = /[a-zA-Z]/;
+        var source = null, insertionS = 0, insertionE = 0;
+
+        var userstr = navigator.userAgent.toLowerCase();
+        var safari = (userstr.indexOf('applewebkit') != -1);
+        var gecko = (userstr.indexOf('gecko') != -1) && !safari;
+        var standr = gecko || window.opera || safari;
+
+        function focus_keyboard(txt) {
+            source = txt;
+        }
+
+        function keypress(tdid) {
+
+            if (source == null) {
+                source = document.getElementById('txtuserid');
+            }
+            var val = source.value;
+
+            var td = document.getElementById(tdid);
+            var span = tdid;
+            if (span != null || span != 'undefined') {
+                var ch = span;
+                switch (ch) {
+                    case 'Backspace':
+
+
+                        if (source.selectionEnd - source.selectionStart > 0) {
+                            source.value = '';
+                            source.focus();
+                        }
+                        else {
+                            var min = (val.charCodeAt(val.length - 1) == 15) ? 2 : 1;
+                            source.value = val.substr(0, val.length - min);
+
+                        }
+
+
+
+
+
+
+
+                        //if (val.length) {
+                        //    var span = null;
+                        //    if (document.selection)
+                        //        span = document.selection.createRange().duplicate();
+                        //    if (span && span.text.length > 0) {
+                        //        span.text = "";
+                        //        getCaretPositions(source);
+                        //    }
+                        //    else
+                        //        deleteAtCaret(source);
+                        //}
+                        //if (shift == 1) {
+                        //    shift = 0;
+                        //    shiftpress(shift);
+                        //}
+
+                        break;
+                    case 'Tab':
+                        //source.value += '\t';
+                        //ch = '\t';
+                        //insertAtCaret(source, (ch == "Enter" ? (window.opera ? '\r\n' : '\n') : ch));
+                        //if (shift == 1) {
+                        //shift = 0;
+                        //shiftpress(shift);
+                        //}
+
+                        if (source.id == 'txtuserid') {
+                            document.getElementById('hdnfocustxt').value = 'password';
+                            document.getElementById('txtpwd').focus();
+                        }
+                        else if (source.id == 'txtpwd') {
+                            document.getElementById('hdnfocustxt').value = 'storeno';
+                            document.getElementById('txtstore').focus();
+                        }
+                        else if (source.id == 'txtstore') {
+                            document.getElementById('hdnfocustxt').value = 'submit';
+                            document.getElementById('lnkLogin').focus();
+                        }
+                        else if (source.id == 'lnkLogin') {
+                            document.getElementById('hdnfocustxt').value = 'employeeid';
+                            document.getElementById('txtuserid').focus();
+                        }
+
+
+            break;
+        case 'Enter':
+
+            if (Page_ClientValidate("securitycheck")) {
+                document.getElementById('lnkLogin').click();
+                return false;
+            }
+            else {
+
+            }
+
+            break;
+        case 'Space':
+            if (val.length < 15) {
+                source.value += ' ';
+                //ch = ' ';
+                //insertAtCaret(source, (ch == "Enter" ? (window.opera ? '\r\n' : '\n') : ch));
+
+                if (shift == 1) {
+                    shift = 0;
+                    shiftpress(shift);
+                }
+            }
+            break;
+        case '&amp;':
+            if (val.length < 15) {
+                source.value += '&';
+                //ch = '&';
+                //insertAtCaret(source, (ch == "Enter" ? (window.opera ? '\r\n' : '\n') : ch));
+
+                if (shift == 1) {
+                    shift = 0;
+                    shiftpress(shift);
+                }
+            }
+            break;
+        case '&gt;':
+            if (val.length < 15) {
+                source.value += '>';
+                //ch = '>';
+                //insertAtCaret(source, (ch == "Enter" ? (window.opera ? '\r\n' : '\n') : ch));
+
+                if (shift == 1) {
+                    shift = 0;
+                    shiftpress(shift);
+                }
+            }
+            break;
+        case '&lt;':
+            if (val.length < 15) {
+                source.value += '<';
+                //ch = '>';
+                //insertAtCaret(source, (ch == "Enter" ? (window.opera ? '\r\n' : '\n') : ch));
+
+                if (shift == 1) {
+                    shift = 0;
+                    shiftpress(shift);
+                }
+            }
+            break;
+        case 'Shift':
+            //                        if (shift == 0) {
+            //                            shift = 1;
+            //                        }
+            //                        else {
+            //                            shift = 0;
+            //                        }
+            //                        shiftpress(shift);
+            //                        break;
+        case 'Caps':
+
+            break;
+        default:
+            if (val.length < 15) {
+                source.value += ch;
+                //insertAtCaret(source, (ch == "Enter" ? (window.opera ? '\r\n' : '\n') : ch));
+
+                if (shift == 1) {
+                    shift = 0;
+                    shiftpress(shift);
+                }
+            }
+            break;
+    }
+}
+}
+
+function shiftpress(shift) {
+    shiftkey('0', shift);
+    shiftkey('1', shift);
+    shiftkey('2', shift);
+    shiftkey('3', shift);
+}
+
+function capspress(caps) {
+
+    capskey('0', caps);
+    capskey('1', caps);
+    capskey('2', caps);
+    capskey('3', caps);
+}
+
+function shiftkey(linenum, shift) {
+    var noofkey = 0;
+    var source;
+    switch (linenum) {
+        case '0':
+            noofkey = 14;
+            if (shift == 1) {
+                source = line0s;
+            }
+            else {
+                source = line0;
+            }
+            break;
+        case '1':
+            noofkey = 15;
+            if (shift == 1) {
+                source = line1s;
+            }
+            else {
+                source = line1;
+            }
+            break;
+        case '2':
+            noofkey = 14;
+            if (shift == 1) {
+                source = line2s;
+            }
+            else {
+                source = line2;
+            }
+            break;
+        case '3':
+            noofkey = 12;
+            if (shift == 1) {
+                source = line3s;
+            }
+            else {
+                source = line3;
+            }
+            break;
+    }
+    for (i = 0; i <= source.length - 1; i++) {
+        var td = document.getElementById('key' + linenum.toString() + i.toString());
+        var span = td.childNodes[0];
+        var ch = span.innerHTML;
+        span.innerHTML = source[i];
+    }
+}
+
+function capskey(linenum, caps) {
+    var noofkey = 0;
+    switch (linenum) {
+        case '0':
+            noofkey = 14;
+            break;
+        case '1':
+            noofkey = 15;
+            break;
+        case '2':
+            noofkey = 14;
+            break;
+        case '3':
+            noofkey = 12;
+            break;
+    }
+    for (i = 0; i <= noofkey - 1; i++) {
+        var td = document.getElementById('key' + linenum.toString() + i.toString());
+        var span = td.childNodes[0];
+        var ch = span.innerHTML;
+        if (filter.test(ch)) {
+            switch (ch) {
+                case 'Backspace':
+                    break;
+                case 'Tab':
+                    break;
+                case 'Caps':
+                    break;
+                case 'Shift':
+                    break;
+                case 'Enter':
+                    break;
+                default:
+                    if (caps == 1) {
+                        ch = ch.toUpperCase();
+                        span.innerHTML = ch;
+                    }
+                    else {
+                        ch = ch.toLowerCase();
+                        span.innerHTML = ch;
+                    }
+                    break;
+            }
+        }
+
+    }
+}
+    </script>
+
+    <script src="Myscript/caplock.js" type="text/javascript">
+    </script>
+
+    <script type="text/javascript">
+        function showObject(id) {
+            var myWindow = document.getElementById(id);
+            myWindow.style.visibility = "visible";
+        }
+        function closeObject(id) {
+            var myWindow = document.getElementById(id);
+            myWindow.style.visibility = "hidden";
+        }
+    </script>
+
+    <script type="text/javascript" language="javascript">
+        function closewindow() {
+
+            var agt = navigator.userAgent.toLowerCase();
+            if (agt.indexOf("msie") != -1) {
+                window.moveTo(0, 0);
+                window.resizeTo(screen.availWidth, screen.availHeight);
+                window.opener = self;
+                window.open('POSLogin.aspx', '', 'fullscreen=0,status=1,resizable=1,menubar=1');
+                window.open('', '_self', '');
+                window.close();
+
+
+            }
+            else {
+                self.opener = self;
+                self.open('POSLogin.aspx', '', 'fullscreen=yes,status=1,resizable=1');
+                self.open('', '_self', '');
+                self.opener.close();
+                self.close();
+            }
+
+        }
+        function AdmintextFocus() {
+            //   $find('mpeAdminTextMessage').show();
+            setTimeout(function () { document.getElementById('txtAdminTextMessage').focus(); }, 1000);
+        }
+
+    </script>
+
+    <script type="text/javascript">
+        function logindivalign() {
+            if ((screen.width <= 1440) && (screen.height <= 900)) {
+
+            }
+            else {
+
+            }
+        }
+        function loginmessage() {
+            if (screen.width <= 800 && screen.height <= 600) {
+                //alert("We appreciate you taking the time to visit our online point of sale application, however your screen resolution is set too low. You must increase it to a minimum of 1,024 X 768 (recommended) in order to see this page correctly and use our application. Your business is truly appreciated.");
+            }
+
+            else {
+            }
+        }
+    </script>
+
+    <script type="text/javascript">
+        if (window.document.addEventListener) {
+            window.document.addEventListener("keydown", avoidInvalidKeyStorkes, false);
+        } else {
+            window.document.attachEvent("onkeydown", avoidInvalidKeyStorkes);
+
+        }
+        function avoidInvalidKeyStorkes(evtArg) {
+            var evt = (document.all ? window.event : evtArg);
+            var isIE = (document.all ? true : false);
+            var KEYCODE = (document.all ? window.event.keyCode : evtArg.which);
+            var element = (document.all ? window.event.srcElement : evtArg.target);
+            var msg = "We have disabled this key: " + KEYCODE;
+            switch (KEYCODE) {
+
+                case 123:
+                    if (isIE) {
+                        if (KEYCODE == "112") {
+
+                            document.onhelp = function () { return (false); }
+                            window.onhelp = function () { return (false); }
+                        }
+
+                        evt.returnValue = false;
+                        evt.keyCode = 0;
+                        window.status = msg;
+                    } else {
+                        evt.preventDefault();
+                        evt.stopPropagation();
+                        alert(msg);
+                    }
+                    break;
+                default:
+                    window.status = "Done";
+            }
+        }
+
+        function SetSize() {
+            var px = (screen.width / 2) - (970 / 2);
+            if (document.getElementById('displaykeyboard') != null) {
+                document.getElementById('displaykeyboard').style.marginLeft = px + "px";
+
+
+
+            }
+
+
+        }
+
+        function fncInputNumericValuesOnly(evt) {
+            var e = evt ? evt : window.event;
+            if (window.event) {
+                if ((evt.keyCode != 8) && (evt.keyCode != 37) && (evt.keyCode != 38) && (evt.keyCode != 39) && (evt.keyCode != 40) && (evt.keyCode < 47 || evt.keyCode > 57)) {
+                    evt.returnValue = false;
+                    evt.preventDefault();
+                }
+            }
+            else {
+                if ((evt.which != 0) && (evt.which != 8) && (evt.which != 37) && (evt.which != 38) && (evt.which != 39) && (evt.which != 40) && (evt.which < 47 || evt.which > 57)) {
+                    evt.returnValue = false;
+                    evt.preventDefault();
+                }
+            }
+        }
+
+        function getFocusOnButton(evt) {
+            //debugger
+            var e = evt ? evt : window.event;
+            if (window.event) {
+                if (evt.keyCode == 9) {
+                    document.getElementById('lnkLogin').focus();
+                    return true;
+                }
+                else {
+                    return true;
+                }
+            }
+        }
+
+
+    </script>
+
+
+<title>
+	Lightning Online Point of Sale
+</title></head>
+<body style="background-color: #0F2A49;">
+    
+    <div id="MainIOSAlertBox" class="IOSAlert">
+        <table cellpadding="0" cellspacing="0" width="100%">
+            <tr>
+                <td style="height: 10px;"></td>
+            </tr>
+            <tr>
+                <td align="left" valign="top" class="tab1">
+                    <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                        <tr>
+                            <td width="5%" height="8" align="left" valign="top" id="Td12">
+                                <img src="images/crnr1w.gif" alt="" width="8" height="8" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td height="40" align="left" valign="left">
+                                <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                    <tr>
+                                        <td width="2%" align="center">
+                                            <p style="text-align: center; padding: 1%; width: 100%; font-size: 10pt; color: black">We notice you are loading Lightning through your browser on your <strong id="devicetype">iPhone.</strong></p>
+                                            <p style="text-align: center; padding: 1%; width: 100%; font-size: 10pt; color: black">
+                                                Would you like to download our free <strong id="devicetype1">iPhone</strong> application to greatly enhance your experience?
+                                            </p>
+                                            <div style="text-align: center">
+                                                <div style="margin-bottom: 2%; text-align: center">
+                                                    <a id="downloadAnchor" href="#" style="text-align: center; padding: 1%; width: 100%; color: blue; margin-bottom: 2%; font-size: 10pt">Download App </a>
+                                                    <br />
+                                                </div>
+                                                <div style="margin-bottom: 2%; text-align: center">
+                                                    <a href="javascript:void(0);" onclick="cancelDownload();" style="text-align: center; padding-left: 1%; width: 100%; color: blue; margin-bottom: 2%; font-size: 10pt">Continue to Site
+
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td height="8" align="left" valign="bottom" class="tab1c">
+                                <img src="images/crnr3w.gif" alt="" width="8" height="8" />
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+            <tr>
+                <td style="height: 10px;"></td>
+            </tr>
+        </table>
+
+    </div>
+    <div id="fade" class="black_overlay"></div>
+    
+    <div id="alertwebstore" class="IOSAlert_new" style="display:none">
+                                    <table cellpadding="0" cellspacing="0" width="100%">
+                                        <tr>
+                                            <td style="height: 10px;"></td>
+                                        </tr>
+                                        <tr>
+                                            <td align="left" valign="top" class="tab1">
+                                                <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                                    <tr>
+                                                        <td width="5%" height="8" align="left" valign="top" id="Td1">
+                                                            <img src="images/crnr1w.gif" alt="" width="8" height="8" />
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td height="40" align="left" valign="left">
+                                                            <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                                                <tr>
+                                                                    <td width="100%" align="center" style="padding-right:5%">
+                                                                        <p style="text-align: center; padding: 1% 1% 1% 1%; width: 100%; font-size: 10pt; color: black">
+                                                                            We are logging you in to Lightning Online Point of Sale and
+                                                                                                                            synchronizing your e-commerce store.This may take a few seconds.
+                                                                        </p>
+                                                                        <br />
+                                                                        <p style="text-align: center; padding: 1%; width: 100%; font-size: 10pt; color: black">
+                                                                            Please stand by..
+                                                                        </p>
+                                                                    </td>
+                                                                </tr>
+                                                            </table>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td height="8" align="left" valign="bottom" class="tab1c">
+                                                            <img src="images/crnr3w.gif" alt="" width="8" height="8" />
+                                                        </td>
+                                                    </tr>
+                                                </table>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td style="height: 10px;"></td>
+                                        </tr>
+                                    </table>
+                                </div>
+    
+    <div id="zoompop" style="display: none;" class="zoomp">
+        <div style="width: 100%; text-align: right;"><a style="margin: 0.5vh 1vh 0vh 0vh; color: gray; text-decoration: none" href="javascript:void(0)" onclick="document.getElementById('zoompop').style.display='none';">x</a></div>
+        <div id="divmsg" style="width: 100%; height: 8vh">
+        </div>
+    </div>
+    
+    <script language="javascript" type="text/javascript">
+        var rowURL = window.location.href;
+        var screenHeight = screen.height;
+        var screenWidth = screen.width;
+        if (rowURL.indexOf("Hg") == -1)
+            window.location.href = window.location.href + "?Hg=" + screenHeight + "&Wg=" + screenWidth;
+
+
+    </script>
+
+    <form name="frmLogin" method="post" action="./POSLogin.aspx?flag=1&amp;enabletouch=%27true%27%3fHg%3d1080&amp;Wg=1920" id="frmLogin">
+<input type="hidden" name="__VIEWSTATE" id="__VIEWSTATE" value="/wEPDwUKLTI5NzM4Njc4NA8WCh4Fc2hpZnQFBm5vcm1hbB4EY2FwcwUFbG93ZXIeB2RlbW91cmxlHgZjaGt1cmxoHgdpc2FkbWluZRYCAgcPZBYKAgMPZBYCZg9kFgICAQ9kFg4CAg88KwARAwAPFgQeC18hRGF0YUJvdW5kZx4LXyFJdGVtQ291bnQCB2QBEBYBZhYBPCsABQEAFgIeB1Zpc2libGVnFgECBgwUKwAAFgJmD2QWEmYPDxYCHwdoZGQCAQ9kFgJmD2QWBAIBDw8WAh4EVGV4dAVhUHJpbnQgYSBRUiBDb2RlIG9uIHRoZSBib3R0b20gb2YgeW91ciByZWNlaXB0IHRvIGRpcmVjdCBjdXN0b21lcnMgdG8gZG93biB5b3VyIGFwcCwgY291cG9ucywgZXRjLmRkAgMPFgIfCGVkAgIPZBYCZg9kFgQCAQ8PFgIfCAVjTGlnaHRuaW5nIEUtQ29tbWVyY2UgVXNlcnM6IFdoZW4gY3JlYXRpbmcgYSBzaGlwbWVudCwgeW91IGNhbiBhdHRhY2ggaXRlbXMgdG8gZWFjaCB0cmFja2luZyBudW1iZXIuZGQCAw8WAh8IZWQCAw9kFgJmD2QWBAIBDw8WAh8IBZ4BTGlnaHRuaW5nIEUtY29tbWVyY2UgVXNlcnMgd2hvIHV0aWxpemUgdGhlIG11bHRpLXBhY2sgaW52ZW50b3J5IGZlYXR1cmUgd2lsbCBncmVhdGx5IGFwcHJlY2lhdGUgaG93IHRoaXMgaW52ZW50b3J5IHR5cGUgaXMgaGFuZGxlZCBvbiB0aGUgd2Vic2l0ZS4mbmJzcDsmbmJzcDtkZAIDDxYCHwhlZAIED2QWAmYPZBYEAgEPDxYCHwgFngI8c3Ryb25nPkxpZ2h0bmluZyBFLUNvbW1lcmNlIDwvc3Ryb25nPnVzZXJzIGNhbiBoaXJlIERvb3IgRGFzaCBkcml2ZXJzIChBS0EgRGFzaGVycykgdGhyb3VnaCB0aGVpciBlLWNvbSAmIzM5O0Rhc2hib2FyZC4mIzM5OyZuYnNwOyBUaGlzIGluY2x1ZGVzIG9idGFpbmluZyBwcmljaW5nLCBwaWNrLXVwIHRpbWUsIHJlcXVpcmluZyBhIHNpZ25hdHVyZSwgVElQLCBkZWxpdmVyeSB0aW1lLCBhbmQgYmV5b25kLiZuYnNwOyBSZXF1aXJlcyBhbiBhY2NvdW50IHdpdGggRG9vckRhc2ggRHJpdmUuJm5ic3A7ZGQCAw8WAh8IZWQCBQ9kFgJmD2QWBAIBDw8WAh8IBesCPHN0cm9uZz5WZXJpRm9uZSBQQVl3YXJlIHVzZXJzLDwvc3Ryb25nPiB3ZSBoYXZlIHJlbGVhc2VkIG91ciBVU0EgRS1QYXkgaW50ZXJmYWNlIHRvIHJlcGxhY2UgdGhlIG9sZGVyIFBBWXdhcmUgdGVjaG5vbG9neS4mbmJzcDsgVGhpcyBpcyBhIHNpZ25pZmljYW50IHVwZ3JhZGUgdG8gb3VyIHBsYXRmb3JtIHBsdXMsIGZvciBvdXIgTGlnaHRuaW5nIEUtQ29tbWVyY2UgbWVyY2hhbnRzLCB0aGlzIGFsbG93cyBmbGV4aWJpbGl0eSBhcyB0aGlzIGVuYWJsZXMgcHJvZHVjdCBzdWJzdGl0dXRpb25zLiZuYnNwOyBUbyBlc3RhYmxpc2ggYSBVU0EgRS1QYXkgYWNjb3VudCwgcGxlYXNlIGNhbGwgb3VyIG9mZmljZSBhdCA5MTQtNjMzLTg5NTkuZGQCAw8WAh8IZWQCBg9kFgJmD2QWBAIBDw8WAh8IBdYCPHN0cm9uZz5JbnN0YWNhcnQgaW50ZWdyYXRpb248L3N0cm9uZz4gaXMgbm93IGF2YWlsYWJsZSwgbGlrZSBvdXIgb3RoZXIgZGVsaXZlcnkgc2VydmljZSBpbnRlZ3JhdGlvbnMsIEkuRS4sIERyaXpseSwgRGVsaXZlcnkuY29tLCBldGMuJm5ic3A7IFRoaXMgaW5jbHVkZXMgdGhlIGFiaWxpdHkgdG8gcHJpY2UgZWFjaCBpdGVtIHNsaWdodGx5IGhpZ2hlciBmb3IgSW5zdGFjYXJ0IGluZGl2aWR1YWxseTsgYWxsIHJlcG9ydGluZyBhbHNvIHdpbGwgcmVwcmVzZW50IHRoaXMgbmV3IGludGVyZmFjZSBmcm9tIExpZ2h0bmluZyBmb3IgdGhlIHdlYiwgb3VyIGlPUyBwbGF0Zm9ybXMsIGFuZCBiZXlvbmQuZGQCAw8WAh8IZWQCBw9kFgJmD2QWBAIBDw8WAh8IBZsDPHN0cm9uZz5NQUpPUiBFTkhBTkNFTUVOVCwgZHVlIHRvIHNpZ25pZmljYW50IGRlbWFuZDombmJzcDs8L3N0cm9uZz4gQ3JlZGl0IENhcmQgQ29udmVuaWVuY2UgRmVlIC8gQ2FzaCBEaXNjb3VudGluZyB3YXMgYWRkZWQgdG8gb3VyIHBsYXRmb3JtIGluIE9jdG9iZXIgMjAyMiwgd2hpY2ggYWxsb3dzIHJldGFpbGVycyB0byBhZGQgYW4gYWRkaXRpb25hbCBmZWUgdG8gdGhlIGludm9pY2UgaWYgdGhlIGN1c3RvbWVyIGlzIHVzaW5nIHRoZWlyIGNyZWRpdCBjYXJkLiZuYnNwOyBUaGlzIGNhbiByZWR1Y2UgeW91ciBtb250aGx5IGNyZWRpdCBjYXJkIHByb2Nlc3NpbmcgZmVlcyB0byB2aXJ0dWFsbHkgemVyby4mbmJzcDsgTWlub3Igc2V0dXAgaW4gdGhlIGNyZWRpdCBjYXJkIGJhY2tlbmQgaXMgcmVxdWlyZWQuJm5ic3A7ZGQCAw8WAh8IZWQCCA8PFgIfB2hkZAIEDxYCHwdnZAIIDw9kFgIeCm9ua2V5cHJlc3MFJGphdmFTY3JpcHQ6cmV0dXJuIGNsaWNrRW50ZXIoZXZlbnQpO2QCDA8PZBYCHwkFJGphdmFTY3JpcHQ6cmV0dXJuIGNsaWNrRW50ZXIoZXZlbnQpO2QCEA8PZBYCHwkFPWphdmFTY3JpcHQ6Z2V0Rm9jdXNPbkJ1dHRvbihldmVudCk7IHJldHVybiBjbGlja0VudGVyKGV2ZW50KTtkAhUPD2QWAh4Hb25DbGljawUlamF2YVNjcmlwdDpyZXR1cm4gY2xlYXJfZmllbGQoZXZlbnQpO2QCJQ8PFgIfB2hkFgICAw9kFgICAQ88KwARAgEQFgAWABYADBQrAABkAgcPZBYCZg9kFgQCDw8PFgIeCEltYWdlVXJsBS9pY29uIHNtYWxsL0tleWJvYXJkIEltYWdlcy9ub24tdG91Y2gtYWN0aXZlLnBuZ2RkAhEPDxYCHwsFLmljb24gc21hbGwvS2V5Ym9hcmQgSW1hZ2VzL3RvdWNoLWRlLWFjdGl2ZS5wbmdkZAIJD2QWAgIBD2QWAmYPZBYGAgEPDxYCHwgFGkJyb3dzZXIgLSBVbmtub3duJm5ic3A7MC4wZGQCAw8PFgIfCAUVVHVlc2RheSwgTWF5IDE2LCAyMDIzZGQCBQ8PFgIfCAUaVmVyc2lvbiA6IHYzLjAwLjIzMDUwOTAxLTJkZAILD2QWAmYPZBYCAgMPFgIfB2hkAhIPZBYCAggPZBYCAgEPZBYCZg9kFgICBQ9kFgICAQ9kFgQCGQ8PFgIeCU1heExlbmd0aGZkZAIjDxBkZBYBZmQYAwUeX19Db250cm9sc1JlcXVpcmVQb3N0QmFja0tleV9fFgwFCWxua0NhbmNlbAUIbG5rTG9naW4FC2Noa3JlbWVtYmVyBQhidG5DbG9zZQUIYnRuUGhvbmUFCGJ0bkVtYWlsBQdidG5NYWlsBRRidG5DbG9zZUVtYWlsQ29udGFjdAUMSW1hZ2VCdXR0b24xBQtidG5Db250aW51ZQUMSW1hZ2VCdXR0b240BRVidG5BY2NvdW50TG9ja2VkQ2xvc2UFBmd2bmV3cw9nZAUJZ3JkcmVjZW50DzwrAAwBCAIBZHD0oXkkrnTpq/xT8lzP2kqKttw1Y7SNsvVJon+FJlTR" />
+
+
+<script src="/ScriptResource.axd?d=DS8AIKB_ySvDI07XMjagY0f5OWiYc7z-0n77ncATurBTI-tzIYkev_tN1nyARnuhyYOKwijKEMwXwk0W2E4D6avZ-LSQdBAA6CnvzoJlNXfVV2XlTJ0JMg19IMhDN--lBVQNm-twJNsbJxQktC4pnHxpciKGbK-PrhMXi_JSuhw1&amp;t=49337fe8" type="text/javascript"></script>
+<script src="/ScriptResource.axd?d=jX2qhVDlmd2JA8F1JPzlRw9HixqX_T_T07X3CrbxJXwHP8RtkebgDDe5ALqOWvVjRbn2Mqbgh0HLajwsRvO1coNCGNz32V9uBFh9LCyJwMDTc3ZlBToOO4ytnI3l78Ycngy0AIgOAgoOgvF5EE-1ZLSnaNWgeLe4qyg4RBqdYio1&amp;t=dce2543" type="text/javascript"></script>
+<script src="/ScriptResource.axd?d=vpXPm58WX9z65KJZXR32QfzMcTd3-snnv09YcY4L9yYMnqu-sIIGYDBLg9MZ40i4yXe_swUwUYb8chjPXPj0rh4ya06eN4AqHDnFyLj9czUGAJcHZZ_5RvxafO4IezdQ4JovVbdEumOuYmkwmMMxN-XNPQZEPsHM1I7aKU0QL2o1&amp;t=dce2543" type="text/javascript"></script>
+<script src="/ScriptResource.axd?d=fyvnzYCJ9OCzh5BtRmjOfsduIJNXoHJT6Sjl1LsqQlWqWup0ksRzwl67X4YW_k1F422FJciI-gME3lC4fPDvNMjAkOyjRAT_nez-A2eTcllsosGFsxkZtpcdRjN0QSRt0A9qGD3Z3dBUyRODvn760rqTcI7N2NTOdae0kViAZw0yDpYGUx-7_HYxXvxDF30U0&amp;t=dce2543" type="text/javascript"></script>
+<script src="/ScriptResource.axd?d=rEDcfQUOZ6u_qAMeSJQipq8hViq20r7URi0sCEZItve9WqkUdfU35REuBQEYXsD4_6X3mLiC8l7y_mXdRFiCrRmkFYyUIr708N5P3-pBk7djWKI54UdXPMhl3x-pe7rwcbJhw0fe5S8TUIkxf4rpNTrn5ds990dE5pA8MXZ54fo1&amp;t=dce2543" type="text/javascript"></script>
+<script src="/ScriptResource.axd?d=0a4XpHX5jhF3durChFBw-vVW-Ttn7mnzdUhlAq3uP9mgupytUD1AIZfWPYTYC_z-tWenmG15DX4PTal66h3oTI1gxaHMIFOCR-gXWGKvScmwl3Ey7o0cSF2bPo_SQo1HmkVJEaerCaZIPVPJh6R_2SqBCUHNehsPKIpGIQm5fMyTpD5HnKE39uOb_CFzZ_NJ0&amp;t=dce2543" type="text/javascript"></script>
+<script src="/ScriptResource.axd?d=LLh_s22zzXwfi95LzLPyTP-RfL_XYOUz9DH0lUp0jn9lOUmuly6wUWloP7xw-VJFjxdcnu7Vo5ipqTuvYthpSbjlMrkNJdyXu2nIDKSc06llkb9WbiPTWFHOE6AjvFQp3bKNm7FJN8Rbr4944U8X978xks7CxXFPYIioN0tOs6I4vm2xImLsGsRwQwdr0k1E0&amp;t=dce2543" type="text/javascript"></script>
+<script src="/ScriptResource.axd?d=A0uziEdyi8Jp3jrFy-gufqodjP4Nf7YENqkVYtsN2A_zE3twd1vgJ75vWSsQWqqUbw2XlytykiM6_mMCeUWJ60mT7YCcjMYyCh_wq27u2QTm8x7nsPnOe9iXY_q-6l6HK2uiR9CLAYnvdFjjoyTd64OMtoMXSuVVAOqzW3MPdKPB2mr4uNUfImlK3locPY_p0&amp;t=dce2543" type="text/javascript"></script>
+<script src="/ScriptResource.axd?d=0SbgfQ8ER3XidVF_W9ShEA5Zy1WeG6WFYzUh94cDVHAZdMaehJ8yim2t7txG83JJQoTpGknZxevYDH0aFSpXaDiCgj0tg3IWJ0PkbfUtL0bhP3rBEzG4MEnQb0QmUquTjm5_fPL5TuSZHCuIuZTTKHplPv5b7VFyte53tTkaRTg1&amp;t=dce2543" type="text/javascript"></script>
+<script src="/ScriptResource.axd?d=iEdAaRlXvtDfhTbnsO4xb8QWvgoLNioyLAvErnO0-eDGdShdLKKH_E1IVvAr9SA6suE-xM3jZ8C7YQxZ7mWt3VM3XCK4L21hS6tzlh4cdNVU4uUS_XOCRhi4G_yujoXCPPvery6kFzVyRRj0bkO0gxjAzNInJ60fH0teXAH_YAg8JWr28gweneBwpC9SyVjv0&amp;t=dce2543" type="text/javascript"></script>
+<input type="hidden" name="__VIEWSTATEGENERATOR" id="__VIEWSTATEGENERATOR" value="37666CC6" />
+<input type="hidden" name="__PREVIOUSPAGE" id="__PREVIOUSPAGE" value="X-lt_0TzVBXW25hh6GCBIXaDDa_9zAflPm-jLLypczv-jw1Of0VaypXelTnGJmyL5BtGPAVdkN5z_vW5xUfbOHeO6oRmU7BUOg0ilUZ8lT41" />
+<input type="hidden" name="__EVENTVALIDATION" id="__EVENTVALIDATION" value="/wEdADGCcog0iRIRPslVkr2Ew9eC8RS22m14wsypFtp/hwI9XWGcPOO2LAX9axRe6vMQj2HUIlRy79zrmG1jcpDeNFLaG5kOL1bk2h2JLsDrLavgFlKYIEwC3rw5gsfXyKXjgGLgixc1pLvayuQoQp8ohOH/6yZoqCA8v4UR0UTJlQ7D+iuAZla3vAmmB+EPrTKEXj6WMY2uQzNw4fRoTBIT4t6s4+44sTiMyHUuGNfHvCPbipq3cN5+sIoGTSJ4QToOEgfipLDV3iD+JSaucy28lRMuwlA0+ZBAKKqCepLWMnXe4M/FaXqVxT4DGdY0+tffvffJtFVPD1aF9eISPNrbtrS46jrylUTYmdl9uoQRvy0f0F/HrTbRjTwoLHNuWWk7YefpfsDP6hmykJjonHbV74TvuqJzdLRkOMLOoT0zZmF15BrlLcmZXwxCpnn36IYI7xrjbLzxSdWPwoA2tC0RrPk6hZhwgeQtdmljQuVYtkU9OfqZVzfkSXob67QK+YE7DDOS8HUUrB3JJk4T8ruMR28SsUpNB8G5cjGbV8WxtgUm5emQAq8eUWZ5ZSknq1PiLirCZkxI0EkbX95MfWb5OeuxCkNpkwb7zFD0n5lG6hFNKrCZ960BMNEC78XUKyym3z2bhONl5ai2jRIuIJFN+L5pInxs93C+zsc82onUzjLKR2r6oa24n9GK0OFz2SC0T0NNsvBu0gppIhPMWwd7j8aTDeKXmtsULXxUXzVb+JHIXw6qTwCnatO9s3m47x8Zjw3qgfZ/ZH2YBjTyLqlQiKLj1Yl+LwXvMNxW1q7qcOSrkmYYrPwXPgUGX2CujrWc/n01xv+fBjERX7ygbTAqfzKiRXgR2t3URS2z1q19SiYsiOWETOENVxluLor7b8P2A7g6yZdCRjP2RBMH0TO9B7C+0N8V6y0sHmHslp1hLbH0YhcoQfSTDT5EtXbSprmCXf+z5X1hM8IEO0YPixK302JvaQGcV45RIHaeG6ut3JGGZzgM2u1sSpkGnD8mIIdy95kHMB8XLXFbtwAm+GQ5m8zwVghrGpDLEATLpYCNBoSJRsqcPsmNzEjR48OST13H4y8=" />
+        
+        <div id="container">
+            <div id="upnlloginmain">
+	
+                    <div id="logindiv" align="center" style="position: absolute; margin-left: 0px; top: 0px; height: 100%; width: 100%; background-color: #0F2A49;">
+                        <table id="Table_01" width="65%" style="margin-left: 40px;" height="599" border="0" cellpadding="0" cellspacing="0">
+                            
+                            <tr>
+                                <td>
+                                    <img src="images/login2/login_01.jpg" width="95" height="114" alt="" />
+                                </td>
+
+                                <td colspan="2">
+                                    <img src="images/login2/login_02.jpg" width="128" height="114" alt="" />
+                                </td>
+                                <td>
+                                    <img src="images/login2/login_03.jpg" width="379" height="114" alt="" />
+                                </td>
+                                <td>
+                                    <img src="images/login2/login_04.jpg" width="39" height="114" alt="" />
+                                </td>
+                                <td rowspan="5" align="left" valign="top">
+                                    <table width="335" height="604" border="0" cellpadding="0" cellspacing="0">
+                                        <tr>
+                                            <td align="left" valign="top" background="images/login2/login_34.jpg">
+                                                <table width="310" border="0" cellspacing="0" cellpadding="0">
+                                                    <tr>
+                                                        <td width="30">&nbsp;
+                                                           
+                                                        </td>
+                                                        <td height="114" align="center" valign="bottom">
+
+
+                                                            <table width="50" border="0" cellspacing="0" cellpadding="0">
+                                                                <tr>
+                                                                    <td height="30" align="left" valign="bottom">
+                                                                        <img src="images/login2/notes2.gif" alt="" width="50" height="30" />
+
+                                                                    </td>
+                                                                </tr>
+                                                            </table>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td width="30">&nbsp;
+                                                        </td>
+                                                        <td height="384" align="center" valign="top">
+                                                            <table width="280" border="0" cellspacing="0" cellpadding="0">
+                                                                <tr>
+                                                                    <td height="50" align="left" valign="middle" class="notes1">
+                                                                        <span class="text-6">Recent Enhancements</span>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td align="left" valign="top" class="notes3" style="padding-right: 10px;">
+                                                                        <div style="overflow-x: hidden; overflow: auto; height: 314px; width: auto;">
+                                                                            <table cellpadding="0" cellspacing="0" width="100%">
+                                                                                <tr>
+                                                                                    <td style="padding-left: 15px; padding-right: 15px">
+                                                                                        <div>
+		<table cellspacing="0" cellpadding="0" align="Center" rules="all" border="0" id="grdrecent" width="100%">
+			<tr>
+				<td class="text-5 recentinhance" align="left" valign="top" width="30%">
+                                                                                                        <span id="grdrecent_ctl02_lblEnhancement">Print a QR Code on the bottom of your receipt to direct customers to down your app, coupons, etc.</span>
+                                                                                                        
+                                                                                                    </td>
+			</tr><tr>
+				<td class="text-5 recentinhance" align="left" valign="top" width="30%">
+                                                                                                        <span id="grdrecent_ctl03_lblEnhancement">Lightning E-Commerce Users: When creating a shipment, you can attach items to each tracking number.</span>
+                                                                                                        
+                                                                                                    </td>
+			</tr><tr>
+				<td class="text-5 recentinhance" align="left" valign="top" width="30%">
+                                                                                                        <span id="grdrecent_ctl04_lblEnhancement">Lightning E-commerce Users who utilize the multi-pack inventory feature will greatly appreciate how this inventory type is handled on the website.&nbsp;&nbsp;</span>
+                                                                                                        
+                                                                                                    </td>
+			</tr><tr>
+				<td class="text-5 recentinhance" align="left" valign="top" width="30%">
+                                                                                                        <span id="grdrecent_ctl05_lblEnhancement"><strong>Lightning E-Commerce </strong>users can hire Door Dash drivers (AKA Dashers) through their e-com &#39;Dashboard.&#39;&nbsp; This includes obtaining pricing, pick-up time, requiring a signature, TIP, delivery time, and beyond.&nbsp; Requires an account with DoorDash Drive.&nbsp;</span>
+                                                                                                        
+                                                                                                    </td>
+			</tr><tr>
+				<td class="text-5 recentinhance" align="left" valign="top" width="30%">
+                                                                                                        <span id="grdrecent_ctl06_lblEnhancement"><strong>VeriFone PAYware users,</strong> we have released our USA E-Pay interface to replace the older PAYware technology.&nbsp; This is a significant upgrade to our platform plus, for our Lightning E-Commerce merchants, this allows flexibility as this enables product substitutions.&nbsp; To establish a USA E-Pay account, please call our office at 914-633-8959.</span>
+                                                                                                        
+                                                                                                    </td>
+			</tr><tr>
+				<td class="text-5 recentinhance" align="left" valign="top" width="30%">
+                                                                                                        <span id="grdrecent_ctl07_lblEnhancement"><strong>Instacart integration</strong> is now available, like our other delivery service integrations, I.E., Drizly, Delivery.com, etc.&nbsp; This includes the ability to price each item slightly higher for Instacart individually; all reporting also will represent this new interface from Lightning for the web, our iOS platforms, and beyond.</span>
+                                                                                                        
+                                                                                                    </td>
+			</tr><tr>
+				<td class="text-5 recentinhance" align="left" valign="top" width="30%">
+                                                                                                        <span id="grdrecent_ctl08_lblEnhancement"><strong>MAJOR ENHANCEMENT, due to significant demand:&nbsp;</strong> Credit Card Convenience Fee / Cash Discounting was added to our platform in October 2022, which allows retailers to add an additional fee to the invoice if the customer is using their credit card.&nbsp; This can reduce your monthly credit card processing fees to virtually zero.&nbsp; Minor setup in the credit card backend is required.&nbsp;</span>
+                                                                                                        
+                                                                                                    </td>
+			</tr>
+		</table>
+	</div>
+                                                                                    </td>
+                                                                                </tr>
+                                                                            </table>
+                                                                        </div>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td height="20" align="left" valign="top">
+                                                                        <img src="images/login2/notes4.gif" width="280" height="20" />
+                                                                    </td>
+                                                                </tr>
+                                                            </table>
+                                                        </td>
+                                                    </tr>
+                                                </table>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td valign="top">
+                                    <img src="images/login2/login_07.jpg" width="95" height="79" alt="" />
+                                </td>
+                                <td valign="top">
+                                    <img src="images/login2/login_08.jpg" width="24" height="79" alt="" />
+                                </td>
+                                <td background="images/login2/login_09.jpg" width="200" valign="top"></td>
+                                <td background="images/login2/login_09.jpg" align="right" valign="top">
+                                    <img src="Images/login2/login_10.jpg" height="55" alt="" />
+                                </td>
+                                <td valign="top">
+                                    <img src="images/login2/login_11.jpg" width="39" height="79" alt="" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td valign="top">
+                                    <img src="images/login2/login_14.gif" width="95" height="262" alt="" />
+                                </td>
+                                <td valign="top">
+                                    <img src="images/login2/login_15.gif" width="24" height="262" alt="" />
+                                </td>
+                                <td valign="top">
+                                    <img src="images/login2/login_16.gif" width="104" height="262" alt="" />
+                                </td>
+                                <td align="left" valign="top" background="images/login2/login_17_New.gif">
+                                    <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                        <tr>
+                                            <td align="left" valign="top">
+                                                <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                                    <tr>
+                                                        <td width="100%" height="23" align="center" valign="middle" colspan="3">
+                                                            <span id="sLogout" class="style5">You have successfully
+                                                            logged out</span>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td width="30%" height="10">
+                                                            <img src="images/login2/spacer.gif" alt="" width="1" height="1" />
+                                                        </td>
+                                                        <td width="65%" height="10">
+                                                            <img src="images/login2/spacer.gif" alt="" width="1" height="1" />
+                                                        </td>
+                                                        <td width="5%" height="10">
+                                                            <img src="images/login2/spacer.gif" alt="" width="1" height="1" />
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td width="30%" height="23" align="center" valign="middle">
+                                                            <span class="style5" style="font-size: 10pt">Employee ID&nbsp; :
+                                                            &nbsp;
+                                                            </span>
+                                                        </td>
+                                                        <td width="65%" height="23" align="center" valign="middle">
+                                                            <input name="txtuserid" type="text" maxlength="10" id="txtuserid" tabindex="1" class="txtbox ulogin-field" onfocus="changecolor(this,&#39;focus&#39;); focus_keyboard(this);" onblur="changecolor(this,&#39;blur&#39;);" autocomplete="off" onkeypress="javaScript:return clickEnter(event);" style="text-indent: 3px;" />
+                                                        </td>
+                                                        <td width="5%" height="23">&nbsp;
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td width="30%" height="9">
+                                                            <img src="images/login2/spacer.gif" alt="" width="1" height="1" />
+                                                        </td>
+                                                        <td width="65%" height="9">
+                                                            <img src="images/login2/spacer.gif" alt="" width="1" height="1" />
+                                                        </td>
+                                                        <td width="5%" height="9">
+                                                            <img src="images/login2/spacer.gif" alt="" width="1" height="1" />
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td width="30%" height="23" align="center" valign="middle">
+                                                            <span class="style5" style="font-size: 10pt">Password&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; :
+                                                            &nbsp;
+                                                            </span>
+                                                        </td>
+                                                        <td width="65%" height="23" align="center" valign="middle">
+                                                            <input name="txtpwd" type="password" maxlength="15" id="txtpwd" tabindex="2" class="txtbox ulogin-field" onfocus="changecolor(this,&#39;focus&#39;); focus_keyboard(this);" onblur="changecolor(this,&#39;blur&#39;);" onkeypress="javaScript:return clickEnter(event);" style="text-indent: 3px;" />
+                                                        </td>
+                                                        <td width="5%" height="23">&nbsp;
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td width="30%" height="20">&nbsp;
+                                                        </td>
+                                                        <td width="65%" height="20" align="left" valign="middle" class="text-3">
+                                                            <table border="0" cellpadding="0" cellspacing="0" style="width: 100%">
+                                                                <tr>
+                                                                    <td>
+                                                                        <div id="divcap" class="caps" style="background-color: Transparent">
+                                                                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<img
+                                                                                src="images/caplock.gif" alt="" />
+                                                                        </div>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td>&nbsp;&nbsp;<span class="style5">Passwords are Case Sensitive </span>&nbsp;
+                                                                    </td>
+                                                                </tr>
+                                                            </table>
+                                                        </td>
+                                                        <td width="5%" height="20">&nbsp;
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td width="30%" height="23" align="center" valign="middle">
+                                                            <span class="style5" style="font-size: 10pt">Store #&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; :
+                                                            &nbsp;
+                                                            </span>
+                                                        </td>
+                                                        <td width="65%" height="23" align="center" valign="middle">
+                                                            <input name="txtstore" type="password" maxlength="8" id="txtstore" tabindex="3" class="txtbox ulogin-field" onfocus="changecolor(this,&#39;focus&#39;); focus_keyboard(this);" onblur="changecolor(this,&#39;blur&#39;);" onkeypress="javaScript:getFocusOnButton(event); return clickEnter(event);" style="text-indent: 3px;" />
+                                                        </td>
+                                                        <td width="5%" height="23">&nbsp;
+                                                        </td>
+                                                    </tr>
+                                                    
+                                                    <tr>
+                                                        <td width="30%" height="1" background="images/login2/spacer.gif"></td>
+                                                        <td width="65%" height="1" background="images/login2/spacer.gif" style="padding-top: 3px">
+                                                            <a id="lnkforgetpwd" href="javascript:__doPostBack(&#39;lnkforgetpwd&#39;,&#39;&#39;)" style="position: static; float: right"><b><u><font face="Arial">Forgot Password</font></u></b></a>
+                                                        </td>
+                                                        <td width="5%" height="1">
+                                                            <img src="images/login2/spacer.gif" alt="" width="1" height="5" />
+                                                        </td>
+                                                    </tr>
+                                                    <tr style="padding-top: 15px;">
+                                                        <td width="30%" height="21" style="padding-top: 18px;">&nbsp;
+                                                            
+                                                        </td>
+                                                        <td width="65%" height="21" align="right" valign="bottom" style="padding-top: 18px;">
+                                                            <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                                                <tr>
+                                                                    <td width="20%" height="21" align="right" valign="top">
+                                                                        <input type="image" name="lnkCancel" id="lnkCancel" src="images/login/clear.gif" onclick="javaScript:return clear_field(event);" border="0" />
+                                                                        &nbsp;&nbsp;
+                                                                    </td>
+                                                                    <td width="10%" height="21" align="right" valign="top">
+                                                                        <input type="image" name="lnkLogin" id="lnkLogin" tabindex="4" onfocus="focus_keyboard(this);" onblur="getfocus();" src="images/login/submit.gif" onclick="javascript:WebForm_DoPostBackWithOptions(new WebForm_PostBackOptions(&quot;lnkLogin&quot;, &quot;&quot;, true, &quot;login&quot;, &quot;&quot;, false, false))" border="0" />
+                                                                        &nbsp;&nbsp;<input type="submit" name="btnDeviceLogin" value="" id="btnDeviceLogin" style="display: none" />
+                                                                        <input type="submit" name="btnRedirectfromLogin" value="" id="btnRedirectfromLogin" style="display: none" />
+                                                                        <input type="hidden" name="hdnPassword" id="hdnPassword" />
+                                                                        <input type="hidden" name="hdnStore" id="hdnStore" />
+                                                                    </td>
+                                                                </tr>
+                                                            </table> 
+                                                        </td>
+                                                        <td width="5%" height="21" style="padding-top: 18px;">&nbsp;
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td width="30%" height="3">
+                                                            <img src="images/login2/spacer.gif" alt="" width="1" height="1" />
+                                                        </td>
+                                                        <td width="65%" height="3">
+                                                            <img src="images/login2/spacer.gif" alt="" width="1" height="1" />
+                                                        </td>
+                                                        <td width="5%" height="3">
+                                                            <img src="images/login2/spacer.gif" alt="" width="1" height="1" />
+                                                        </td>
+                                                    </tr>
+                                                </table>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td align="left" valign="top">
+                                                <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                                    <tr>
+                                                        <td width="26" height="3">
+                                                            <img src="images/login2/spacer.gif" alt="" width="1" height="1" />
+                                                        </td>
+                                                        <td height="3">
+                                                            <img src="images/login2/spacer.gif" alt="" width="1" height="1" />
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td width="26" height="3">
+                                                            <img src="images/login2/spacer.gif" alt="" width="1" height="1" />
+                                                        </td>
+                                                        <td height="3">
+                                                            <img src="images/login2/spacer.gif" alt="" width="1" height="1" />
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td width="26" align="center" valign="top">
+                                                            <input name="chkremember" type="checkbox" id="chkremember" value="checkbox" style="vertical-align: middle" />
+                                                        </td>
+                                                        <td align="left" valign="top" class="text-1">Let us remember your Employee ID, Password &amp; Store Number.
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td width="26" height="3">
+                                                            <img src="images/login2/spacer.gif" alt="" width="1" height="1" />
+                                                        </td>
+                                                        <td height="4">
+                                                            <img src="images/login2/spacer.gif" alt="" width="1" height="1" />
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td width="23">&nbsp;
+                                                        </td>
+                                                        <td align="left" valign="top" class="text-2">*If you share this computer with others we strongly recommend you not check this
+                                                        box.
+                                                        </td>
+                                                    </tr>
+                                                    
+                                                    
+                                                </table>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </td>
+                                <td valign="top">
+                                    <img src="images/login2/login_18.gif" width="39" height="262" alt="" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td valign="top">
+                                    <img src="images/login2/login_22.gif" width="95" height="46" alt="" />
+                                </td>
+                                <td valign="top">
+                                    <img src="images/login2/login_23.gif" width="24" height="46" alt="" />
+
+                                </td>
+                                <td colspan="2" valign="top" background="images/login2/login_24.gif"></td>
+                                <td valign="top">
+                                    <img src="images/login2/login_25.gif" width="39" height="46" alt="" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="height: 94px;" valign="top">
+                                    <img src="images/login2/login_28n.jpg" width="95" alt="" />
+                                </td>
+                                <td colspan="3" align="left" valign="top">
+                                    <img src="images/login2/login_30.jpg" width="100%" alt="" />
+                                    <table border="0" cellspacing="0" cellpadding="0">
+                                        <tr>
+                                            <td>
+                                                <table border="0" cellspacing="0" cellpadding="0" style="width: 421px">
+                                                    <tr>
+                                                        <td width="5" align="left">
+                                                            <div class="centered">
+                                                                
+                                                            </div>
+                                                        </td>
+                                                        <td align="left" valign="top">
+                                                            <table style="width: 100%" cellpadding="0" cellspacing="0" border="0">
+                                                                <tr>
+                                                                    <td class="style101" align="left"></td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td class="text-3" valign="bottom" align="left"></td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td class="text-3" valign="bottom" align="left"></td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td class="text-2" valign="bottom" align="left"></td>
+                                                                </tr>
+                                                            </table>
+                                                        </td>
+                                                        <td></td>
+                                                        <td align="right">
+                                                            
+                                                        </td>
+                                                    </tr>
+                                                </table>
+                                            </td>
+                                        </tr>
+                                    </table>
+
+                                </td>
+                                <td style="height: 94px;" valign="top">
+                                    <img src="images/login2/login_32n.jpg" width="39" alt="" />
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                    
+                
+</div>
+            <div style="position: absolute; padding-left: 10px; padding-top: 10px; top: 507px; left: -16px;">
+                <div id="UpdatePanel2">
+	
+                        &nbsp;&nbsp;&nbsp;&nbsp;
+                    <table width="100%" border="0" cellpadding="0" cellspacing="0">
+                        <tr>
+                            <td width="10%">&nbsp;
+                            </td>
+                            <td>
+                                <td>
+                                    
+                                </td>
+                            </td>
+                        </tr>
+                    </table>
+                    
+</div>
+            </div>
+            <div style="position: absolute; padding-left: 7px; padding-top: 120px;">
+                <div id="UpdatePanel1">
+	
+                        <table width="100%" border="0" cellpadding="0" cellspacing="0">
+                            <tr>
+                                <td colspan="2">
+                                    <a id="imgcontact" href="javascript:__doPostBack(&#39;imgcontact&#39;,&#39;&#39;)" style="display:inline-block;cursor: pointer;"><b><u><font face="Arial">Contact Us</font></u></b></a>
+                                    <br />
+                                    <br />
+
+                                    <a onclick="return addtofavorite();" id="Lnkbookmark" href="javascript:WebForm_DoPostBackWithOptions(new WebForm_PostBackOptions(&quot;Lnkbookmark&quot;, &quot;&quot;, false, &quot;&quot;, &quot;POSForgotPassword.aspx&quot;, false, true))" style="position: static;"><b><u><font face="Arial">Bookmark this Page </font></u></b></a>
+                                    <br />
+                                    <br />
+
+
+
+                                    <a id="lnkbtnprivacy" href="javascript:WebForm_DoPostBackWithOptions(new WebForm_PostBackOptions(&quot;lnkbtnprivacy&quot;, &quot;&quot;, false, &quot;&quot;, &quot;POSPrivacyStmtLink.aspx&quot;, false, true))" style="position: static;"><b><u><font face="Arial">Privacy Statement</font></u></b></a>
+                                    <br />
+                                    <br />
+
+                                    <a id="lnknews" href="javascript:__doPostBack(&#39;lnknews&#39;,&#39;&#39;)"><b><u><font face="Arial">Newsletter Archive</font></u></b></a>
+                                    <input type="hidden" name="hidcompName" id="hidcompName" />
+                                </td>
+                            </tr>
+                            <tr style="height: 5px;">
+                                <td colspan="2"></td>
+                            </tr>
+                            <tr style="height: 5px;">
+                                <td colspan="2" width="54.5%">
+                                    
+                                </td>
+                            </tr>
+                            <tr style="height: 5px;">
+                                <td colspan="2"></td>
+                            </tr>
+                            <tr style="height: 5px;">
+                                
+                                <td width="170px" align="right"></td>
+                                <td>
+                                    
+                                    
+
+                                    &nbsp;
+                                     
+                                    
+                            
+                                </td>
+                            </tr>
+                        </table>
+                    
+</div>
+            </div>
+            <div id="divfooterLogin" class="footer">
+                <div id="UpdatePanel3">
+	
+                        <table width="100%" border="0" cellpadding="0" cellspacing="0">
+                            <tr>
+                                <td align="left" style="padding-left: 10px; padding-bottom: 2px; padding-top: 2px;" valign="top">
+                                    <span id="lblBrowerVersion" class="labelHead"><font size="3">Browser - Unknown&nbsp;0.0</font></span>
+                                    &nbsp; <span style="color: black; font-size: 11pt;">|</span> &nbsp;&nbsp
+                                    <span id="lblCurrentDate" class="labelHead"><font size="3">Tuesday, May 16, 2023</font></span>
+                                    &nbsp; <span style="color: black; font-size: 11pt;">|</span> &nbsp;&nbsp
+                                    <span id="versionno" class="labelHead"><font size="3">Version : v3.00.23050901-2</font></span>
+                                </td>
+                            </tr>
+                        </table>
+                    
+</div>
+            </div>
+        </div>
+        <div id="upnlOnscreenkeyboard">
+	
+                <input type="hidden" name="hdndivpadding" id="hdndivpadding" />
+                <center>
+                    
+                </center>
+            
+</div>
+        <div>
+            
+            
+            <input type="submit" name="btnContactus" value="" id="btnContactus" style="display: none;" />
+            <div id="pnlContactus" class="modalPopup" style="display: none; width: 520px;">
+	
+                <div id="upnlContactus">
+		
+                        <table style="width: 520px;" border="0" align="center" cellpadding="0" cellspacing="0">
+                            <tr>
+                                <td height="27" background="images/popup_01.gif">
+                                    <table width="520px" border="0" cellspacing="0" cellpadding="0">
+                                        <tr>
+                                            <td width="5">&nbsp;
+                                            </td>
+                                            <td width="293">
+                                                <span id="lblalertheader" class="stylePopupHeader">Contact Us</span>
+                                            </td>
+                                            <td align="right">
+                                                <input type="image" name="btnClose" id="btnClose" src="Images/close1.gif" onclick="$find(&#39;mpopupContactus&#39;).hide();" border="0" />
+                                                &nbsp;&nbsp;
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td width="520px" height="120" align="left" valign="top">
+                                    <img src="images/spacer.gif" alt="" width="1" height="1" />
+                                    <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                        <tr>
+                                            <td></td>
+                                            <td align="left" class="style1">&nbsp;<span id="lblJobNo" class="stylePopuplabel"><b><font face="Arial">Your comments and suggestions are important to us and are truly appreciated.</font></b></span></td>
+                                            <td></td>
+                                        </tr>
+                                        <tr>
+                                            <td></td>
+                                            <td style="height: 10px">&nbsp;
+                                            </td>
+                                            <td></td>
+                                        </tr>
+                                        <tr>
+                                            <td></td>
+                                            <td align="left" class="style1">&nbsp;<span id="lblMessage" class="stylePopuplabel"><b><font face="Arial">You may contact us via the methods listed below. We look forward to hearing from you, </font></b></span><br />
+                                                &nbsp;<span id="Label1" class="stylePopuplabel"><b><font face="Arial">Thank You</font></b></span></td>
+                                            <td></td>
+                                        </tr>
+                                        <tr>
+                                            <td>&nbsp;
+                                            </td>
+                                            <td>&nbsp;
+                                            </td>
+                                            <td>&nbsp;
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>&nbsp;
+                                            </td>
+                                            <td>&nbsp;
+                                            </td>
+                                            <td>&nbsp;
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>&nbsp;
+                                            </td>
+                                            <td align="center">&nbsp;
+                                            <input type="image" name="btnPhone" id="btnPhone" tabindex="1" src="images/login/Phone.gif" border="0" />
+                                                &nbsp;
+                                            <input type="image" name="btnEmail" id="btnEmail" tabindex="2" src="images/login/email.gif" border="0" />
+                                                &nbsp;
+                                            <input type="image" name="btnMail" id="btnMail" tabindex="3" src="images/login/mail.gif" border="0" />
+                                            </td>
+                                            <td>&nbsp;
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>&nbsp;
+                                            </td>
+                                            <td>&nbsp;
+                                            </td>
+                                            <td>&nbsp;
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>&nbsp;
+                                            </td>
+                                            <td>&nbsp;
+                                            </td>
+                                            <td>&nbsp;
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </td>
+                            </tr>
+                        </table>
+                    
+	</div>
+                
+                
+                <input type="submit" name="btnContactusEmail" value="" id="btnContactusEmail" style="display: none;" />
+                <div id="pnlContactusEmail" class="modalPopup" style="display: none; width: 400px;">
+		
+                    <div id="upnlContactusEmail">
+			
+                            <table style="width: 400px;" border="0" align="center" cellpadding="0" cellspacing="0">
+                                <tr>
+                                    <td height="27" background="images/popup_01.gif">
+                                        <table width="400px" border="0" cellspacing="0" cellpadding="0">
+                                            <tr>
+                                                <td width="5">&nbsp;
+                                                </td>
+                                                <td width="293">
+                                                    <span id="lblContactUsHeader" class="stylePopupHeader"></span>
+                                                </td>
+                                                <td align="right">
+                                                    <input type="image" name="btnCloseEmailContact" id="btnCloseEmailContact" src="Images/close1.gif" onclick="$find(&#39;mpopupContactusEmail&#39;).hide();" border="0" />
+                                                    &nbsp;&nbsp;
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td width="400px" height="120" align="left" valign="top">
+                                        <img src="images/spacer.gif" alt="" width="1" height="1" />
+                                        <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                            <tr>
+                                                <td></td>
+                                                <td style="height: 5px">&nbsp;
+                                                </td>
+                                                <td></td>
+                                            </tr>
+                                            <tr>
+                                                <td>&nbsp;
+                                                </td>
+                                                <td align="center">
+                                                    
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>&nbsp;
+                                                </td>
+                                                <td align="center" style="padding-bottom: 5px; color: Black; font-family: Arial; font-size: 12px;">
+                                                    <div id="UpdateProgress1" style="display:none;">
+				
+                                                            <img alt="" src="images/spinner.gif" />**Working on your request, please stand by
+                                                        
+			</div>
+                                                    </center>
+                                                </td>
+                                                <td>&nbsp;
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </td>
+                                </tr>
+                            </table>
+                        
+		</div>
+                
+	</div>
+            
+</div>
+            
+            
+            <input type="submit" name="btnChangePasswordPrompt" value="" id="btnChangePasswordPrompt" style="display: none" />
+            <div id="pnlChangePasswordPrompt" class="modalPopup" style="display: none;">
+	
+                <div id="upChangePasswordPrompt">
+		
+                        <table width="500" border="0" align="center" cellpadding="0" cellspacing="0">
+                            <tr>
+                                <td width="500" height="27" background="images/popup_01.gif">
+                                    <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                        <tr>
+                                            <td width="15"></td>
+                                            <td width="293">
+                                                <span id="Label2" class="stylePopupHeader">Change Password</span>
+                                            </td>
+                                            <td align="right">
+                                                <input type="image" name="ImageButton1" id="ImageButton1" src="Images/close1.gif" onclick="$find(&#39;mpeChangePasswordPrompt&#39;).hide();" border="0" />
+                                                &nbsp;&nbsp;
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td width="500" height="27" align="left" valign="top">
+                                    <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                        <tr>
+                                            <td style="width: 19px">&nbsp;
+                                            </td>
+                                            <td colspan="2">&nbsp;
+                                            </td>
+                                            <td>&nbsp;
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td style="width: 19px">&nbsp;
+                                            </td>
+                                            <td colspan="2">
+                                                <span id="lblLoginMessage" class="stylePopuplabel"></span>
+                                            </td>
+                                            <td></td>
+                                        </tr>
+                                        <tr>
+                                            <td style="width: 19px">&nbsp;
+                                            </td>
+                                            <td colspan="2">&nbsp;
+                                            </td>
+                                            <td>&nbsp;
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td width="500" height="27">
+                                    <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                        <tr>
+                                            <td align="right">
+                                                <input type="submit" name="btnChangePasswordNow" value="Change Password Now" id="btnChangePasswordNow" class="alterrow" style="cursor: pointer;" />
+                                                &nbsp;
+                                            <input type="submit" name="btnContinueWithLogin" value="Continue" id="btnContinueWithLogin" class="alterrow" style="cursor: pointer;" />
+                                                <input type="submit" name="btnOkChange" value="OK" id="btnOkChange" class="alterrow" style="cursor: pointer;" />
+                                                &nbsp;
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td style="height: 8px"></td>
+                                        </tr>
+                                    </table>
+                                </td>
+                            </tr>
+                        </table>
+                    
+	</div>
+            
+</div>
+            
+            
+            <input type="submit" name="btnconfirmpassword" value="" id="btnconfirmpassword" style="display: none" />
+            <div id="pnlconfirnpassword" class="modalPopup" style="display: none;">
+	
+                <div id="upconfirm">
+		
+                        <table width="500" border="0" align="center" cellpadding="0" cellspacing="0">
+                            <tr>
+                                <td width="500" height="27" background="images/popup_01.gif">
+                                    <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                        <tr>
+                                            <td width="10"></td>
+                                            <td width="293">
+                                                <span id="lblChangePassword" class="stylePopupHeader">Change Password</span>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td width="500" height="27" align="left" valign="top" colspan="2" style="padding-top: 19px">
+                                    <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                        <tr>
+                                            <td style="width: 19px"></td>
+                                            <td align="left" valign="top" width="20%" style="white-space: nowrap">
+                                                <span id="lblcurrentpassword" disabled="disabled" class="stylePopuplabel">Current Password :</span>
+                                            </td>
+                                            <td align="left" valign="middle">&nbsp;<input name="txtcurrentpassword" type="text" id="txtcurrentpassword" disabled="disabled" tabindex="1" class="textboxall" /></td>
+                                        </tr>
+                                        <tr>
+                                            <td style="width: 19px"></td>
+                                            <td align="left" valign="top" width="20%" style="white-space: nowrap; padding-top: 5px;">
+                                                <span id="Label4" class="stylePopuplabel">New Password</span>
+                                                <span id="label7"><font color="Red">*</font></span>
+                                                &nbsp;
+                                                &nbsp;
+                                            </td>
+                                            <td align="left" valign="middle" style="padding-top: 5px;">&nbsp;<input name="txtnewpassword" type="password" maxlength="15" id="txtnewpassword" tabindex="1" class="textboxall" onkeydown="onpressev(event,&#39;txtnewpassword&#39;);" onfocus="onfocusid(&#39;txtnewpassword&#39;);" /><input type="hidden" name="hdntxtqtyfocus" id="hdntxtqtyfocus" value="1" />
+                                                <input type="hidden" name="hdnfocustxt" id="hdnfocustxt" />
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td style="width: 19px"></td>
+                                            <td align="left" valign="top" width="20%" style="white-space: nowrap; padding-top: 5px;">
+                                                <span id="Label8" class="stylePopuplabel">New Password Verify</span>
+                                                <span id="label9"><font color="Red">*</font></span>
+                                                &nbsp;
+                                            </td>
+                                            <td align="left" valign="middle" style="padding-top: 5px;">&nbsp;<input name="txtnewpasswordverify" type="password" maxlength="15" id="txtnewpasswordverify" tabindex="2" class="textboxall" onkeydown="onpressev(event,&#39;txtnewpasswordverify&#39;);" onfocus="onfocusid(&#39;txtnewpasswordverify&#39;);" /><br />
+                                                <br />
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="3">
+                                                <center><font color="red">* indicates a required field </font></center>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                    <table id="tblCreditCardVw" width="100%" border="0" cellspacing="0" cellpadding="0">
+			<tr>
+				<td style="width: 19px;"></td>
+				<td class="stylePopuplabel">
+                                                <caption>
+                                                    You are authorized to view customers complete credit card numbers. In order to 
+                                       maintain this level of security your new password must be complex which requires 
+                                       a strict set of rules:
+                                                </caption>
+                                            </td>
+			</tr>
+		</table>
+		
+                                </td>
+                            </tr>
+                            <tr id="trAccessYes">
+			<td class="stylePopuplabel" style="width: 500px; padding-left: 10px">
+                                    <table>
+                                        <tr>
+                                            <td>1. You must change your password every ninety days.
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>2. Your password must not match one of your previous four entries.</td>
+                                        </tr>
+                                        <tr>
+                                            <td>3. A minimum of seven and a maximum of fifteen characters.</td>
+                                        </tr>
+                                        <tr>
+                                            <td>4. Must contain at least one capital letter.</td>
+                                        </tr>
+                                        <tr>
+                                            <td>5. Must contain at least one small letter.</td>
+                                        </tr>
+                                        <tr>
+                                            <td>6. Must contain at least one number.</td>
+                                        </tr>
+                                        <tr>
+                                            <td>7. Must contain at least one special character.</td>
+                                        </tr>
+                                    </table>
+                                    <br />
+                                    Examples of complex password:
+                                    <br />
+                                    4Exam*ple
+                                    <br />
+                                    9seWineY?
+                                    <br />
+                                    67sh!oP90
+                                </td>
+		</tr>
+		
+                            <tr id="trAccessNo">
+			<td>
+                                    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+                                        <tr>
+                                            <td width="5%"></td>
+
+                                            <td>Passwords are case sensitive. Password has maximum fifteen digits.</td>
+                                            <caption>
+                                                <br />
+                                                <tr>
+                                                    <td width="2%"></td>
+                                                </tr>
+                                            </caption>
+                                        </tr>
+                                        <tr>
+                                            <td height="10px"></td>
+
+                                        </tr>
+                                    </table>
+                                </td>
+		</tr>
+		
+
+                        </table>
+                        <tr>
+                            <td height="27" width="500">
+                                <table border="0" cellpadding="0" cellspacing="0" width="100%">
+                                    <tr>
+                                        <td align="right" class="style1">
+                                            <input type="submit" name="imgok1" value="OK" id="imgok1" tabindex="3" class="alterrow" style="cursor: pointer;" />
+                                            &nbsp;<input type="submit" name="btnPopupLogout" value="Cancel" onclick="$find(&#39;mpeconfirmpassword&#39;).hide();return true;" id="btnPopupLogout" tabindex="4" class="alterrow" style="cursor: pointer;" />
+                                            &nbsp;&nbsp;
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td height="8px"></td>
+                                    </tr>
+                                </table>
+                            </td>
+                        </tr>
+                    
+	</div>
+            
+</div>
+            
+            
+            <input type="submit" name="btnBrowser" value="" id="btnBrowser" style="display: none;" />
+            <div id="pnlBrowser" style="display: none;">
+	
+                <div id="upnlBrowser">
+		
+                        <table border="2" cellpadding="0" cellspacing="0" style="border-color: black; border-style: solid"
+                            width="492px">
+                            <tr>
+                                <td>
+                                    <table width="492px" border="0" cellpadding="0" cellspacing="0" style="background-color: #F6FAB8; height: 215px">
+                                        <tr>
+                                            <td width="4%"></td>
+                                            <td valign="middle" style="padding-top: 10px;">
+                                                <p style="font-family: Arial; font-size: 14px; color: Black;">
+                                                    Your browser version
+                                                <span id="lblBrowserName"></span>, is
+                                                not supported. All efforts have been made to ensure Lightning Online Point Of Sale
+                                                works with the most popular, current, browsers. Please perform a free upgrade from
+                                                the manufacturers web site to enhance your experience.
+                                                </p>
+                                                <p style="font-family: Arial; font-size: 13px; font-weight: bold; color: Black;">
+                                                    Our recommendations.
+                                                </p>
+                                                <span style="font-family: Arial; color: Black; font-size: 14px;">
+                                                    <img id="imgie7" alt="" src="Images/icon2.gif" align="absmiddle" height="18" width="18" border="0" />
+                                                    &nbsp; Microsoft Internet Explorer 8,9,10 or 11.
+                                                <br />
+                                                    <img id="Imagff" alt="" src="Images/icon3.gif" align="absmiddle" height="18" width="18" border="0" />
+                                                    &nbsp; Firefox 24.0 or higher, if available
+                                                <br />
+                                                    <img id="imgchrome" alt="" src="Images/google-chrome-logo6.png" align="absmiddle" height="20" width="20" border="0" />
+                                                    &nbsp;Google Chrome 23 or higher, if available
+                                                <br />
+                                                    <img id="Imagesafari" alt="" src="Images/Apple_Safari.png" align="absmiddle" height="20" width="20" border="0" />
+                                                    &nbsp;Apple Safari for Windows 6 or higher, if available
+                                                <br />
+                                                    <!--  <img id="imgopera" alt="" src="Images/Opera.png" align="absmiddle" height="20" width="20" border="0" />
+                                                &nbsp;Opera 11.00, if available -->
+                                                    <br />
+                                                    <br />
+                                                </span>
+                                            </td>
+                                            <td width="4%"></td>
+                                        </tr>
+                                        <tr>
+                                            <td></td>
+                                        </tr>
+                                        <tr>
+                                            <td></td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="2" align="right" style="padding-bottom: 6px;">
+                                                <input type="image" name="btnContinue" id="btnContinue" src="icon%20small/logout.gif" border="0" />
+                                            </td>
+                                            <td></td>
+                                        </tr>
+                                    </table>
+                                </td>
+                            </tr>
+                        </table>
+                    
+	</div>
+            
+</div>
+            
+            
+            <input type="submit" name="btnAdminTextMessage" value="" id="btnAdminTextMessage" style="display: none;" />
+
+            <div id="pnlAdminTextMessage" class="modalPopup" style="display: none">
+	
+                <div id="upnlAdminTextMessage">
+		
+                        <table cellpadding="0" cellspacing="0" width="100%">
+                            <tr>
+                                <td id="td9" style="width: 54%; background-color: #F2F2F2;" valign="top">
+                                    <table id="Table1" width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
+			<tr>
+				<td width="230" height="27" background="images/popup_01.gif">
+                                                <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                                    <tr>
+                                                        <td width="10"></td>
+                                                        <td width="293">
+                                                            <span id="lblHeaderAdmin" class="stylePopupHeader">One Time Code</span>
+                                                        </td>
+                                                    </tr>
+                                                </table>
+                                            </td>
+			</tr>
+			<tr>
+				<td id="td10" width="230" height="120" align="left" valign="top" style="background-color: #F2F2F2;">
+                                                <img src="images/spacer.gif" alt="" width="1" height="1" />
+                                                <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                                    <tr>
+                                                        <td width="20">&nbsp;
+                                                        </td>
+                                                        <td width="460" align="left" valign="top">
+                                                            <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                                                <tr>
+                                                                    <td width="380" align="left" valign="top">
+                                                                        <br />
+                                                                    </td>
+                                                                    <td width="80" align="right" valign="middle">&nbsp;
+                                                                    </td>
+                                                                </tr>
+                                                            </table>
+                                                        </td>
+                                                        <td width="20">&nbsp;
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td width="20">&nbsp;
+                                                        </td>
+                                                        <td width="460">&nbsp;
+                                                        </td>
+                                                        <td width="20">&nbsp;
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td width="20">&nbsp;
+                                                        </td>
+                                                        <td id="td11" width="460">&nbsp;
+                                                        <span id="lblAdmin" class="labelall">Please enter the code :</span>
+                                                            &nbsp;&nbsp;
+                                                  
+                                                        <input name="txtAdminTextMessage" type="text" maxlength="6" id="txtAdminTextMessage" tabindex="1" onfocus="changecolor(this,&#39;focus&#39;);this.select();" onblur="changecolor(this,&#39;blur&#39;);" onkeypress="fncInputNumericValuesOnly(event)" />
+
+                                                        </td>
+				
+                                                        <td width="20"></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td width="20">&nbsp;
+                                                        </td>
+                                                        <td width="460">&nbsp;
+                                                        </td>
+                                                        <td width="20">&nbsp;
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td width="20" height="22">&nbsp;
+                                                        </td>
+                                                        <td width="260" height="22" style="padding-right: 20px" align="right" valign="top">
+                                                            <input type="submit" name="btnAdminTextMessageLogIn" value="Log In" id="btnAdminTextMessageLogIn" tabindex="2" class="alterrow" style="cursor: pointer;" />
+                                                            <input type="submit" name="btnAdminTextMessageCancel" value="Cancel" id="btnAdminTextMessageCancel" class="alterrow" style="cursor: pointer;" />
+                                                        </td>
+                                                        <td width="20" height="22">&nbsp;
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td></td>
+                                                        <td>&nbsp;
+                                                        </td>
+                                                        <td>&nbsp;
+                                                        </td>
+                                                    </tr>
+                                                </table>
+                                            </td>
+			</tr>
+		</table>
+		
+                                </td>
+		
+                            </tr>
+
+                        </table>
+
+                    
+	</div>
+            
+</div>
+
+            
+            <input type="submit" name="btnDBConnectionCheck" value="" id="btnDBConnectionCheck" style="display: none;" />
+            <div id="pnlDBConnectionCheck" class="modalPopup" style="display: none; width: 40%;"><b>
+	
+                <div id="upnlDBConnectionCheck">
+		
+                        <table width="100%" height="250px" border="0" align="center" cellpadding="0" cellspacing="0">
+                            <tr>
+                                <td height="27">
+                                    <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                        <tr>
+                                            <td style="padding-left: 4px" width="20%">
+                                                <input type="image" name="ImageButton4" id="ImageButton4" class="stylePopupHeader" src="1images/lightninglogo.png" border="0" />
+                                            </td>
+                                            <td align="center" style="padding-left: 4px; vertical-align: middle;" width="70%"></td>
+                                            <td align="right" valign="top" style="padding-right: 4px" width="10%"></td>
+                                        </tr>
+                                    </table>
+                                </td>
+                            </tr>
+
+                            <tr id="tr1">
+			<td width="96%" align="center" valign="top">
+                                    <table width="100%" border="0" cellspacing="5" cellpadding="5" style="color: black">
+
+                                        <tr>
+                                            <td align="left" valign="middle">We are experiencing a temporary issue with one of our multiple servers.  
+                                With the redundancy we have in our network the failover should only take a few minutes.
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td align="right" valign="bottom"></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Please wait a few minutes and then click
+                                                <a id="lnkDBConnectionCheck" href="javascript:__doPostBack(&#39;lnkDBConnectionCheck&#39;,&#39;&#39;)"><u><font color="#0033CC">Try Again</font></u></a>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </td>
+		</tr>
+		
+
+                        </table>
+                    
+	</div>
+            
+</b></div>           
+
+
+            
+             
+            <input type="submit" name="btnAccountLocked" value="" id="btnAccountLocked" style="display: none;" />
+            <div id="pnlAccountLocked" style="display: none;">
+	
+                <div id="UpdatePanel4">
+		
+                        <table border="0" cellpadding="0" cellspacing="0" style="background-color:red;"
+                            width="492px">
+                            <tr>
+                                <td>
+                                    <table width="492px" border="0" cellpadding="0" cellspacing="0" style="background-color: red; height: 215px">
+                                        <tr>
+                                            <td width="4%"></td>
+                                            <td valign="middle" style="padding-top: 10px;">
+                                                <p style="font-family: Arial; font-size: 16px; color: white;">
+                                                   <b> Your account is now locked! <br /><br />Please use the 'Forgot Password' link to reset<br /> your password!</b>
+                                                </p>
+                                                    <br />
+                                                    <br />
+                                                </span>
+                                            </td>
+                                            <td width="4%"></td>
+                                        </tr>
+                                        <tr>
+                                            <td></td>
+                                        </tr>
+                                        <tr>
+                                            <td></td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="2" align="right" style="padding-bottom: 6px;">
+                                                <input type="image" name="btnAccountLockedClose" id="btnAccountLockedClose" src="Images/close.gif" border="0" />
+                                            </td>
+                                            <td></td>
+                                        </tr>
+                                    </table>
+                                </td>
+                            </tr>
+                        </table>
+                    
+	</div>
+            
+</div>
+            
+        </div>        
+    
+<script language='javascript'>logindivalign();</script><script language='javascript'>loginmessage();</script>
+<script type="text/javascript">
+//<![CDATA[
+Sys.Application.add_init(function() {
+    $create(AjaxControlToolkit.ModalPopupBehavior, {"BackgroundCssClass":"modalBackground","PopupControlID":"pnlContactus","dynamicServicePath":"/POSLogin.aspx","id":"mpopupContactus","repositionMode":0}, null, null, $get("btnContactus"));
+});
+Sys.Application.add_init(function() {
+    $create(AjaxControlToolkit.ModalPopupBehavior, {"BackgroundCssClass":"modalBackground","PopupControlID":"pnlContactusEmail","dynamicServicePath":"/POSLogin.aspx","id":"mpopupContactusEmail","repositionMode":0}, null, null, $get("btnContactusEmail"));
+});
+Sys.Application.add_init(function() {
+    $create(AjaxControlToolkit.ModalPopupBehavior, {"BackgroundCssClass":"modalBackground","PopupControlID":"pnlChangePasswordPrompt","PopupDragHandleControlID":"pnlChangePasswordPrompt","dynamicServicePath":"/POSLogin.aspx","id":"mpeChangePasswordPrompt"}, null, null, $get("btnChangePasswordPrompt"));
+});
+Sys.Application.add_init(function() {
+    $create(AjaxControlToolkit.ModalPopupBehavior, {"BackgroundCssClass":"modalBackground","PopupControlID":"pnlconfirnpassword","PopupDragHandleControlID":"pnlconfirnpassword","dynamicServicePath":"/POSLogin.aspx","id":"mpeconfirmpassword"}, null, null, $get("btnconfirmpassword"));
+});
+Sys.Application.add_init(function() {
+    $create(AjaxControlToolkit.ModalPopupBehavior, {"BackgroundCssClass":"modalBackground","PopupControlID":"pnlBrowser","PopupDragHandleControlID":"pnlBrowser","dynamicServicePath":"/POSLogin.aspx","id":"mpeBrowser","repositionMode":0}, null, null, $get("btnBrowser"));
+});
+Sys.Application.add_init(function() {
+    $create(AjaxControlToolkit.ModalPopupBehavior, {"BackgroundCssClass":"modalBackground","PopupControlID":"pnlAdminTextMessage","PopupDragHandleControlID":"pnlAdminTextMessage","dynamicServicePath":"/POSLogin.aspx","id":"mpeAdminTextMessage","repositionMode":0}, null, null, $get("btnAdminTextMessage"));
+});
+Sys.Application.add_init(function() {
+    $create(AjaxControlToolkit.ModalPopupBehavior, {"BackgroundCssClass":"modalBackground","PopupControlID":"pnlDBConnectionCheck","PopupDragHandleControlID":"pnlDBConnectionCheck","dynamicServicePath":"/POSLogin.aspx","id":"mpDBConnectionCheck","repositionMode":0}, null, null, $get("btnDBConnectionCheck"));
+});
+Sys.Application.add_init(function() {
+    $create(AjaxControlToolkit.ModalPopupBehavior, {"BackgroundCssClass":"modalBackground","PopupControlID":"pnlAccountLocked","PopupDragHandleControlID":"pnlAccountLocked","dynamicServicePath":"/POSLogin.aspx","id":"mpeAccountLocked","repositionMode":0}, null, null, $get("btnAccountLocked"));
+});
+//]]>
+</script>
+</form>
+
+</body>
+</html>
