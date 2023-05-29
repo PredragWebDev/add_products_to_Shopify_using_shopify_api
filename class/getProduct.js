@@ -1,4 +1,6 @@
 const puppeteer = require("puppeteer");
+const cheerio = require("cheerio")
+
 const url = "https://lightningpos.com/POSLogin.aspx?flag=1?Hg=1080&Wg=1920";
 
 const product_columnID = [
@@ -21,6 +23,8 @@ const product_columnID = [
 const getProductFromPOS = async () => {
     let browser =  await puppeteer.launch({headless : true});
         let page = await browser.newPage();
+        let inventoryPage = await browser.newPage();
+
         await page.goto(url , {waitUntil : 'networkidle0' ,  timeout : 0});
         await page.type("#txtuserid", "Shopify");
         await page.type("#txtpwd", "APInewpassword123");
@@ -32,32 +36,29 @@ const getProductFromPOS = async () => {
                 
         await page.goForward();
 
-        // await page.waitForSelector("#ctl00_ContentPlaceHolder2_gvStationmanager_ctl09_imgSelectStation");
-
         for (let i = 0 ; i < 3 ; i ++) {
+            inventoryPage = page
             switch (i) {
                 case 0:
-                    await page.click("#ctl00_ContentPlaceHolder2_gvStationmanager_ctl08_imgSelectStation");
+                    await inventoryPage.click("#ctl00_ContentPlaceHolder2_gvStationmanager_ctl08_imgSelectStation");
                 case 1:
-                    await page.click("#ctl00_ContentPlaceHolder2_gvStationmanager_ctl09_imgSelectStation");
+                    await inventoryPage.click("#ctl00_ContentPlaceHolder2_gvStationmanager_ctl09_imgSelectStation");
                 case 2:
-                    await page.click("#ctl00_ContentPlaceHolder2_gvStationmanager_ctl10_imgSelectStation");
+                    await inventoryPage.click("#ctl00_ContentPlaceHolder2_gvStationmanager_ctl10_imgSelectStation");
             }            
             
 
-            await page.waitForNavigation({waitUntil: 'networkidle0'});
+            await inventoryPage.waitForNavigation({waitUntil: 'networkidle0'});
             
-            await page.goForward(); //select station
+            await inventoryPage.goForward(); //select station end
 
-            await page.click("#ctl00_lnkexpcolInventory"); //select inventory
+            await inventoryPage.click("#ctl00_lnkexpcolInventory"); //select inventory
 
-            await page.waitForNavigation({waitUntil: 'networkidle0'});
+            await inventoryPage.waitForNavigation({waitUntil: 'networkidle0'});
             
-            await page.goForward();
+            await inventoryPage.goForward();
 
-
-
-            const html = await page.$eval('#ctl00_ContentPlaceHolder2_gvInventoryList', el => el.outerHTML);
+            const html = await inventoryPage.$eval('#ctl00_ContentPlaceHolder2_gvInventoryList', el => el.outerHTML);
             console.log("html:" + html);
         }
         
