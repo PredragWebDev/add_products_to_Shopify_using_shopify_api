@@ -7,7 +7,7 @@ const app = express()
 const scrapingbee = require('scrapingbee'); // Import ScrapingBee's SDK
 const fs = require('fs');
 const path = require('path');
-const {getProductFromCSV} = require('./class/getProduct');
+const {getProductFromPOS} = require('./class/getProduct');
 const {setProduct} = require('./class/setProductToShopify');
 
 app.use(express.static('public'));
@@ -20,12 +20,9 @@ app.get('/', function (req, res) {
  
 app.post('/', function (req, res) {
 
-  const products = getProductFromCSV()
-
-  // console.log("products>>>>", products)
+  const products = getProductFromPOS()
 
   setProduct(products)
-
   
   const url = "https://lightningpos.com/POSLogin.aspx?flag=1&enabletouch=%27true%27%3fHg%3d1080&Wg=1920"
 
