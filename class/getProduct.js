@@ -21,6 +21,10 @@ const product_columnID = [
     "#ctl00_ContentPlaceHolder2_gvInventoryList_ctl15_chkchkColumn",
     "#ctl00_ContentPlaceHolder2_gvInventoryList_ctl16_chkchkColumn",
 ]
+
+let price = 0, qty = 0, barcord = "";
+let pre_inventory_page = "";
+
 const getProductFromPOS = async () => {
     let browser =  await puppeteer.launch({headless : true});
     let page = await browser.newPage();
@@ -64,25 +68,57 @@ const getProductFromPOS = async () => {
         
         await page.goForward(); //select station end
 
+        console.log("station!!!!");
+
         await page.click("#ctl00_lnkexpcolInventory"); //select inventory
 
         await page.waitForNavigation({waitUntil: 'networkidle0'});
         
         await page.goForward(); //inventory page
+        console.log("inventory!!!!");
 
         
 
         do {
-            const pre_inventory_page = await page.content();
+            pre_inventory_page = await page.content();
+            fs.writeFileSync("page.html", await page.content())    
+            await page.click("#tdlnkDetails");
+            await page.waitForNavigation({waitUntil: 'networkidle0'});
+            await page. goForward() //detail page
+            console.log("detail page!!!!");
 
-            product_columnID.map(id => {
+            for (let i = 0 ; i < 15; i ++) {
+
+                price = await page.$eval('#ctl00_ContentPlaceHolder2_lbldetailPrice');
+                qty = await page.$eval('#ctl00_ContentPlaceHolder2_lbldetailQtyonHand');
                 
-            })
-            
-        } while (first_inventory_page !== await page.content());
+                await page.click("#ctl00_ContentPlaceHolder2_lnkdetailbarcode");
 
-        const html = await page.$eval('#ctl00_ContentPlaceHolder2_gvInventoryList', el => el.outerHTML);
-        console.log("html:" + html);
+                await page.waitForNavigation({waitUntil: 'networkidle0'});
+                await page.goForward();
+
+                const barcode = await page.$eval('#ctl00_ContentPlaceHolder2_gvBarcode', el =>el.outerHTML);
+                console.log("price>>>", price);
+                console.log("qty>>>>>", qty);
+                console.log("barcode>>>>", barcode);
+
+                await page.click('#ctl00_ContentPlaceHolder2_btnBarcodeMpehide')
+                await page.waitForNavigation({waitUntil: 'networkidle0'});
+                await page.goForward();
+    
+                await page.click('#ctl00_ContentPlaceHolder2_downbtn');
+                await page.waitForNavigation({waitUntil: 'networkidle0'});
+                await page.goForward();
+            }
+
+            await page.click('#tdlnkList');
+            await page.waitForNavigation({waitUntil: 'networkidle0'});
+            await page.goForward();
+
+        } while (pre_inventory_page !== await page.content());
+
+        // const html = await page.$eval('#ctl00_ContentPlaceHolder2_gvInventoryList', el => el.outerHTML);
+        // console.log("html:" + html);
         
     }
         
