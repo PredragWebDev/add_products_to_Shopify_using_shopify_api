@@ -1,5 +1,6 @@
 const puppeteer = require("puppeteer");
 const cheerio = require("cheerio")
+const fs = require("fs")
 
 const url = "https://lightningpos.com/POSLogin.aspx?flag=1?Hg=1080&Wg=1920";
 
@@ -22,45 +23,68 @@ const product_columnID = [
 ]
 const getProductFromPOS = async () => {
     let browser =  await puppeteer.launch({headless : true});
-        let page = await browser.newPage();
-        let inventoryPage = await browser.newPage();
+    let page = await browser.newPage();
+    let inventoryPage = await browser.newPage();
 
-        await page.goto(url , {waitUntil : 'networkidle0' ,  timeout : 0});
-        await page.type("#txtuserid", "Shopify");
-        await page.type("#txtpwd", "APInewpassword123");
-        await page.type("#txtstore", "1233");
-        await page.click("#chkremember");
-        await page.click("#lnkLogin");
+    await page.goto(url , {waitUntil : 'networkidle0' ,  timeout : 0});
+    await page.type("#txtuserid", "Shopify");
+    await page.type("#txtpwd", "APInewpassword123");
+    await page.type("#txtstore", "1233");
+    await page.click("#chkremember");
+    await page.click("#lnkLogin");
+    
+    await page.waitForNavigation({waitUntil: 'networkidle0'});
+            
+    await page.goForward();
+
+    const station_url = page.url();
+
+    for (let i = 0 ; i < 3 ; i ++) {
+        await page.goto(station_url, {waitUntil :'networkidle0', timeout:0})
+
+        // await inventoryPage.setContent(await page.content())
+
+        // await inventoryPage.waitForNavigation({waitUntil: 'networkidle0'});
         
-        await page.waitForNavigation({waitUntil: 'networkidle0'});
-                
-        await page.goForward();
+        // await inventoryPage.goForward();
 
-        for (let i = 0 ; i < 3 ; i ++) {
-            inventoryPage = page
-            switch (i) {
-                case 0:
-                    await inventoryPage.click("#ctl00_ContentPlaceHolder2_gvStationmanager_ctl08_imgSelectStation");
-                case 1:
-                    await inventoryPage.click("#ctl00_ContentPlaceHolder2_gvStationmanager_ctl09_imgSelectStation");
-                case 2:
-                    await inventoryPage.click("#ctl00_ContentPlaceHolder2_gvStationmanager_ctl10_imgSelectStation");
-            }            
-            
-
-            await inventoryPage.waitForNavigation({waitUntil: 'networkidle0'});
-            
-            await inventoryPage.goForward(); //select station end
-
-            await inventoryPage.click("#ctl00_lnkexpcolInventory"); //select inventory
-
-            await inventoryPage.waitForNavigation({waitUntil: 'networkidle0'});
-            
-            await inventoryPage.goForward();
-
-            const html = await inventoryPage.$eval('#ctl00_ContentPlaceHolder2_gvInventoryList', el => el.outerHTML);
-            console.log("html:" + html);
+        switch (i) {
+            case 0:
+                await page.click("#ctl00_ContentPlaceHolder2_gvStationmanager_ctl08_imgSelectStation");
+                break;
+            case 1:
+                await page.click("#ctl00_ContentPlaceHolder2_gvStationmanager_ctl09_imgSelectStation");
+                break;
+            case 2:
+                await page.click("#ctl00_ContentPlaceHolder2_gvStationmanager_ctl10_imgSelectStation");
+                break;
         }
+
+        await page.waitForNavigation({waitUntil: 'networkidle0'});
+        
+        await page.goForward(); //select station end
+
+        await page.click("#ctl00_lnkexpcolInventory"); //select inventory
+
+        await page.waitForNavigation({waitUntil: 'networkidle0'});
+        
+        await page.goForward(); //inventory page
+
+        
+
+        do {
+            const pre_inventory_page = await page.content();
+
+            product_columnID.map(id => {
+                
+            })
+            
+        } while (first_inventory_page !== await page.content());
+
+        const html = await page.$eval('#ctl00_ContentPlaceHolder2_gvInventoryList', el => el.outerHTML);
+        console.log("html:" + html);
+        
+    }
         
 }
 

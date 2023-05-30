@@ -18,9 +18,9 @@ app.get('/', function (req, res) {
   res.render('index', {weather: null, error: null});
 })
  
-app.post('/', function (req, res) {
+app.post('/', async function (req, res) {
 
-  const products = getProductFromPOS()
+  const products = await getProductFromPOS()
 
   setProduct(products)
   
