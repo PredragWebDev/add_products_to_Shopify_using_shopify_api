@@ -21,7 +21,7 @@ const product_columnID = [
     "#ctl00_ContentPlaceHolder2_gvInventoryList_ctl15_chkchkColumn",
     "#ctl00_ContentPlaceHolder2_gvInventoryList_ctl16_chkchkColumn",
 ]
-
+let product_detail = [];
 let price = 0, qty = 0, barcord = "";
 let pre_inventory_page = "";
 let cur_inventory_page = "";
@@ -79,18 +79,17 @@ const getProductFromPOS = async () => {
         console.log("inventory!!!!");
 
         do {
-            pre_inventory_page = await page.content();
+            pre_inventory_page = await page.$eval('#ctl00_ContentPlaceHolder2_gvInventoryList', el =>el.outerHTML);
+
             fs.writeFileSync("page.html", await page.content())    
             
-            await page.click("#tdlnkDetails");
-            await page.waitForSelector('#ctl00_ContentPlaceHolder2_lbldetailPrice', { timeout: 5000 });
-            // await page.waitForNavigation({waitUntil: 'networkidle0', timeout:100000});
-            // await page. goForward() //detail page
-            console.log("detail page!!!!");
 
-            for (let i = 0 ; i < 15; i ++) {
-
+            // product_columnID.forEach(async (id) => {
+                await page.click('#ctl00_ContentPlaceHolder2_gvInventoryList_ctl02_chkchkColumn');
                 
+                await page.click("#tdlnkDetails");
+                await page.waitForSelector('#ctl00_ContentPlaceHolder2_lbldetailPrice', { timeout: 5000 });
+                console.log("detail page!!!!");
 
                 price = await page.$eval('#ctl00_ContentPlaceHolder2_lbldetailPrice', el => el.outerHTML);
                 qty = await page.$eval('#ctl00_ContentPlaceHolder2_lbldetailQtyonHand', el => el.outerHTML);
@@ -106,30 +105,32 @@ const getProductFromPOS = async () => {
                 
                 console.log("barcode>>>>", barcode);
 
+                const new_data = {
+                    barcode:barcode,
+                    price:price,
+                    qty:qty
+                };
+
+                product_detail.push(new_data);
+
                 await page.waitForTimeout(1000);
                 await page.click('#ctl00_ContentPlaceHolder2_btnBarcodeMpehide');
                 await page.waitForSelector('#ctl00_ContentPlaceHolder2_downbtn', { timeout: 5000 });
                 await page.goForward();
 
                 console.log("clicked the exit button");
-
-                await page.waitForTimeout(1000);
+                await page.click('#tdlnkList');
+                await page.waitForSelector('#ctl00_ContentPlaceHolder2_chkwildcardsearch')
     
-                await page.click('#ctl00_ContentPlaceHolder2_downbtn');
-                // await page.waitForNavigation({waitUntil: 'networkidle0'});
-                // await page.goForward()
-                await page.waitForSelector('#ctl00_ContentPlaceHolder2_downbtn', { timeout: 5000 });
-                await page.goForward();
+            // });
 
-                console.log("next product");
-            }
-
-            await page.click('#tdlnkList');
-            await page.waitForSelector('#ctl00_ContentPlaceHolder2_chkwildcardsearch')
+            await page.click('#ctl00_ContentPlaceHolder2_lnkNextInvList');
+            await page.waitForNavigation({waitUntil: 'networkidle0'});
             await page.goForward();
+            
             // await page.waitForNavigation({waitUntil: 'networkidle0'});
             // await page.goForward();
-            cur_inventory_page = await page.content();
+            cur_inventory_page = await page.$eval('#ctl00_ContentPlaceHolder2_gvInventoryList', el =>el.outerHTML);
         } while (pre_inventory_page !== cur_inventory_page);
 
         // const html = await page.$eval('#ctl00_ContentPlaceHolder2_gvInventoryList', el => el.outerHTML);
