@@ -77,21 +77,22 @@ const getProductFromPOS = async () => {
         await page.goForward(); //inventory page
         console.log("inventory!!!!");
 
-        
-
         do {
             pre_inventory_page = await page.content();
             fs.writeFileSync("page.html", await page.content())    
+            
             await page.click("#tdlnkDetails");
-            await page.waitForNavigation({waitUntil: 'networkidle0'});
+            await page.waitForNavigation({waitUntil: 'networkidle0', timeout:50000});
             await page. goForward() //detail page
             console.log("detail page!!!!");
 
             for (let i = 0 ; i < 15; i ++) {
 
-                price = await page.$eval('#ctl00_ContentPlaceHolder2_lbldetailPrice');
-                qty = await page.$eval('#ctl00_ContentPlaceHolder2_lbldetailQtyonHand');
+                price = await page.$eval('#ctl00_ContentPlaceHolder2_lbldetailPrice', el => el.outerHTML);
+                qty = await page.$eval('#ctl00_ContentPlaceHolder2_lbldetailQtyonHand', el => el.outerHTML);
                 
+                await page.click("#ctl00_ContentPlaceHolder2_lnkdetailbarcode");
+                await page.click("#ctl00_ContentPlaceHolder2_lnkdetailbarcode");
                 await page.click("#ctl00_ContentPlaceHolder2_lnkdetailbarcode");
 
                 await page.waitForNavigation({waitUntil: 'networkidle0'});
