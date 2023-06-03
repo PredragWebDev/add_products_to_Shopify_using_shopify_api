@@ -22,7 +22,7 @@ const product_columnID = [
     "#ctl00_ContentPlaceHolder2_gvInventoryList_ctl16_chkchkColumn",
 ]
 let product_detail = [];
-let price = 0, qty = 0, barcord = "";
+let price = 0, qty = 0, barcode = "";
 let pre_inventory_page = "";
 let cur_inventory_page = "";
 
@@ -77,8 +77,7 @@ const getProductFromPOS = async () => {
 
             fs.writeFileSync("page.html", await page.content())    
 
-            // product_columnID.forEach(async (id) => {
-                await page.click('#ctl00_ContentPlaceHolder2_gvInventoryList_ctl03_chkchkColumn');
+            for (let j = 0 ; j < 15; j ++) {
                 
                 await page.click("#tdlnkDetails");
                 await page.waitForSelector('#ctl00_ContentPlaceHolder2_lbldetailPrice', { timeout: 5000 });
@@ -86,19 +85,15 @@ const getProductFromPOS = async () => {
 
                 price = await page.$eval('#ctl00_ContentPlaceHolder2_lbldetailPrice', el => el.innerHTML);
                 qty = await page.$eval('#ctl00_ContentPlaceHolder2_lbldetailQtyonHand', el => el.innerHTML);
-
-                console.log("price>>>", price);
-                console.log("qty>>>>>", qty);
                 
                 await page.click("#ctl00_ContentPlaceHolder2_lnkdetailbarcode");
 
                 await page.waitForSelector('#ctl00_ContentPlaceHolder2_gvBarcode', { timeout: 5000 });
 
+                await page.waitForTimeout(1000)
                 const barcode_table = await page.$eval('#ctl00_ContentPlaceHolder2_gvBarcode', el =>el.outerHTML);
                 const $ = cheerio.load(barcode_table);
-                const barcode = $("#ctl00_ContentPlaceHolder2_gvBarcode_ctl02_lblBarcode").text();
-                
-                console.log("barcode>>>>", barcode);
+                barcode = $("#ctl00_ContentPlaceHolder2_gvBarcode_ctl02_lblBarcode").text();
 
                 const new_data = {
                     barcode:barcode,
@@ -110,28 +105,26 @@ const getProductFromPOS = async () => {
 
                 console.log("detail>>>", product_detail);
 
-                await page.waitForTimeout(1000);
                 await page.click('#ctl00_ContentPlaceHolder2_btnBarcodeMpehide');
                 await page.waitForSelector('#ctl00_ContentPlaceHolder2_downbtn', { timeout: 5000 });
-                await page.goForward();
 
                 console.log("clicked the exit button");
 
                 await page.click('#ctl00_ContentPlaceHolder2_downbtn');
-                await page.waitForTimeout(3000);
-                
-                await page.click('#tdlnkList');
-                await page.waitForSelector('#ctl00_ContentPlaceHolder2_chkwildcardsearch')
-    
-            // });
+                await page.waitForTimeout(1000);
 
-            await page.click('#ctl00_ContentPlaceHolder2_lnkNextInvList');
-            await page.waitForNavigation({waitUntil: 'networkidle0'});
-            await page.goForward();
+                console.log("next product");
+                
+            }
+            // });
+            await page.click('#tdlnkList');
+            await page.waitForSelector('#ctl00_ContentPlaceHolder2_chkwildcardsearch')
             
             // await page.waitForNavigation({waitUntil: 'networkidle0'});
             // await page.goForward();
             cur_inventory_page = await page.$eval('#ctl00_ContentPlaceHolder2_gvInventoryList', el =>el.outerHTML);
+            console.log("cur>>>", cur_inventory_page);
+            console.log("pre>>>", pre_inventory_page);
         } while (pre_inventory_page !== cur_inventory_page);
 
         // const html = await page.$eval('#ctl00_ContentPlaceHolder2_gvInventoryList', el => el.outerHTML);
