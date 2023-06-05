@@ -7,8 +7,8 @@ const app = express()
 const scrapingbee = require('scrapingbee'); // Import ScrapingBee's SDK
 const fs = require('fs');
 const path = require('path');
-const {getProductFromPOS} = require('./class/getProduct');
-// const {getProductFromPOS} = require('./class/PosProduct');
+// const {getProductFromPOS} = require('./class/getProduct');
+const {getProductFromPOS} = require('./class/PosProduct');
 const {get_list_from_shopify} = require('./class/setProductToShopify');
 
 app.use(express.static('public'));

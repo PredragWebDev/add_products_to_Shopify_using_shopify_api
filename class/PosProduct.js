@@ -1,4 +1,4 @@
-const { Builder, By, Key, until } = require('selenium-webdriver');
+const webdriver = require('selenium-webdriver');
 const chrome = require('selenium-webdriver/chrome');
 const fs = require('fs');
 const cheerio = require("cheerio");
@@ -24,15 +24,17 @@ let cur_inventory_page = '';
 const getProductFromPOS = async (number_of_repeat) => {
   let count = 0;
   let product_detail = [];
-  let service = new chrome.ServiceBuilder().build();
-  chrome.setDefaultService(service);
+  // let service = new chrome.ServiceBuilder().build();
+  // chrome.setDefaultService(service);
 
-  let options = new chrome.Options();
-  options.headless();
-  options.addArguments('--no-sandbox');
-  options.addArguments('--disable-dev-shm-usage');
+  let chromeOptions = new chrome.Options();
+  chromeOptions.headless();
+  
 
-  let driver = new Builder().forBrowser('chrome').setChromeOptions(options).build();
+  let driver = new webdriver.Builder()
+  .forBrowser(webdriver.Browser.CHROME)
+  .setChromeOptions(chromeOptions)
+  .build();
 
   await driver.get(url);
   await driver.findElement(By.css('#txtuserid')).sendKeys('Shopify');
