@@ -23,13 +23,12 @@ app.post('/', async function (req, res) {
   get_list_from_shopify();
 
   let postproducts = [];
-  for (let i = 0; i< 1; i++) {
+  for (let i = 0; i< 4; i++) {
     const products = await getProductFromPOS(i)
     // const products = [];
     postproducts.push(products);
     console.log("products>>>>", products);
   }
-
   
   const jsonData = JSON.stringify(postproducts, null, 2);
   fs.writeFileSync('products.json', jsonData);

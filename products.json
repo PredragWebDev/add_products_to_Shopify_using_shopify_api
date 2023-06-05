@@ -1,407 +1,814 @@
 [
-  {
-    "barcode1": "19589303109",
-    "barcode2": "",
-    "barcode3": "",
-    "description": "818 TEQ REPOSADO",
-    "price": "$45.99",
-    "qty": "20",
-    "last_edit": "05/06/2022 04:18 PM"
-  },
-  {
-    "barcode1": "08900011833",
-    "barcode2": "",
-    "barcode3": "",
-    "description": "99  APPLES",
-    "price": "$18.99",
-    "qty": "0",
-    "last_edit": "03/11/2021 02:56 PM"
-  },
-  {
-    "barcode1": "08066062003",
-    "barcode2": "",
-    "barcode3": "",
-    "description": "99  BANANAS 99",
-    "price": "$18.99",
-    "qty": "0",
-    "last_edit": "03/11/2021 02:57 PM"
-  },
-  {
-    "barcode1": "",
-    "barcode2": "",
-    "barcode3": "",
-    "description": "99 APPLE",
-    "price": "$0.99",
-    "qty": "36",
-    "last_edit": "03/13/2021 03:20 PM"
-  },
-  {
-    "barcode1": "",
-    "barcode2": "",
-    "barcode3": "",
-    "description": "99 BANANAS",
-    "price": "$0.99",
-    "qty": "-72",
-    "last_edit": "03/13/2021 03:22 PM"
-  },
-  {
-    "barcode1": "",
-    "barcode2": "",
-    "barcode3": "",
-    "description": "99 WATERMELON",
-    "price": "$0.99",
-    "qty": "36",
-    "last_edit": "05/07/2023 03:49 PM"
-  },
-  {
-    "barcode1": "89293100024",
-    "barcode2": "",
-    "barcode3": "",
-    "description": "A TO Z RIESLING OREGON",
-    "price": "$12.99",
-    "qty": "1",
-    "last_edit": "06/21/2022 11:54 AM"
-  },
-  {
-    "barcode1": "87671803108",
-    "barcode2": "ADIUS44336572969",
-    "barcode3": "",
-    "description": "A001 UPTO $100 CARD",
-    "price": "$1.00",
-    "qty": "-9573",
-    "last_edit": "04/04/2022 06:48 PM"
-  },
-  {
-    "barcode1": "111002",
-    "barcode2": "",
-    "barcode3": "",
-    "description": "A002 UPTO $250 CARD",
-    "price": "$5.00",
-    "qty": "280",
-    "last_edit": ""
-  },
-  {
-    "barcode1": "111003",
-    "barcode2": "",
-    "barcode3": "",
-    "description": "A003 UPTO $500 CARD",
-    "price": "$10.00",
-    "qty": "-76",
-    "last_edit": "03/25/2021 07:50 PM"
-  },
-  {
-    "barcode1": "111004",
-    "barcode2": "",
-    "barcode3": "",
-    "description": "A004 UPTO $1,000 CARD",
-    "price": "$20.00",
-    "qty": "-225",
-    "last_edit": "03/25/2021 07:51 PM"
-  },
-  {
-    "barcode1": "111005",
-    "barcode2": "",
-    "barcode3": "",
-    "description": "A005 UPTO $2,000 CARD",
-    "price": "$40.00",
-    "qty": "-238",
-    "last_edit": "05/01/2021 02:36 PM"
-  },
-  {
-    "barcode1": "111007",
-    "barcode2": "",
-    "barcode3": "",
-    "description": "A007 $5.00 ITEM",
-    "price": "$5.00",
-    "qty": "0",
-    "last_edit": ""
-  },
-  {
-    "barcode1": "111011",
-    "barcode2": "",
-    "barcode3": "",
-    "description": "A011 $10.00 ITEM",
-    "price": "$10.00",
-    "qty": "10",
-    "last_edit": "12/12/2020 07:30 PM"
-  },
-  {
-    "barcode1": "7503027709077",
-    "barcode2": "",
-    "barcode3": "",
-    "description": "ABASOLO CORN WSKY",
-    "price": "$28.99",
-    "qty": "4",
-    "last_edit": "05/18/2023 07:14 PM"
-  },
-  {
-    "barcode1": "19589303109",
-    "barcode2": "",
-    "barcode3": "",
-    "description": "818 TEQ REPOSADO",
-    "price": "$45.99",
-    "qty": "20",
-    "last_edit": "05/06/2022 04:18 PM"
-  },
-  {
-    "barcode1": "08900011833",
-    "barcode2": "",
-    "barcode3": "",
-    "description": "99  APPLES",
-    "price": "$18.99",
-    "qty": "0",
-    "last_edit": "03/11/2021 02:56 PM"
-  },
-  {
-    "barcode1": "08066062003",
-    "barcode2": "",
-    "barcode3": "",
-    "description": "99  BANANAS 99",
-    "price": "$18.99",
-    "qty": "0",
-    "last_edit": "03/11/2021 02:57 PM"
-  },
-  {
-    "barcode1": "",
-    "barcode2": "",
-    "barcode3": "",
-    "description": "99 APPLE",
-    "price": "$0.99",
-    "qty": "36",
-    "last_edit": "03/13/2021 03:20 PM"
-  },
-  {
-    "barcode1": "",
-    "barcode2": "",
-    "barcode3": "",
-    "description": "99 BANANAS",
-    "price": "$0.99",
-    "qty": "-72",
-    "last_edit": "03/13/2021 03:22 PM"
-  },
-  {
-    "barcode1": "",
-    "barcode2": "",
-    "barcode3": "",
-    "description": "99 WATERMELON",
-    "price": "$0.99",
-    "qty": "36",
-    "last_edit": "05/07/2023 03:49 PM"
-  },
-  {
-    "barcode1": "89293100024",
-    "barcode2": "",
-    "barcode3": "",
-    "description": "A TO Z RIESLING OREGON",
-    "price": "$12.99",
-    "qty": "1",
-    "last_edit": "06/21/2022 11:54 AM"
-  },
-  {
-    "barcode1": "87671803108",
-    "barcode2": "ADIUS44336572969",
-    "barcode3": "",
-    "description": "A001 UPTO $100 CARD",
-    "price": "$1.00",
-    "qty": "-9573",
-    "last_edit": "04/04/2022 06:48 PM"
-  },
-  {
-    "barcode1": "111002",
-    "barcode2": "",
-    "barcode3": "",
-    "description": "A002 UPTO $250 CARD",
-    "price": "$5.00",
-    "qty": "280",
-    "last_edit": ""
-  },
-  {
-    "barcode1": "111003",
-    "barcode2": "",
-    "barcode3": "",
-    "description": "A003 UPTO $500 CARD",
-    "price": "$10.00",
-    "qty": "-76",
-    "last_edit": "03/25/2021 07:50 PM"
-  },
-  {
-    "barcode1": "111004",
-    "barcode2": "",
-    "barcode3": "",
-    "description": "A004 UPTO $1,000 CARD",
-    "price": "$20.00",
-    "qty": "-225",
-    "last_edit": "03/25/2021 07:51 PM"
-  },
-  {
-    "barcode1": "111005",
-    "barcode2": "",
-    "barcode3": "",
-    "description": "A005 UPTO $2,000 CARD",
-    "price": "$40.00",
-    "qty": "-238",
-    "last_edit": "05/01/2021 02:36 PM"
-  },
-  {
-    "barcode1": "111007",
-    "barcode2": "",
-    "barcode3": "",
-    "description": "A007 $5.00 ITEM",
-    "price": "$5.00",
-    "qty": "0",
-    "last_edit": ""
-  },
-  {
-    "barcode1": "111011",
-    "barcode2": "",
-    "barcode3": "",
-    "description": "A011 $10.00 ITEM",
-    "price": "$10.00",
-    "qty": "10",
-    "last_edit": "12/12/2020 07:30 PM"
-  },
-  {
-    "barcode1": "7503027709077",
-    "barcode2": "",
-    "barcode3": "",
-    "description": "ABASOLO CORN WSKY",
-    "price": "$28.99",
-    "qty": "4",
-    "last_edit": "05/18/2023 07:14 PM"
-  },
-  {
-    "barcode1": "19589303109",
-    "barcode2": "",
-    "barcode3": "",
-    "description": "818 TEQ REPOSADO",
-    "price": "$45.99",
-    "qty": "20",
-    "last_edit": "05/06/2022 04:18 PM"
-  },
-  {
-    "barcode1": "08900011833",
-    "barcode2": "",
-    "barcode3": "",
-    "description": "99  APPLES",
-    "price": "$18.99",
-    "qty": "0",
-    "last_edit": "03/11/2021 02:56 PM"
-  },
-  {
-    "barcode1": "08066062003",
-    "barcode2": "",
-    "barcode3": "",
-    "description": "99  BANANAS 99",
-    "price": "$18.99",
-    "qty": "0",
-    "last_edit": "03/11/2021 02:57 PM"
-  },
-  {
-    "barcode1": "",
-    "barcode2": "",
-    "barcode3": "",
-    "description": "99 APPLE",
-    "price": "$0.99",
-    "qty": "36",
-    "last_edit": "03/13/2021 03:20 PM"
-  },
-  {
-    "barcode1": "",
-    "barcode2": "",
-    "barcode3": "",
-    "description": "99 BANANAS",
-    "price": "$0.99",
-    "qty": "-72",
-    "last_edit": "03/13/2021 03:22 PM"
-  },
-  {
-    "barcode1": "",
-    "barcode2": "",
-    "barcode3": "",
-    "description": "99 WATERMELON",
-    "price": "$0.99",
-    "qty": "36",
-    "last_edit": "05/07/2023 03:49 PM"
-  },
-  {
-    "barcode1": "89293100024",
-    "barcode2": "",
-    "barcode3": "",
-    "description": "A TO Z RIESLING OREGON",
-    "price": "$12.99",
-    "qty": "1",
-    "last_edit": "06/21/2022 11:54 AM"
-  },
-  {
-    "barcode1": "87671803108",
-    "barcode2": "ADIUS44336572969",
-    "barcode3": "",
-    "description": "A001 UPTO $100 CARD",
-    "price": "$1.00",
-    "qty": "-9573",
-    "last_edit": "04/04/2022 06:48 PM"
-  },
-  {
-    "barcode1": "111002",
-    "barcode2": "",
-    "barcode3": "",
-    "description": "A002 UPTO $250 CARD",
-    "price": "$5.00",
-    "qty": "280",
-    "last_edit": ""
-  },
-  {
-    "barcode1": "111003",
-    "barcode2": "",
-    "barcode3": "",
-    "description": "A003 UPTO $500 CARD",
-    "price": "$10.00",
-    "qty": "-76",
-    "last_edit": "03/25/2021 07:50 PM"
-  },
-  {
-    "barcode1": "111004",
-    "barcode2": "",
-    "barcode3": "",
-    "description": "A004 UPTO $1,000 CARD",
-    "price": "$20.00",
-    "qty": "-225",
-    "last_edit": "03/25/2021 07:51 PM"
-  },
-  {
-    "barcode1": "111005",
-    "barcode2": "",
-    "barcode3": "",
-    "description": "A005 UPTO $2,000 CARD",
-    "price": "$40.00",
-    "qty": "-238",
-    "last_edit": "05/01/2021 02:36 PM"
-  },
-  {
-    "barcode1": "111007",
-    "barcode2": "",
-    "barcode3": "",
-    "description": "A007 $5.00 ITEM",
-    "price": "$5.00",
-    "qty": "0",
-    "last_edit": ""
-  },
-  {
-    "barcode1": "111011",
-    "barcode2": "",
-    "barcode3": "",
-    "description": "A011 $10.00 ITEM",
-    "price": "$10.00",
-    "qty": "10",
-    "last_edit": "12/12/2020 07:30 PM"
-  },
-  {
-    "barcode1": "7503027709077",
-    "barcode2": "",
-    "barcode3": "",
-    "description": "ABASOLO CORN WSKY",
-    "price": "$28.99",
-    "qty": "4",
-    "last_edit": "05/18/2023 07:14 PM"
-  }
+  [
+    {
+      "barcode1": "",
+      "barcode2": "",
+      "barcode3": "",
+      "description": "100 PIPERS SCOTCH",
+      "price": "$21.99",
+      "qty": "-4",
+      "last_edit": "10/07/2022 02:19 PM"
+    },
+    {
+      "barcode1": "08858600189",
+      "barcode2": "",
+      "barcode3": "",
+      "description": "14 HANDS CAB",
+      "price": "$9.99",
+      "qty": "61",
+      "last_edit": "05/09/2023 03:39 PM"
+    },
+    {
+      "barcode1": "08858600177",
+      "barcode2": "",
+      "barcode3": "",
+      "description": "14 HANDS MERLOT",
+      "price": "$9.99",
+      "qty": "103",
+      "last_edit": "04/04/2023 12:33 AM"
+    },
+    {
+      "barcode1": "08858600448",
+      "barcode2": "",
+      "barcode3": "",
+      "description": "14 HANDS RED HOT TO TROT",
+      "price": "$8.99",
+      "qty": "4",
+      "last_edit": "05/31/2023 08:46 AM"
+    },
+    {
+      "barcode1": "08858601253",
+      "barcode2": "",
+      "barcode3": "",
+      "description": "14 HANDS ROSE BUBBLE UNICORN",
+      "price": "$10.99",
+      "qty": "53",
+      "last_edit": "02/20/2023 10:07 PM"
+    },
+    {
+      "barcode1": "08066000115",
+      "barcode2": "",
+      "barcode3": "",
+      "description": "1792 BBN FULL PROF 125",
+      "price": "$43.99",
+      "qty": "2",
+      "last_edit": "08/14/2021 11:26 AM"
+    },
+    {
+      "barcode1": "",
+      "barcode2": "",
+      "barcode3": "",
+      "description": "1792 SINGLE BARRERL 98.6",
+      "price": "$38.99",
+      "qty": "0",
+      "last_edit": "08/01/2022 09:19 AM"
+    },
+    {
+      "barcode1": "08066000119",
+      "barcode2": "",
+      "barcode3": "",
+      "description": "1792 SMALL 93",
+      "price": "$59.99",
+      "qty": "1",
+      "last_edit": "03/22/2023 01:44 PM"
+    },
+    {
+      "barcode1": "08066000120",
+      "barcode2": "",
+      "barcode3": "",
+      "description": "1792 SMALL 93",
+      "price": "$29.99",
+      "qty": "2",
+      "last_edit": "09/11/2021 11:16 AM"
+    },
+    {
+      "barcode1": "08066000116",
+      "barcode2": "",
+      "barcode3": "",
+      "description": "1792 SWEET WH  91.2",
+      "price": "$99.99",
+      "qty": "-1",
+      "last_edit": "03/25/2023 10:14 AM"
+    },
+    {
+      "barcode1": "08396070991",
+      "barcode2": "72105922751",
+      "barcode3": "81153801003",
+      "description": "1800  ANEJO TEQUILA",
+      "price": "$39.99",
+      "qty": "3",
+      "last_edit": "05/17/2023 11:53 AM"
+    },
+    {
+      "barcode1": "81153801025",
+      "barcode2": "72105922175",
+      "barcode3": "",
+      "description": "1800  REPOSADO  TEQUILA",
+      "price": "$51.99",
+      "qty": "7",
+      "last_edit": "05/17/2023 11:54 AM"
+    },
+    {
+      "barcode1": "81153801024",
+      "barcode2": "",
+      "barcode3": "",
+      "description": "1800  REPOSADO TEQUILA",
+      "price": "$37.99",
+      "qty": "-2",
+      "last_edit": "05/17/2023 11:54 AM"
+    },
+    {
+      "barcode1": "81153801023",
+      "barcode2": "",
+      "barcode3": "",
+      "description": "1800  REPOSADO TEQUILA 80",
+      "price": "$28.99",
+      "qty": "-33",
+      "last_edit": "05/17/2023 11:54 AM"
+    },
+    {
+      "barcode1": "81153801022",
+      "barcode2": "",
+      "barcode3": "",
+      "description": "1800  REPOSADO TEQUILA 80@",
+      "price": "$13.99",
+      "qty": "0",
+      "last_edit": "05/06/2023 06:06 PM"
+    },
+    {
+      "barcode1": "81153801015",
+      "barcode2": "72105922176",
+      "barcode3": "",
+      "description": "1800  SILVER TEQUIL",
+      "price": "$47.99",
+      "qty": "12",
+      "last_edit": "05/17/2023 11:54 AM"
+    },
+    {
+      "barcode1": "81153801014",
+      "barcode2": "",
+      "barcode3": "",
+      "description": "1800  SILVER TEQUILA",
+      "price": "$35.99",
+      "qty": "9",
+      "last_edit": "05/17/2023 11:55 AM"
+    },
+    {
+      "barcode1": "81153801013",
+      "barcode2": "72105922765",
+      "barcode3": "",
+      "description": "1800  SILVER TEQUILA 80",
+      "price": "$27.99",
+      "qty": "-15",
+      "last_edit": "05/17/2023 11:55 AM"
+    },
+    {
+      "barcode1": "81153801012",
+      "barcode2": "",
+      "barcode3": "",
+      "description": "1800  SILVER TEQUILA 80@",
+      "price": "$13.99",
+      "qty": "12",
+      "last_edit": "05/06/2023 06:09 PM"
+    },
+    {
+      "barcode1": "972452",
+      "barcode2": "",
+      "barcode3": "",
+      "description": "1800  SILVER TEQUILA 80@@",
+      "price": "$9.99",
+      "qty": "24",
+      "last_edit": "05/06/2023 06:10 PM"
+    },
+    {
+      "barcode1": "",
+      "barcode2": "",
+      "barcode3": "",
+      "description": "1800 COCONUT",
+      "price": "$8.99",
+      "qty": "24",
+      "last_edit": "05/06/2023 06:10 PM"
+    },
+    {
+      "barcode1": "81153801040",
+      "barcode2": "",
+      "barcode3": "",
+      "description": "1800 COCONUT TEQUIL",
+      "price": "$47.99",
+      "qty": "10",
+      "last_edit": "05/23/2023 06:19 PM"
+    },
+    {
+      "barcode1": "81153801038",
+      "barcode2": "",
+      "barcode3": "",
+      "description": "1800 COCONUT TEQUILA",
+      "price": "$35.99",
+      "qty": "51",
+      "last_edit": "05/17/2023 11:55 AM"
+    },
+    {
+      "barcode1": "81153801037",
+      "barcode2": "",
+      "barcode3": "",
+      "description": "1800 COCONUT TEQUILA",
+      "price": "$26.99",
+      "qty": "-1",
+      "last_edit": "05/17/2023 11:55 AM"
+    },
+    {
+      "barcode1": "",
+      "barcode2": "",
+      "barcode3": "",
+      "description": "1800 COCONUT TEQUILA 80@",
+      "price": "$13.99",
+      "qty": "48",
+      "last_edit": "05/07/2023 02:06 PM"
+    },
+    {
+      "barcode1": "81153801646",
+      "barcode2": "",
+      "barcode3": "",
+      "description": "1800 CRISTALINO ANEJO",
+      "price": "$57.99",
+      "qty": "0",
+      "last_edit": "05/06/2023 06:12 PM"
+    },
+    {
+      "barcode1": "81884402315",
+      "barcode2": "",
+      "barcode3": "",
+      "description": "1800 MARGARITA PEACH",
+      "price": "$22.99",
+      "qty": "7",
+      "last_edit": "05/06/2023 06:12 PM"
+    },
+    {
+      "barcode1": "81884402314",
+      "barcode2": "",
+      "barcode3": "",
+      "description": "1800 MARGARITA ULTIMATE",
+      "price": "$22.99",
+      "qty": "-8",
+      "last_edit": "06/10/2022 02:21 PM"
+    },
+    {
+      "barcode1": "81153801644",
+      "barcode2": "",
+      "barcode3": "",
+      "description": "1800 MARGARITA WATERMELON",
+      "price": "$22.99",
+      "qty": "0",
+      "last_edit": "05/15/2021 01:11 PM"
+    },
+    {
+      "barcode1": "81153801039",
+      "barcode2": "",
+      "barcode3": "",
+      "description": "1800 MARGEARITA PINEAPPLE",
+      "price": "$22.99",
+      "qty": "5",
+      "last_edit": "05/15/2021 01:11 PM"
+    },
+    {
+      "barcode1": "",
+      "barcode2": "",
+      "barcode3": "",
+      "description": "100 PIPERS SCOTCH",
+      "price": "$21.99",
+      "qty": "-4",
+      "last_edit": "10/07/2022 02:19 PM"
+    },
+    {
+      "barcode1": "08858600189",
+      "barcode2": "",
+      "barcode3": "",
+      "description": "14 HANDS CAB",
+      "price": "$9.99",
+      "qty": "61",
+      "last_edit": "05/09/2023 03:39 PM"
+    },
+    {
+      "barcode1": "08858600177",
+      "barcode2": "",
+      "barcode3": "",
+      "description": "14 HANDS MERLOT",
+      "price": "$9.99",
+      "qty": "103",
+      "last_edit": "04/04/2023 12:33 AM"
+    },
+    {
+      "barcode1": "08858600448",
+      "barcode2": "",
+      "barcode3": "",
+      "description": "14 HANDS RED HOT TO TROT",
+      "price": "$8.99",
+      "qty": "4",
+      "last_edit": "05/31/2023 08:46 AM"
+    },
+    {
+      "barcode1": "08858601253",
+      "barcode2": "",
+      "barcode3": "",
+      "description": "14 HANDS ROSE BUBBLE UNICORN",
+      "price": "$10.99",
+      "qty": "53",
+      "last_edit": "02/20/2023 10:07 PM"
+    },
+    {
+      "barcode1": "08066000115",
+      "barcode2": "",
+      "barcode3": "",
+      "description": "1792 BBN FULL PROF 125",
+      "price": "$43.99",
+      "qty": "2",
+      "last_edit": "08/14/2021 11:26 AM"
+    },
+    {
+      "barcode1": "",
+      "barcode2": "",
+      "barcode3": "",
+      "description": "1792 SINGLE BARRERL 98.6",
+      "price": "$38.99",
+      "qty": "0",
+      "last_edit": "08/01/2022 09:19 AM"
+    },
+    {
+      "barcode1": "08066000119",
+      "barcode2": "",
+      "barcode3": "",
+      "description": "1792 SMALL 93",
+      "price": "$59.99",
+      "qty": "1",
+      "last_edit": "03/22/2023 01:44 PM"
+    },
+    {
+      "barcode1": "08066000120",
+      "barcode2": "",
+      "barcode3": "",
+      "description": "1792 SMALL 93",
+      "price": "$29.99",
+      "qty": "2",
+      "last_edit": "09/11/2021 11:16 AM"
+    },
+    {
+      "barcode1": "08066000116",
+      "barcode2": "",
+      "barcode3": "",
+      "description": "1792 SWEET WH  91.2",
+      "price": "$99.99",
+      "qty": "-1",
+      "last_edit": "03/25/2023 10:14 AM"
+    },
+    {
+      "barcode1": "08396070991",
+      "barcode2": "72105922751",
+      "barcode3": "81153801003",
+      "description": "1800  ANEJO TEQUILA",
+      "price": "$39.99",
+      "qty": "3",
+      "last_edit": "05/17/2023 11:53 AM"
+    },
+    {
+      "barcode1": "81153801025",
+      "barcode2": "72105922175",
+      "barcode3": "",
+      "description": "1800  REPOSADO  TEQUILA",
+      "price": "$51.99",
+      "qty": "7",
+      "last_edit": "05/17/2023 11:54 AM"
+    },
+    {
+      "barcode1": "81153801024",
+      "barcode2": "",
+      "barcode3": "",
+      "description": "1800  REPOSADO TEQUILA",
+      "price": "$37.99",
+      "qty": "-2",
+      "last_edit": "05/17/2023 11:54 AM"
+    },
+    {
+      "barcode1": "81153801023",
+      "barcode2": "",
+      "barcode3": "",
+      "description": "1800  REPOSADO TEQUILA 80",
+      "price": "$28.99",
+      "qty": "-33",
+      "last_edit": "05/17/2023 11:54 AM"
+    },
+    {
+      "barcode1": "81153801022",
+      "barcode2": "",
+      "barcode3": "",
+      "description": "1800  REPOSADO TEQUILA 80@",
+      "price": "$13.99",
+      "qty": "0",
+      "last_edit": "05/06/2023 06:06 PM"
+    },
+    {
+      "barcode1": "81153801015",
+      "barcode2": "72105922176",
+      "barcode3": "",
+      "description": "1800  SILVER TEQUIL",
+      "price": "$47.99",
+      "qty": "12",
+      "last_edit": "05/17/2023 11:54 AM"
+    },
+    {
+      "barcode1": "81153801014",
+      "barcode2": "",
+      "barcode3": "",
+      "description": "1800  SILVER TEQUILA",
+      "price": "$35.99",
+      "qty": "9",
+      "last_edit": "05/17/2023 11:55 AM"
+    },
+    {
+      "barcode1": "81153801013",
+      "barcode2": "72105922765",
+      "barcode3": "",
+      "description": "1800  SILVER TEQUILA 80",
+      "price": "$27.99",
+      "qty": "-15",
+      "last_edit": "05/17/2023 11:55 AM"
+    },
+    {
+      "barcode1": "81153801012",
+      "barcode2": "",
+      "barcode3": "",
+      "description": "1800  SILVER TEQUILA 80@",
+      "price": "$13.99",
+      "qty": "12",
+      "last_edit": "05/06/2023 06:09 PM"
+    },
+    {
+      "barcode1": "972452",
+      "barcode2": "",
+      "barcode3": "",
+      "description": "1800  SILVER TEQUILA 80@@",
+      "price": "$9.99",
+      "qty": "24",
+      "last_edit": "05/06/2023 06:10 PM"
+    },
+    {
+      "barcode1": "",
+      "barcode2": "",
+      "barcode3": "",
+      "description": "1800 COCONUT",
+      "price": "$8.99",
+      "qty": "24",
+      "last_edit": "05/06/2023 06:10 PM"
+    },
+    {
+      "barcode1": "81153801040",
+      "barcode2": "",
+      "barcode3": "",
+      "description": "1800 COCONUT TEQUIL",
+      "price": "$47.99",
+      "qty": "10",
+      "last_edit": "05/23/2023 06:19 PM"
+    },
+    {
+      "barcode1": "81153801038",
+      "barcode2": "",
+      "barcode3": "",
+      "description": "1800 COCONUT TEQUILA",
+      "price": "$35.99",
+      "qty": "51",
+      "last_edit": "05/17/2023 11:55 AM"
+    },
+    {
+      "barcode1": "81153801037",
+      "barcode2": "",
+      "barcode3": "",
+      "description": "1800 COCONUT TEQUILA",
+      "price": "$26.99",
+      "qty": "-1",
+      "last_edit": "05/17/2023 11:55 AM"
+    },
+    {
+      "barcode1": "",
+      "barcode2": "",
+      "barcode3": "",
+      "description": "1800 COCONUT TEQUILA 80@",
+      "price": "$13.99",
+      "qty": "48",
+      "last_edit": "05/07/2023 02:06 PM"
+    },
+    {
+      "barcode1": "81153801646",
+      "barcode2": "",
+      "barcode3": "",
+      "description": "1800 CRISTALINO ANEJO",
+      "price": "$57.99",
+      "qty": "0",
+      "last_edit": "05/06/2023 06:12 PM"
+    },
+    {
+      "barcode1": "81884402315",
+      "barcode2": "",
+      "barcode3": "",
+      "description": "1800 MARGARITA PEACH",
+      "price": "$22.99",
+      "qty": "7",
+      "last_edit": "05/06/2023 06:12 PM"
+    },
+    {
+      "barcode1": "81884402314",
+      "barcode2": "",
+      "barcode3": "",
+      "description": "1800 MARGARITA ULTIMATE",
+      "price": "$22.99",
+      "qty": "-8",
+      "last_edit": "06/10/2022 02:21 PM"
+    },
+    {
+      "barcode1": "81153801644",
+      "barcode2": "",
+      "barcode3": "",
+      "description": "1800 MARGARITA WATERMELON",
+      "price": "$22.99",
+      "qty": "0",
+      "last_edit": "05/15/2021 01:11 PM"
+    },
+    {
+      "barcode1": "81153801039",
+      "barcode2": "",
+      "barcode3": "",
+      "description": "1800 MARGEARITA PINEAPPLE",
+      "price": "$22.99",
+      "qty": "5",
+      "last_edit": "05/15/2021 01:11 PM"
+    },
+    {
+      "barcode1": "",
+      "barcode2": "",
+      "barcode3": "",
+      "description": "100 PIPERS SCOTCH",
+      "price": "$21.99",
+      "qty": "-4",
+      "last_edit": "10/07/2022 02:19 PM"
+    },
+    {
+      "barcode1": "08858600189",
+      "barcode2": "",
+      "barcode3": "",
+      "description": "14 HANDS CAB",
+      "price": "$9.99",
+      "qty": "61",
+      "last_edit": "05/09/2023 03:39 PM"
+    },
+    {
+      "barcode1": "08858600177",
+      "barcode2": "",
+      "barcode3": "",
+      "description": "14 HANDS MERLOT",
+      "price": "$9.99",
+      "qty": "103",
+      "last_edit": "04/04/2023 12:33 AM"
+    },
+    {
+      "barcode1": "08858600448",
+      "barcode2": "",
+      "barcode3": "",
+      "description": "14 HANDS RED HOT TO TROT",
+      "price": "$8.99",
+      "qty": "4",
+      "last_edit": "05/31/2023 08:46 AM"
+    },
+    {
+      "barcode1": "08858601253",
+      "barcode2": "",
+      "barcode3": "",
+      "description": "14 HANDS ROSE BUBBLE UNICORN",
+      "price": "$10.99",
+      "qty": "53",
+      "last_edit": "02/20/2023 10:07 PM"
+    },
+    {
+      "barcode1": "08066000115",
+      "barcode2": "",
+      "barcode3": "",
+      "description": "1792 BBN FULL PROF 125",
+      "price": "$43.99",
+      "qty": "2",
+      "last_edit": "08/14/2021 11:26 AM"
+    },
+    {
+      "barcode1": "",
+      "barcode2": "",
+      "barcode3": "",
+      "description": "1792 SINGLE BARRERL 98.6",
+      "price": "$38.99",
+      "qty": "0",
+      "last_edit": "08/01/2022 09:19 AM"
+    },
+    {
+      "barcode1": "08066000119",
+      "barcode2": "",
+      "barcode3": "",
+      "description": "1792 SMALL 93",
+      "price": "$59.99",
+      "qty": "1",
+      "last_edit": "03/22/2023 01:44 PM"
+    },
+    {
+      "barcode1": "08066000120",
+      "barcode2": "",
+      "barcode3": "",
+      "description": "1792 SMALL 93",
+      "price": "$29.99",
+      "qty": "2",
+      "last_edit": "09/11/2021 11:16 AM"
+    },
+    {
+      "barcode1": "08066000116",
+      "barcode2": "",
+      "barcode3": "",
+      "description": "1792 SWEET WH  91.2",
+      "price": "$99.99",
+      "qty": "-1",
+      "last_edit": "03/25/2023 10:14 AM"
+    },
+    {
+      "barcode1": "08396070991",
+      "barcode2": "72105922751",
+      "barcode3": "81153801003",
+      "description": "1800  ANEJO TEQUILA",
+      "price": "$39.99",
+      "qty": "3",
+      "last_edit": "05/17/2023 11:53 AM"
+    },
+    {
+      "barcode1": "81153801025",
+      "barcode2": "72105922175",
+      "barcode3": "",
+      "description": "1800  REPOSADO  TEQUILA",
+      "price": "$51.99",
+      "qty": "7",
+      "last_edit": "05/17/2023 11:54 AM"
+    },
+    {
+      "barcode1": "81153801024",
+      "barcode2": "",
+      "barcode3": "",
+      "description": "1800  REPOSADO TEQUILA",
+      "price": "$37.99",
+      "qty": "-2",
+      "last_edit": "05/17/2023 11:54 AM"
+    },
+    {
+      "barcode1": "81153801023",
+      "barcode2": "",
+      "barcode3": "",
+      "description": "1800  REPOSADO TEQUILA 80",
+      "price": "$28.99",
+      "qty": "-33",
+      "last_edit": "05/17/2023 11:54 AM"
+    },
+    {
+      "barcode1": "81153801022",
+      "barcode2": "",
+      "barcode3": "",
+      "description": "1800  REPOSADO TEQUILA 80@",
+      "price": "$13.99",
+      "qty": "0",
+      "last_edit": "05/06/2023 06:06 PM"
+    },
+    {
+      "barcode1": "81153801015",
+      "barcode2": "72105922176",
+      "barcode3": "",
+      "description": "1800  SILVER TEQUIL",
+      "price": "$47.99",
+      "qty": "12",
+      "last_edit": "05/17/2023 11:54 AM"
+    },
+    {
+      "barcode1": "81153801014",
+      "barcode2": "",
+      "barcode3": "",
+      "description": "1800  SILVER TEQUILA",
+      "price": "$35.99",
+      "qty": "9",
+      "last_edit": "05/17/2023 11:55 AM"
+    },
+    {
+      "barcode1": "81153801013",
+      "barcode2": "72105922765",
+      "barcode3": "",
+      "description": "1800  SILVER TEQUILA 80",
+      "price": "$27.99",
+      "qty": "-15",
+      "last_edit": "05/17/2023 11:55 AM"
+    },
+    {
+      "barcode1": "81153801012",
+      "barcode2": "",
+      "barcode3": "",
+      "description": "1800  SILVER TEQUILA 80@",
+      "price": "$13.99",
+      "qty": "12",
+      "last_edit": "05/06/2023 06:09 PM"
+    },
+    {
+      "barcode1": "972452",
+      "barcode2": "",
+      "barcode3": "",
+      "description": "1800  SILVER TEQUILA 80@@",
+      "price": "$9.99",
+      "qty": "24",
+      "last_edit": "05/06/2023 06:10 PM"
+    },
+    {
+      "barcode1": "",
+      "barcode2": "",
+      "barcode3": "",
+      "description": "1800 COCONUT",
+      "price": "$8.99",
+      "qty": "24",
+      "last_edit": "05/06/2023 06:10 PM"
+    },
+    {
+      "barcode1": "81153801040",
+      "barcode2": "",
+      "barcode3": "",
+      "description": "1800 COCONUT TEQUIL",
+      "price": "$47.99",
+      "qty": "10",
+      "last_edit": "05/23/2023 06:19 PM"
+    },
+    {
+      "barcode1": "81153801038",
+      "barcode2": "",
+      "barcode3": "",
+      "description": "1800 COCONUT TEQUILA",
+      "price": "$35.99",
+      "qty": "51",
+      "last_edit": "05/17/2023 11:55 AM"
+    },
+    {
+      "barcode1": "81153801037",
+      "barcode2": "",
+      "barcode3": "",
+      "description": "1800 COCONUT TEQUILA",
+      "price": "$26.99",
+      "qty": "-1",
+      "last_edit": "05/17/2023 11:55 AM"
+    },
+    {
+      "barcode1": "",
+      "barcode2": "",
+      "barcode3": "",
+      "description": "1800 COCONUT TEQUILA 80@",
+      "price": "$13.99",
+      "qty": "48",
+      "last_edit": "05/07/2023 02:06 PM"
+    },
+    {
+      "barcode1": "81153801646",
+      "barcode2": "",
+      "barcode3": "",
+      "description": "1800 CRISTALINO ANEJO",
+      "price": "$57.99",
+      "qty": "0",
+      "last_edit": "05/06/2023 06:12 PM"
+    },
+    {
+      "barcode1": "81884402315",
+      "barcode2": "",
+      "barcode3": "",
+      "description": "1800 MARGARITA PEACH",
+      "price": "$22.99",
+      "qty": "7",
+      "last_edit": "05/06/2023 06:12 PM"
+    },
+    {
+      "barcode1": "81884402314",
+      "barcode2": "",
+      "barcode3": "",
+      "description": "1800 MARGARITA ULTIMATE",
+      "price": "$22.99",
+      "qty": "-8",
+      "last_edit": "06/10/2022 02:21 PM"
+    },
+    {
+      "barcode1": "81153801644",
+      "barcode2": "",
+      "barcode3": "",
+      "description": "1800 MARGARITA WATERMELON",
+      "price": "$22.99",
+      "qty": "0",
+      "last_edit": "05/15/2021 01:11 PM"
+    },
+    {
+      "barcode1": "81153801039",
+      "barcode2": "",
+      "barcode3": "",
+      "description": "1800 MARGEARITA PINEAPPLE",
+      "price": "$22.99",
+      "qty": "5",
+      "last_edit": "05/15/2021 01:11 PM"
+    }
+  ]
 ]

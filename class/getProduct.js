@@ -156,6 +156,7 @@ const getProductFromPOS = async (number_of_repeat) => {
             if (flag === 2) {
                 // await page.waitForTimeout(10000);
                 flag = 0;
+                break;
 
                 // pre_inventory_page = "123";
                 // cur_inventory_page = "123";
