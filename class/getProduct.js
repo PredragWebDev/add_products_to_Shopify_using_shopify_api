@@ -72,7 +72,7 @@ const getProductFromPOS = async (number_of_repeat) => {
 
         // next page button click.
 
-        for (let j = 0; j < number_of_repeat; j ++) {
+        for (let j = 0; j < 2*number_of_repeat; j ++) {
             await page.click('#ctl00_ContentPlaceHolder2_lnkNextInvList');
             await page.waitForTimeout(1000);
         }
@@ -153,12 +153,12 @@ const getProductFromPOS = async (number_of_repeat) => {
             flag ++;
             console.log('flag>>>', flag);
 
-            if (flag === 1) {
-                await page.waitForTimeout(10000);
+            if (flag === 2) {
+                // await page.waitForTimeout(10000);
                 flag = 0;
 
-                pre_inventory_page = "123";
-                cur_inventory_page = "123";
+                // pre_inventory_page = "123";
+                // cur_inventory_page = "123";
             }
 
             await page.click('#tdlnkList');

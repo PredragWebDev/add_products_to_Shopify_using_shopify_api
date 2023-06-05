@@ -2,7 +2,7 @@ const Shopify = require('shopify-api-node');
 const fs = require('fs');
 const axios = require('axios');
 
-const setProduct = async (products, numer_of_repeat) => {
+const get_list_from_shopify = async () => {
   const shopify = new Shopify({
     shopName: 'c220a3-2.myshopify.com',
     accessToken: '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',
@@ -82,5 +82,5 @@ const setProduct = async (products, numer_of_repeat) => {
 };
 
 module.exports = {
-  setProduct
+  get_list_from_shopify
 };
