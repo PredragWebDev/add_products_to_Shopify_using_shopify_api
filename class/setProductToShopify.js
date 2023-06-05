@@ -1,82 +1,86 @@
 const Shopify = require('shopify-api-node');
+const fs = require('fs');
 const axios = require('axios');
 
-const setProduct = async (products) => {
-    const shopify = new Shopify({
-        shopName: 'c220a3-2.myshopify.com',
-        // apiKey: 'c0f018c2783767d3250a63593c343184',
-        // password: '887feff3f81f25531e5ef51fe2008070',
-        accessToken:'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'
-      });
+const setProduct = async (products, numer_of_repeat) => {
+  const shopify = new Shopify({
+    shopName: 'c220a3-2.myshopify.com',
+    accessToken: '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',
+    autoLimit : { calls: 2, interval: 1000, bucketSize: 30 }
+  });
 
-      // var products = {
-      //   "product": {
-      //     "title": 'My first',
-      //     "body_html": 'this is for testing',
-      //     "vendor": 'Five Towns Wine & Liquor',
-      //     "images": [{ "src" : 'https://d3omj40jjfp5tk.cloudfront.net/products/63a22f4d8742d4459fb48639/original.png'}], 
-      //     "variants": [
-      //       {
-      //         "price": '12.99',
-      //       }
+  try {
+ 
+    let params = { limit: 250, fields:'id, variants' };
+    let shopifyProducts = [];
+  do {
+    const products = await shopify.product.list(params);
 
-      //     ]
-      //   }
-      // }
+    console.log(products);
 
-      var products = {
-        title: 'My first',
-        body_html: '<p>Absolut Berry Vodkarita is a sweet little twist of our widely appreciated Absout Vodkarita. A fizzy pre-mix with a lot of berryness and without the mess. Fill a rocks glass with ice and dazzle your friend with a chilled ready to drink – made by some of the best bartenders you can find (don’t worry we won’t take any credit, this is your party).</p>',
-        vendor: 'Five Towns Wine & Liquor',
-        product_type: 'alcohol, spirits, cocktail, vodka',
-        handle: '607f39bd8aa4553153654699c',
-        status: 'active',
-        tags: 'alcohol, cocktail, spirits, vodka',
-        variants: [ 
-          {
-            price: '2.19',
-            position: 1,
-            inventory_policy: 'deny',
-            compare_at_price: '1.68',
-            fulfillment_service: 'manual',
-            inventory_management: 'shopify',
-            option1: '200ml',
-            option2: null,
-            option3: null,
-            barcode: '8.50E+11',
-            grams: 0,
-            image_id: null,
-            weight: 0,
-            weight_unit: 'g',
-            inventory_quantity: 2,
-            requires_shipping: true,
-          }
-        ],
-        options: [ 
-          {
-            name: 'SIZE',
-            position: 1,
-            values: [ '200ml' ]
-          }  
-        ],
-        image: {
-          position: 1,
-          alt: null,
-          src: 'https://cdn.shopify.com/s/files/1/0757/0325/5321/products/original_f6cb67b3-3015-417f-8a67-2c8d5b13ed03.jpg?v=1684985789',
-    }
-      }
+    shopifyProducts.push(products)
+    params = products.nextPageParameters;
+  } while (params !== undefined);
 
-      shopify.product.create(products)
-      .then(product => {
-        console.log(product)
+     const jsonData = JSON.stringify(shopifyProducts, null, 2);
+    fs.writeFileSync('shopify products.json', jsonData);
 
-      } )
-    .catch(err => {
-        console.error(err)
-    });
+    console.log("getting end");
+    // for (const product of products) {
+    //   let barcode = '';
+    //   for (let i = 0; i < 3; i++) {
+    //     switch (i) {
+    //       case 0:
+    //         barcode = product.barcode1;
+    //         console.log('barcode1>>>', barcode);
+    //         break;
+    //       case 1:
+    //         barcode = product.barcode2;
+    //         console.log('barcode2>>>', barcode);
+    //         break;
+    //       case 2:
+    //         barcode = product.barcode3;
+    //         console.log('barcode3>>>', barcode);
+    //         break;
+    //       default:
+    //         barcode = product.barcode1;
+    //         break;
+    //     }
 
-}
+    //     if (barcode !== '') {
+    //       let update = false;
+
+    //       for (const shopifyProduct of shopifyProducts) {
+    //         shopifyProduct.variants.map(async (variant) => {
+    //           if (variant.barcode === barcode) {
+    //             if (variant.price !== product.price) {
+    //               variant.price = product.price;
+    //               update = true;
+    //             }
+    //             if (variant.inventory_quantity !== product.qty) {
+    //               variant.inventory_quantity = product.qty;
+    //               update = true;
+    //             }
+
+    //             if (update) {
+    //               console.log("update???");
+    //               const temp = await shopify.product.update(shopifyProduct.id, shopifyProduct);
+    //             }
+    //             console.log("price>>>", variant.price);
+    //             console.log("qty>>>>", variant.inventory_quantity);
+    //           }
+    //         });
+
+    //       }
+    //     }
+    //   }
+    // }
+    
+  } catch (err) {
+    console.error('Failed to update products:', err);
+  }
+};
 
 module.exports = {
-    setProduct,
-}
+  setProduct
+};

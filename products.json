@@ -1,0 +1,407 @@
+[
+  {
+    "barcode1": "19589303109",
+    "barcode2": "",
+    "barcode3": "",
+    "description": "818 TEQ REPOSADO",
+    "price": "$45.99",
+    "qty": "20",
+    "last_edit": "05/06/2022 04:18 PM"
+  },
+  {
+    "barcode1": "08900011833",
+    "barcode2": "",
+    "barcode3": "",
+    "description": "99  APPLES",
+    "price": "$18.99",
+    "qty": "0",
+    "last_edit": "03/11/2021 02:56 PM"
+  },
+  {
+    "barcode1": "08066062003",
+    "barcode2": "",
+    "barcode3": "",
+    "description": "99  BANANAS 99",
+    "price": "$18.99",
+    "qty": "0",
+    "last_edit": "03/11/2021 02:57 PM"
+  },
+  {
+    "barcode1": "",
+    "barcode2": "",
+    "barcode3": "",
+    "description": "99 APPLE",
+    "price": "$0.99",
+    "qty": "36",
+    "last_edit": "03/13/2021 03:20 PM"
+  },
+  {
+    "barcode1": "",
+    "barcode2": "",
+    "barcode3": "",
+    "description": "99 BANANAS",
+    "price": "$0.99",
+    "qty": "-72",
+    "last_edit": "03/13/2021 03:22 PM"
+  },
+  {
+    "barcode1": "",
+    "barcode2": "",
+    "barcode3": "",
+    "description": "99 WATERMELON",
+    "price": "$0.99",
+    "qty": "36",
+    "last_edit": "05/07/2023 03:49 PM"
+  },
+  {
+    "barcode1": "89293100024",
+    "barcode2": "",
+    "barcode3": "",
+    "description": "A TO Z RIESLING OREGON",
+    "price": "$12.99",
+    "qty": "1",
+    "last_edit": "06/21/2022 11:54 AM"
+  },
+  {
+    "barcode1": "87671803108",
+    "barcode2": "ADIUS44336572969",
+    "barcode3": "",
+    "description": "A001 UPTO $100 CARD",
+    "price": "$1.00",
+    "qty": "-9573",
+    "last_edit": "04/04/2022 06:48 PM"
+  },
+  {
+    "barcode1": "111002",
+    "barcode2": "",
+    "barcode3": "",
+    "description": "A002 UPTO $250 CARD",
+    "price": "$5.00",
+    "qty": "280",
+    "last_edit": ""
+  },
+  {
+    "barcode1": "111003",
+    "barcode2": "",
+    "barcode3": "",
+    "description": "A003 UPTO $500 CARD",
+    "price": "$10.00",
+    "qty": "-76",
+    "last_edit": "03/25/2021 07:50 PM"
+  },
+  {
+    "barcode1": "111004",
+    "barcode2": "",
+    "barcode3": "",
+    "description": "A004 UPTO $1,000 CARD",
+    "price": "$20.00",
+    "qty": "-225",
+    "last_edit": "03/25/2021 07:51 PM"
+  },
+  {
+    "barcode1": "111005",
+    "barcode2": "",
+    "barcode3": "",
+    "description": "A005 UPTO $2,000 CARD",
+    "price": "$40.00",
+    "qty": "-238",
+    "last_edit": "05/01/2021 02:36 PM"
+  },
+  {
+    "barcode1": "111007",
+    "barcode2": "",
+    "barcode3": "",
+    "description": "A007 $5.00 ITEM",
+    "price": "$5.00",
+    "qty": "0",
+    "last_edit": ""
+  },
+  {
+    "barcode1": "111011",
+    "barcode2": "",
+    "barcode3": "",
+    "description": "A011 $10.00 ITEM",
+    "price": "$10.00",
+    "qty": "10",
+    "last_edit": "12/12/2020 07:30 PM"
+  },
+  {
+    "barcode1": "7503027709077",
+    "barcode2": "",
+    "barcode3": "",
+    "description": "ABASOLO CORN WSKY",
+    "price": "$28.99",
+    "qty": "4",
+    "last_edit": "05/18/2023 07:14 PM"
+  },
+  {
+    "barcode1": "19589303109",
+    "barcode2": "",
+    "barcode3": "",
+    "description": "818 TEQ REPOSADO",
+    "price": "$45.99",
+    "qty": "20",
+    "last_edit": "05/06/2022 04:18 PM"
+  },
+  {
+    "barcode1": "08900011833",
+    "barcode2": "",
+    "barcode3": "",
+    "description": "99  APPLES",
+    "price": "$18.99",
+    "qty": "0",
+    "last_edit": "03/11/2021 02:56 PM"
+  },
+  {
+    "barcode1": "08066062003",
+    "barcode2": "",
+    "barcode3": "",
+    "description": "99  BANANAS 99",
+    "price": "$18.99",
+    "qty": "0",
+    "last_edit": "03/11/2021 02:57 PM"
+  },
+  {
+    "barcode1": "",
+    "barcode2": "",
+    "barcode3": "",
+    "description": "99 APPLE",
+    "price": "$0.99",
+    "qty": "36",
+    "last_edit": "03/13/2021 03:20 PM"
+  },
+  {
+    "barcode1": "",
+    "barcode2": "",
+    "barcode3": "",
+    "description": "99 BANANAS",
+    "price": "$0.99",
+    "qty": "-72",
+    "last_edit": "03/13/2021 03:22 PM"
+  },
+  {
+    "barcode1": "",
+    "barcode2": "",
+    "barcode3": "",
+    "description": "99 WATERMELON",
+    "price": "$0.99",
+    "qty": "36",
+    "last_edit": "05/07/2023 03:49 PM"
+  },
+  {
+    "barcode1": "89293100024",
+    "barcode2": "",
+    "barcode3": "",
+    "description": "A TO Z RIESLING OREGON",
+    "price": "$12.99",
+    "qty": "1",
+    "last_edit": "06/21/2022 11:54 AM"
+  },
+  {
+    "barcode1": "87671803108",
+    "barcode2": "ADIUS44336572969",
+    "barcode3": "",
+    "description": "A001 UPTO $100 CARD",
+    "price": "$1.00",
+    "qty": "-9573",
+    "last_edit": "04/04/2022 06:48 PM"
+  },
+  {
+    "barcode1": "111002",
+    "barcode2": "",
+    "barcode3": "",
+    "description": "A002 UPTO $250 CARD",
+    "price": "$5.00",
+    "qty": "280",
+    "last_edit": ""
+  },
+  {
+    "barcode1": "111003",
+    "barcode2": "",
+    "barcode3": "",
+    "description": "A003 UPTO $500 CARD",
+    "price": "$10.00",
+    "qty": "-76",
+    "last_edit": "03/25/2021 07:50 PM"
+  },
+  {
+    "barcode1": "111004",
+    "barcode2": "",
+    "barcode3": "",
+    "description": "A004 UPTO $1,000 CARD",
+    "price": "$20.00",
+    "qty": "-225",
+    "last_edit": "03/25/2021 07:51 PM"
+  },
+  {
+    "barcode1": "111005",
+    "barcode2": "",
+    "barcode3": "",
+    "description": "A005 UPTO $2,000 CARD",
+    "price": "$40.00",
+    "qty": "-238",
+    "last_edit": "05/01/2021 02:36 PM"
+  },
+  {
+    "barcode1": "111007",
+    "barcode2": "",
+    "barcode3": "",
+    "description": "A007 $5.00 ITEM",
+    "price": "$5.00",
+    "qty": "0",
+    "last_edit": ""
+  },
+  {
+    "barcode1": "111011",
+    "barcode2": "",
+    "barcode3": "",
+    "description": "A011 $10.00 ITEM",
+    "price": "$10.00",
+    "qty": "10",
+    "last_edit": "12/12/2020 07:30 PM"
+  },
+  {
+    "barcode1": "7503027709077",
+    "barcode2": "",
+    "barcode3": "",
+    "description": "ABASOLO CORN WSKY",
+    "price": "$28.99",
+    "qty": "4",
+    "last_edit": "05/18/2023 07:14 PM"
+  },
+  {
+    "barcode1": "19589303109",
+    "barcode2": "",
+    "barcode3": "",
+    "description": "818 TEQ REPOSADO",
+    "price": "$45.99",
+    "qty": "20",
+    "last_edit": "05/06/2022 04:18 PM"
+  },
+  {
+    "barcode1": "08900011833",
+    "barcode2": "",
+    "barcode3": "",
+    "description": "99  APPLES",
+    "price": "$18.99",
+    "qty": "0",
+    "last_edit": "03/11/2021 02:56 PM"
+  },
+  {
+    "barcode1": "08066062003",
+    "barcode2": "",
+    "barcode3": "",
+    "description": "99  BANANAS 99",
+    "price": "$18.99",
+    "qty": "0",
+    "last_edit": "03/11/2021 02:57 PM"
+  },
+  {
+    "barcode1": "",
+    "barcode2": "",
+    "barcode3": "",
+    "description": "99 APPLE",
+    "price": "$0.99",
+    "qty": "36",
+    "last_edit": "03/13/2021 03:20 PM"
+  },
+  {
+    "barcode1": "",
+    "barcode2": "",
+    "barcode3": "",
+    "description": "99 BANANAS",
+    "price": "$0.99",
+    "qty": "-72",
+    "last_edit": "03/13/2021 03:22 PM"
+  },
+  {
+    "barcode1": "",
+    "barcode2": "",
+    "barcode3": "",
+    "description": "99 WATERMELON",
+    "price": "$0.99",
+    "qty": "36",
+    "last_edit": "05/07/2023 03:49 PM"
+  },
+  {
+    "barcode1": "89293100024",
+    "barcode2": "",
+    "barcode3": "",
+    "description": "A TO Z RIESLING OREGON",
+    "price": "$12.99",
+    "qty": "1",
+    "last_edit": "06/21/2022 11:54 AM"
+  },
+  {
+    "barcode1": "87671803108",
+    "barcode2": "ADIUS44336572969",
+    "barcode3": "",
+    "description": "A001 UPTO $100 CARD",
+    "price": "$1.00",
+    "qty": "-9573",
+    "last_edit": "04/04/2022 06:48 PM"
+  },
+  {
+    "barcode1": "111002",
+    "barcode2": "",
+    "barcode3": "",
+    "description": "A002 UPTO $250 CARD",
+    "price": "$5.00",
+    "qty": "280",
+    "last_edit": ""
+  },
+  {
+    "barcode1": "111003",
+    "barcode2": "",
+    "barcode3": "",
+    "description": "A003 UPTO $500 CARD",
+    "price": "$10.00",
+    "qty": "-76",
+    "last_edit": "03/25/2021 07:50 PM"
+  },
+  {
+    "barcode1": "111004",
+    "barcode2": "",
+    "barcode3": "",
+    "description": "A004 UPTO $1,000 CARD",
+    "price": "$20.00",
+    "qty": "-225",
+    "last_edit": "03/25/2021 07:51 PM"
+  },
+  {
+    "barcode1": "111005",
+    "barcode2": "",
+    "barcode3": "",
+    "description": "A005 UPTO $2,000 CARD",
+    "price": "$40.00",
+    "qty": "-238",
+    "last_edit": "05/01/2021 02:36 PM"
+  },
+  {
+    "barcode1": "111007",
+    "barcode2": "",
+    "barcode3": "",
+    "description": "A007 $5.00 ITEM",
+    "price": "$5.00",
+    "qty": "0",
+    "last_edit": ""
+  },
+  {
+    "barcode1": "111011",
+    "barcode2": "",
+    "barcode3": "",
+    "description": "A011 $10.00 ITEM",
+    "price": "$10.00",
+    "qty": "10",
+    "last_edit": "12/12/2020 07:30 PM"
+  },
+  {
+    "barcode1": "7503027709077",
+    "barcode2": "",
+    "barcode3": "",
+    "description": "ABASOLO CORN WSKY",
+    "price": "$28.99",
+    "qty": "4",
+    "last_edit": "05/18/2023 07:14 PM"
+  }
+]

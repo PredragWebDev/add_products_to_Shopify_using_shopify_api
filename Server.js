@@ -20,9 +20,17 @@ app.get('/', function (req, res) {
  
 app.post('/', async function (req, res) {
 
-  const products = await getProductFromPOS()
+  for (let i = 0; i< 1; i++) {
+    // const products = await getProductFromPOS(i)
+    const products = [];
 
-  setProduct(products)
+    // console.log("products>>>>", products);
+  
+    // const jsonData = JSON.stringify(products, null, 2);
+    // fs.writeFileSync('products.json', jsonData);
+  
+    setProduct(products, i)
+  }
   
   const url = "https://lightningpos.com/POSLogin.aspx?flag=1&enabletouch=%27true%27%3fHg%3d1080&Wg=1920"
 
