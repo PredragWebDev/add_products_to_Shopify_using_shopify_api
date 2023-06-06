@@ -1,5 +1,8 @@
+const { By, until, Builder} = require('selenium-webdriver');
 const webdriver = require('selenium-webdriver');
 const chrome = require('selenium-webdriver/chrome');
+const firefox = require('selenium-webdriver/edge');
+
 const fs = require('fs');
 const cheerio = require("cheerio");
 
@@ -27,13 +30,15 @@ const getProductFromPOS = async (number_of_repeat) => {
   // let service = new chrome.ServiceBuilder().build();
   // chrome.setDefaultService(service);
 
-  let chromeOptions = new chrome.Options();
-  chromeOptions.headless();
+  // let options = new chrome.Options();
+  let options = new chrome.Options();
+  options.headless();
   
 
   let driver = new webdriver.Builder()
-  .forBrowser(webdriver.Browser.CHROME)
-  .setChromeOptions(chromeOptions)
+  // .forBrowser(webdriver.Browser.CHROME)
+  .forBrowser(webdriver.Browser.EDGE)
+  .setChromeOptions(options)
   .build();
 
   await driver.get(url);
@@ -48,7 +53,7 @@ const getProductFromPOS = async (number_of_repeat) => {
 
   const station_url = await driver.getCurrentUrl();
 
-  for (let i = 0; i < 3; i++) {
+  for (let i = 0; i < 1; i++) {
     await driver.get(station_url);
 
     switch (i) {
@@ -74,15 +79,24 @@ const getProductFromPOS = async (number_of_repeat) => {
     await driver.navigate().forward();
     console.log('inventory!!!!');
 
-    for (let j = 0; j < 2 * number_of_repeat; j++) {
-      await driver.findElement(By.css('#ctl00_ContentPlaceHolder2_lnkNextInvList')).click();
+    for (let j = 0; j < 4 * number_of_repeat; j++) {
+      // Wait for the Next button to be clickable
+      const nextButton = await driver.wait(
+        until.elementLocated(By.css('#ctl00_ContentPlaceHolder2_lnkNextInvList')),
+        10000
+      );
+    
+      // Click the Next button
+      await nextButton.click();
+      console.log('Next button clicked');
+    
       await driver.sleep(1000);
     }
 
     let flag = 0;
 
     do {
-      fs.writeFileSync('page.html', await driver.getPageSource());
+      // fs.writeFileSync('page.html', await driver.getPageSource());
 
       await driver.findElement(By.css('#tdlnkDetails')).click();
       await driver.wait(until.elementLocated(By.css('#ctl00_ContentPlaceHolder2_lbldetailPrice')), 10000);
@@ -125,6 +139,7 @@ const getProductFromPOS = async (number_of_repeat) => {
 
         await driver.sleep(1000);
         await driver.executeScript('document.querySelector("#ctl00_ContentPlaceHolder2_btnBarcodeMpehide").click();');
+        // await driver.findElement(By.css('#ctl00_ContentPlaceHolder2_btnBarcodeMpehide')).click();
         await driver.wait(until.elementLocated(By.css('#ctl00_ContentPlaceHolder2_downbtn')), 10000);
 
         console.log('clicked the exit button');
@@ -146,17 +161,21 @@ const getProductFromPOS = async (number_of_repeat) => {
       flag++;
       console.log('flag>>>', flag);
 
-      if (flag === 2) {
+      await driver.findElement(By.css('#tdlnkList')).click();
+      await driver.wait(until.elementLocated(By.css('#ctl00_ContentPlaceHolder2_chkwildcardsearch')), 10000);
+
+      console.log('clicked list');
+
+      if (flag === 4) {
         flag = 0;
+
         break;
       }
 
-      await driver.findElement(By.css('#tdlnkList')).click();
-      await driver.wait(until.elementLocated(By.css('#ctl00_ContentPlaceHolder2_chkwildcardsearch')), 10000);
-      console.log('clicked list');
-
     } while (pre_inventory_page !== cur_inventory_page);
   }
+
+  driver.close();
 
   return product_detail;
 };
