@@ -21,7 +21,7 @@ app.get('/', function (req, res) {
  
 app.post('/', async function (req, res) {
 
-  const shop_products = get_list_from_shopify();
+  const shop_products = await get_list_from_shopify();
 
   let pos_products = [];
   for (let i = 0; i< 1; i++) {
@@ -30,13 +30,17 @@ app.post('/', async function (req, res) {
     console.log("repeat>>>>", i);
     // const products = [];
     pos_products.push(products);
+    pos_products = [...pos_products, ...products]
     console.log("products>>>>", products);
   }
+
+  // console.log("shopify products>>>", shop_products);
+  // console.log('pos products>>>', pos_products);
   
   const jsonData = JSON.stringify(pos_products, null, 2);
   fs.writeFileSync('products.json', jsonData);
 
-  update_Products_To_Shopify(shop_products, pos_products);
+  update_Products_To_Shopify(shop_products, jsonData);
 
 })
  

@@ -166,7 +166,7 @@ const getProductFromPOS = async (number_of_repeat) => {
 
       console.log('clicked list');
 
-      if (flag === 4) {
+      if (flag === 1) {
         flag = 0;
 
         break;
