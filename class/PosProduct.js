@@ -8,12 +8,6 @@ const cheerio = require("cheerio");
 
 const url = 'https://lightningpos.com/POSLogin.aspx?flag=1?Hg=1080&Wg=1920';
 
-const product_columnID = [
-  '#ctl00_ContentPlaceHolder2_gvInventoryList_ctl02_chkchkColumn',
-  '#ctl00_ContentPlaceHolder2_gvInventoryList_ctl03_chkchkColumn',
-  // ... rest of the column IDs
-];
-
 let price = 0,
   qty = 0,
   barcode1 = '',
@@ -27,16 +21,12 @@ let cur_inventory_page = '';
 const getProductFromPOS = async (number_of_repeat) => {
   let count = 0;
   let product_detail = [];
-  // let service = new chrome.ServiceBuilder().build();
-  // chrome.setDefaultService(service);
 
-  // let options = new chrome.Options();
   let options = new chrome.Options();
   options.headless();
   
 
   let driver = new webdriver.Builder()
-  // .forBrowser(webdriver.Browser.CHROME)
   .forBrowser(webdriver.Browser.EDGE)
   .setChromeOptions(options)
   .build();
@@ -96,13 +86,13 @@ const getProductFromPOS = async (number_of_repeat) => {
     let flag = 0;
 
     do {
-      // fs.writeFileSync('page.html', await driver.getPageSource());
 
       await driver.findElement(By.css('#tdlnkDetails')).click();
       await driver.wait(until.elementLocated(By.css('#ctl00_ContentPlaceHolder2_lbldetailPrice')), 10000);
       console.log('detail page!!!!');
 
       for (let j = 0; j < 15; j++) {
+
         price = await driver.findElement(By.css('#ctl00_ContentPlaceHolder2_lbldetailPrice')).getText();
         qty = await driver.findElement(By.css('#ctl00_ContentPlaceHolder2_lbldetailQtyonHand')).getText();
         last_edit = await driver.findElement(By.css('#ctl00_ContentPlaceHolder2_lbldetailEdit')).getText();
@@ -139,7 +129,6 @@ const getProductFromPOS = async (number_of_repeat) => {
 
         await driver.sleep(1000);
         await driver.executeScript('document.querySelector("#ctl00_ContentPlaceHolder2_btnBarcodeMpehide").click();');
-        // await driver.findElement(By.css('#ctl00_ContentPlaceHolder2_btnBarcodeMpehide')).click();
         await driver.wait(until.elementLocated(By.css('#ctl00_ContentPlaceHolder2_downbtn')), 10000);
 
         console.log('clicked the exit button');

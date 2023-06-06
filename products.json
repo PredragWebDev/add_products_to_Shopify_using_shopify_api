@@ -135,5 +135,140 @@
       "qty": "0",
       "last_edit": "05/06/2023 06:06 PM"
     }
-  ]
+  ],
+  {
+    "barcode1": "",
+    "barcode2": "",
+    "barcode3": "",
+    "description": "100 PIPERS SCOTCH",
+    "price": "$21.99",
+    "qty": "-4",
+    "last_edit": "10/07/2022 02:19 PM"
+  },
+  {
+    "barcode1": "08858600189",
+    "barcode2": "",
+    "barcode3": "",
+    "description": "14 HANDS CAB",
+    "price": "$9.99",
+    "qty": "61",
+    "last_edit": "05/09/2023 03:39 PM"
+  },
+  {
+    "barcode1": "08858600177",
+    "barcode2": "",
+    "barcode3": "",
+    "description": "14 HANDS MERLOT",
+    "price": "$9.99",
+    "qty": "103",
+    "last_edit": "04/04/2023 12:33 AM"
+  },
+  {
+    "barcode1": "08858600448",
+    "barcode2": "",
+    "barcode3": "",
+    "description": "14 HANDS RED HOT TO TROT",
+    "price": "$8.99",
+    "qty": "4",
+    "last_edit": "05/31/2023 08:46 AM"
+  },
+  {
+    "barcode1": "08858601253",
+    "barcode2": "",
+    "barcode3": "",
+    "description": "14 HANDS ROSE BUBBLE UNICORN",
+    "price": "$10.99",
+    "qty": "53",
+    "last_edit": "02/20/2023 10:07 PM"
+  },
+  {
+    "barcode1": "08066000115",
+    "barcode2": "",
+    "barcode3": "",
+    "description": "1792 BBN FULL PROF 125",
+    "price": "$43.99",
+    "qty": "2",
+    "last_edit": "08/14/2021 11:26 AM"
+  },
+  {
+    "barcode1": "",
+    "barcode2": "",
+    "barcode3": "",
+    "description": "1792 SINGLE BARRERL 98.6",
+    "price": "$38.99",
+    "qty": "0",
+    "last_edit": "08/01/2022 09:19 AM"
+  },
+  {
+    "barcode1": "08066000119",
+    "barcode2": "",
+    "barcode3": "",
+    "description": "1792 SMALL 93",
+    "price": "$59.99",
+    "qty": "1",
+    "last_edit": "03/22/2023 01:44 PM"
+  },
+  {
+    "barcode1": "08066000120",
+    "barcode2": "",
+    "barcode3": "",
+    "description": "1792 SMALL 93",
+    "price": "$29.99",
+    "qty": "2",
+    "last_edit": "09/11/2021 11:16 AM"
+  },
+  {
+    "barcode1": "08066000116",
+    "barcode2": "",
+    "barcode3": "",
+    "description": "1792 SWEET WH 91.2",
+    "price": "$99.99",
+    "qty": "-1",
+    "last_edit": "03/25/2023 10:14 AM"
+  },
+  {
+    "barcode1": "08396070991",
+    "barcode2": "72105922751",
+    "barcode3": "81153801003",
+    "description": "1800 ANEJO TEQUILA",
+    "price": "$39.99",
+    "qty": "3",
+    "last_edit": "05/17/2023 11:53 AM"
+  },
+  {
+    "barcode1": "81153801025",
+    "barcode2": "72105922175",
+    "barcode3": "",
+    "description": "1800 REPOSADO TEQUILA",
+    "price": "$51.99",
+    "qty": "6",
+    "last_edit": "05/17/2023 11:54 AM"
+  },
+  {
+    "barcode1": "81153801024",
+    "barcode2": "",
+    "barcode3": "",
+    "description": "1800 REPOSADO TEQUILA",
+    "price": "$37.99",
+    "qty": "-9",
+    "last_edit": "05/17/2023 11:54 AM"
+  },
+  {
+    "barcode1": "81153801023",
+    "barcode2": "",
+    "barcode3": "",
+    "description": "1800 REPOSADO TEQUILA 80",
+    "price": "$28.99",
+    "qty": "-33",
+    "last_edit": "05/17/2023 11:54 AM"
+  },
+  {
+    "barcode1": "81153801022",
+    "barcode2": "",
+    "barcode3": "",
+    "description": "1800 REPOSADO TEQUILA 80@",
+    "price": "$13.99",
+    "qty": "0",
+    "last_edit": "05/06/2023 06:06 PM"
+  }
 ]

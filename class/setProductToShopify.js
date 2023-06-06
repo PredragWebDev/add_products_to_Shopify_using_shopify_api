@@ -16,7 +16,7 @@ const get_list_from_shopify = async () => {
   do {
     const products = await shopify.product.list(params);
 
-    // console.log(products);
+    console.log(products);
 
     shopifyProducts = [...shopifyProducts, ...products]
     params = products.nextPageParameters;
@@ -38,6 +38,8 @@ const update_Products_To_Shopify = async (shop_products, pos_products) => {
   const POS_products = JSON.parse(pos_products);
   const shopifyProducts = JSON.parse(shop_products);
 
+  let count_of_updated = 0;
+
   console.log('shopify products>>>', POS_products);
   console.log('shopify products length>>>', pos_products.length);
 
@@ -46,8 +48,6 @@ const update_Products_To_Shopify = async (shop_products, pos_products) => {
     accessToken: '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',
     autoLimit : { calls: 2, interval: 1000, bucketSize: 30 }
   });
-
-  // console.log("count of posproducts>>>", pos_products.length);
 
   for (const pos_product of POS_products) {
     let barcode = '';
@@ -73,34 +73,45 @@ const update_Products_To_Shopify = async (shop_products, pos_products) => {
       if (barcode !== '') {
         let update = false;
 
-        // console.log('count of shopify products>>>', shopifyProducts.length);
-
         for (const shopifyProduct of shopifyProducts) {
+          let updated_variants = {
+            variants:[]
+          };
           shopifyProduct.variants?.map(async (variant) => {
-            // console.log('barcode>>>', variant.barcode);
-            if (variant.barcode === barcode) {
-              if (variant.price !== product.price) {
-                variant.price = product.price;
-                update = true;
-              }
-              if (variant.inventory_quantity !== product.qty) {
-                variant.inventory_quantity = product.qty;
-                update = true;
-              }
+            let updated_variant = variant;
 
-              if (update) {
-                console.log("update???");
-                const temp = await shopify.product.update(shopifyProduct.id, shopifyProduct.variants);
+            if (variant.barcode === barcode) {
+              console.log('barcode equal');
+   
+              if (variant.price !== pos_product.price) {
+                updated_variant.price = pos_product.price;
+                update = true;
               }
+              if (variant.inventory_quantity !== pos_product.qty) {
+                updated_variant.inventory_quantity = pos_product.qty;
+                update = true;
+              }
+              
               console.log("price>>>", variant.price);
               console.log("qty>>>>", variant.inventory_quantity);
             }
+            updated_variants.variants.push(updated_variant);
           });
+
+          if (update) {
+            count_of_updated ++;
+            const temp = await shopify.product.update(shopifyProduct.id, updated_variants);
+            console.log(`updated the ${count_of_updated} products`);
+            update = false;
+          }
 
         }
       }
     }
   }
+  console.log(`updated the ${count_of_updated} products`);
+  console.log('update end!');
+  
 }
 
 module.exports = {
