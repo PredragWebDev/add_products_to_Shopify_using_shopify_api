@@ -7,8 +7,7 @@ const app = express()
 const scrapingbee = require('scrapingbee'); // Import ScrapingBee's SDK
 const fs = require('fs');
 const path = require('path');
-// const {getProductFromPOS} = require('./class/getProduct');
-const {getProductFromPOS} = require('./class/PosProduct');
+const {getProductFromPOS, get_number_of_pages} = require('./class/PosProduct');
 const {get_list_from_shopify, update_Products_To_Shopify} = require('./class/setProductToShopify');
 
 app.use(express.static('public'));
@@ -23,24 +22,28 @@ app.post('/', async function (req, res) {
 
   const shop_products = await get_list_from_shopify();
 
+  // const number_of_pages = await get_number_of_pages();
+  const number_of_pages = 150;
+
+  console.log('number of pages>>>', number_of_pages);
+
   let pos_products = [];
-  for (let i = 0; i< 1; i++) {
-    // const products = await getProductFromPOS(i)
-    const products = await getProductFromPOS(i)
+  const onetime = 4;
+
+  for (let i = 0; i< Math.ceil(number_of_pages/onetime); i++) {
+    const products = await getProductFromPOS(i, onetime);
     console.log("repeat>>>>", i);
-    // const products = [];
-    pos_products.push(products);
+
+    update_Products_To_Shopify(shop_products, JSON.stringify(products));
+
     pos_products = [...pos_products, ...products]
-    console.log("products>>>>", products);
+    // console.log("products>>>>", products);
   }
 
-  // console.log("shopify products>>>", shop_products);
-  // console.log('pos products>>>', pos_products);
-  
   const jsonData = JSON.stringify(pos_products, null, 2);
   fs.writeFileSync('products.json', jsonData);
 
-  update_Products_To_Shopify(shop_products, jsonData);
+  // update_Products_To_Shopify(shop_products, jsonData);
 
 })
  

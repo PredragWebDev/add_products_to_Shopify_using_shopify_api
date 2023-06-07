@@ -2,6 +2,8 @@ const Shopify = require('shopify-api-node');
 const fs = require('fs');
 const axios = require('axios');
 
+let count_of_updated = 0;
+
 const get_list_from_shopify = async () => {
   const shopify = new Shopify({
     shopName: 'c220a3-2.myshopify.com',
@@ -38,7 +40,7 @@ const update_Products_To_Shopify = async (shop_products, pos_products) => {
   const POS_products = JSON.parse(pos_products);
   const shopifyProducts = JSON.parse(shop_products);
 
-  let count_of_updated = 0;
+  
 
   console.log('shopify products>>>', POS_products);
   console.log('shopify products length>>>', pos_products.length);
