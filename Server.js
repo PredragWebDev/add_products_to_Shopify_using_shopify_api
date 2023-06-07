@@ -30,22 +30,43 @@ app.post('/', async function (req, res) {
   let pos_products = [];
   const onetime = 4;
 
-  for (let i = 0; i< Math.ceil(number_of_pages/onetime); i++) {
+  let i = 0;
+  for ( i = 0 ; i< Math.ceil(number_of_pages/onetime); i+=4) {
+    process(shop_products, i, i+4, onetime);
+  }
+
+  if (Math.ceil(number_of_pages/onetime) - i < 4 && Math.ceil(number_of_pages/onetime) - i !== 0){
+    process(shop_products, i, Math.ceil(number_of_pages/onetime), onetime);
+  }
+  
+  // for (let i = 0; i< Math.ceil(number_of_pages/onetime); i++) {
+  //   const products = await getProductFromPOS(i, onetime);
+  //   console.log("repeat>>>>", i);
+
+  //   update_Products_To_Shopify(shop_products, JSON.stringify(products));
+
+  //   pos_products = [...pos_products, ...products]
+  //   // console.log("products>>>>", products);
+  // }
+
+  // const jsonData = JSON.stringify(pos_products, null, 2);
+  // fs.writeFileSync('products.json', jsonData);
+
+  // update_Products_To_Shopify(shop_products, jsonData);
+
+})
+
+const process = async (shop_products, from, to, onetime) => {
+  for (let i =from; i< to; i++) {
     const products = await getProductFromPOS(i, onetime);
     console.log("repeat>>>>", i);
 
     update_Products_To_Shopify(shop_products, JSON.stringify(products));
 
-    pos_products = [...pos_products, ...products]
+    // pos_products = [...pos_products, ...products]
     // console.log("products>>>>", products);
   }
-
-  const jsonData = JSON.stringify(pos_products, null, 2);
-  fs.writeFileSync('products.json', jsonData);
-
-  // update_Products_To_Shopify(shop_products, jsonData);
-
-})
+}
  
 app.listen(3000, function () {
   console.log('Weatherly app listening on port 3000!')
