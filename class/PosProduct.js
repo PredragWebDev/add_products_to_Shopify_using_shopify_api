@@ -41,23 +41,8 @@ const getProductFromPOS = async (number_of_repeat, onetime) => {
   await driver.sleep(1000);
   await driver.navigate().forward();
 
-  const station_url = await driver.getCurrentUrl();
-
-  for (let i = 0; i < 1; i++) {
-    await driver.get(station_url);
-
-    switch (i) {
-      case 0:
-        await driver.findElement(By.css('#ctl00_ContentPlaceHolder2_gvStationmanager_ctl08_imgSelectStation')).click();
-        break;
-      case 1:
-        await driver.findElement(By.css('#ctl00_ContentPlaceHolder2_gvStationmanager_ctl09_imgSelectStation')).click();
-        break;
-      case 2:
-        await driver.findElement(By.css('#ctl00_ContentPlaceHolder2_gvStationmanager_ctl10_imgSelectStation')).click();
-        break;
-    }
-
+  await driver.findElement(By.css('#ctl00_ContentPlaceHolder2_gvStationmanager_ctl09_imgSelectStation')).click();
+ 
     await driver.sleep(1000);
     await driver.navigate().forward();
 
@@ -249,7 +234,7 @@ const getProductFromPOS = async (number_of_repeat, onetime) => {
     //   }
 
     // } while (pre_inventory_page !== cur_inventory_page);
-  }
+  
 
   driver.close();
 

@@ -1,8 +1,18 @@
 const Shopify = require('shopify-api-node');
 const fs = require('fs');
 const axios = require('axios');
+const XLSX = require('xlsx');
 
 let count_of_updated = 0;
+
+const read_Excel_file = async () => {
+  const workbook = XLSX.readFile('./cityhive.xlsx');
+  const sheetName = workbook.SheetNames[0];
+  const sheet = workbook.Sheets[sheetName];
+  const jsonData = XLSX.utils.sheet_to_json(sheet, { header: 1 });
+
+  return jsonData;
+}
 
 const get_list_from_shopify = async () => {
   const shopify = new Shopify({
@@ -39,8 +49,6 @@ const update_Products_To_Shopify = async (shop_products, pos_products) => {
 
   const POS_products = JSON.parse(pos_products);
   const shopifyProducts = JSON.parse(shop_products);
-
-  
 
   console.log('shopify products>>>', POS_products);
   console.log('shopify products length>>>', pos_products.length);
@@ -118,5 +126,6 @@ const update_Products_To_Shopify = async (shop_products, pos_products) => {
 
 module.exports = {
   get_list_from_shopify,
-  update_Products_To_Shopify
+  update_Products_To_Shopify,
+  read_Excel_file
 };

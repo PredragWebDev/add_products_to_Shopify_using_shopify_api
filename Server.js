@@ -9,7 +9,7 @@ const fs = require('fs');
 const path = require('path');
 const {getProductFromPOS, get_number_of_pages} = require('./class/PosProduct');
 const {get_list_from_shopify, update_Products_To_Shopify} = require('./class/setProductToShopify');
-
+let pos_products = []
 app.use(express.static('public'));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.set('view engine', 'ejs')
@@ -27,7 +27,6 @@ app.post('/', async function (req, res) {
 
   console.log('number of pages>>>', number_of_pages);
 
-  let pos_products = [];
   const onetime = 4;
 
   let i = 0;
@@ -36,21 +35,11 @@ app.post('/', async function (req, res) {
   }
 
   if (Math.ceil(number_of_pages/onetime) - i < 4 && Math.ceil(number_of_pages/onetime) - i !== 0){
-    process(shop_products, i, Math.ceil(number_of_pages/onetime), onetime);
+    await process(shop_products, i, Math.ceil(number_of_pages/onetime), onetime);
   }
-  
-  // for (let i = 0; i< Math.ceil(number_of_pages/onetime); i++) {
-  //   const products = await getProductFromPOS(i, onetime);
-  //   console.log("repeat>>>>", i);
 
-  //   update_Products_To_Shopify(shop_products, JSON.stringify(products));
-
-  //   pos_products = [...pos_products, ...products]
-  //   // console.log("products>>>>", products);
-  // }
-
-  // const jsonData = JSON.stringify(pos_products, null, 2);
-  // fs.writeFileSync('products.json', jsonData);
+  const jsonData = JSON.stringify(pos_products, null, 2);
+  fs.writeFileSync('products.json', jsonData);
 
   // update_Products_To_Shopify(shop_products, jsonData);
 
@@ -63,7 +52,7 @@ const process = async (shop_products, from, to, onetime) => {
 
     update_Products_To_Shopify(shop_products, JSON.stringify(products));
 
-    // pos_products = [...pos_products, ...products]
+    pos_products = [...pos_products, ...products]
     // console.log("products>>>>", products);
   }
 }
