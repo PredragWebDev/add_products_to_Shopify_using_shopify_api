@@ -1,12 +1,14 @@
 const express = require('express');
 const bodyParser = require('body-parser');
+const request = require('request');
+const axios = require('axios');
+const cheerio = require('cheerio');
 const app = express()
+const scrapingbee = require('scrapingbee'); // Import ScrapingBee's SDK
 const fs = require('fs');
+const path = require('path');
 const {getProductFromPOS, get_number_of_pages} = require('./class/PosProduct');
 const {get_list_from_shopify, update_Products_To_Shopify} = require('./class/setProductToShopify');
-const { Worker } = require('worker_threads');
-// const workerPath = require('./class/worker');
-const Shopify = require('shopify-api-node');
 let pos_products = []
 app.use(express.static('public'));
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -25,7 +27,7 @@ app.post('/', async function (req, res) {
 
   console.log('number of pages>>>', number_of_pages);
 
-  const onetime = 2;
+  const onetime = 4;
 
   let i = 0;
   for ( i = 0 ; i< Math.ceil(number_of_pages/onetime); i+=4) {
@@ -52,6 +54,7 @@ const process = async (shop_products, from, to, onetime) => {
 
     const jsonData = JSON.stringify(products, null, 2);
     fs.appendFileSync('product.json', jsonData);
+
     // pos_products = [...pos_products, ...products]
     // console.log("products>>>>", products);
   }
@@ -66,54 +69,28 @@ app.listen(3000, async function () {
 
   console.log('number of pages>>>', number_of_pages);
 
-  const onetime = 2;
+  const onetime = 3;
+  await mainprocess(shop_products, number_of_pages, onetime);
 
+  console.log("the end!!!!!!!!!!");
 
-  let i = 0;
-  const promises = [];
-  for ( i = 0 ; i< Math.ceil(number_of_pages/onetime); i+=10) {
-    process(Shopify, i, i+10, onetime);
-    // promises.push(runWorker(shop_products, i, i+10, onetime));
-  }
+  // let i = 0;
+  // for ( i = 0 ; i< Math.ceil(number_of_pages/onetime); i+=8) {
+  //   process(shop_products, i, i+8, onetime);
+  // }
 
-  if (Math.ceil(number_of_pages/onetime) - i < 10 && Math.ceil(number_of_pages/onetime) - i !== 0){
-    await process(Shopify, i, i+10, onetime);
-    // promises.push(runWorker(shop_products, i, Math.ceil(number_of_pages/onetime), onetime));
-  }
-
-  // try {
-  //   await Promise.all(promises);
-  //   console.log('All workers finished');
-  // } catch (err) {
-  //   console.error('A worker encountered an error: ', err);
+  // if (Math.ceil(number_of_pages/onetime) - i < 8 && Math.ceil(number_of_pages/onetime) - i !== 0){
+  //   await process(shop_products, i, Math.ceil(number_of_pages/onetime), onetime);
   // }
 })
 
-const runWorker = (shop_products, from, to, onetime) => {
-  return new Promise((resolve, reject) => {
-    console.log("shop products>>>", shop_products);
+const mainprocess = async (shop_products, number_of_pages, onetime) => {
+  let i = 0;
+  for ( i = 0 ; i< Math.ceil(number_of_pages/onetime); i+=5) {
+    process(shop_products, i, i+5, onetime);
+  }
 
-    const worker = new Worker(workerPath, { 
-      workerData: { 
-        shop_products, 
-        from, 
-        to, 
-        onetime 
-      } 
-    });
-    
-    worker.on('message', (msg) => {
-      if (msg.error) {
-        reject(msg.error);
-      } else {
-        resolve();
-      }
-    });
-    
-    worker.on('error', reject);
-    worker.on('exit', (code) => {
-      if (code !== 0)
-        reject(new Error(`Worker stopped with exit code ${code}`));
-    });
-  });
+  if (Math.ceil(number_of_pages/onetime) - i < 5 && Math.ceil(number_of_pages/onetime) - i !== 0){
+    await process(shop_products, i, Math.ceil(number_of_pages/onetime), onetime);
+  }
 }

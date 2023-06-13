@@ -47,35 +47,33 @@ const getProductFromPOS = async (number_of_repeat, onetime) => {
     await driver.navigate().forward();
 
     console.log('station!!!!');
-
     let elements = driver.findElements(By.css("#ctl00_ContentPlaceHolder2_Label6ctl00_ContentPlaceHolder2_Label6"));
     console.log('test>>>', elements);
-    if (elements !== "") {
-      await driver.findElement(By.css('#ctl00_ContentPlaceHolder2_btnCloseMntnce')).click();
+    if ((await elements).length > 0) {
+      await driver.findElements(By.css('#ctl00_ContentPlaceHolder2_btnCloseMntnce')).click();
     }
-
     await driver.findElement(By.css('#ctl00_lnkexpcolInventory')).click();
 
     await driver.sleep(1000);
     await driver.navigate().forward();
     console.log('inventory!!!!');
 
-    try {
+    try{
       for (let j = 0; j < onetime * number_of_repeat; j++) {
         // Wait for the Next button to be clickable
-  
+        await driver.wait(until.elementLocated(By.css('#ctl00_ContentPlaceHolder2_lnkNextInvList')), 10000);
         let nextbutton = await driver.findElement(By.css('#ctl00_ContentPlaceHolder2_lnkNextInvList'));
-  
-        await driver.executeScript('arguments[0].scrollIntoView(true);', nextbutton);
-        await driver.sleep(1000);
-        await nextbutton.click();
-  
-        console.log('Next button clicked');
-      
-        await driver.sleep(1000);
+    
+          await driver.executeScript('arguments[0].scrollIntoView(true);', nextbutton);
+          await driver.sleep(1000);
+          await nextbutton.click();
+    
+          console.log('Next button clicked');
+        
+          await driver.sleep(1000);
       }
-    } catch {
-      console.error(`An error occurred when click the next button:`, error);
+    } catch (error) {
+      console.log('error occured when click the next button', error);
     }
     
 
@@ -83,13 +81,7 @@ const getProductFromPOS = async (number_of_repeat, onetime) => {
 
     try {
       do {
-        let detailbutton = await driver.findElement(By.css('#tdlnkDetails'));
-
-        await driver.executeScript('arguments[0].scrollIntoView(true);', detailbutton);
-        await driver.sleep(1000);
-        await detailbutton.click();
-
-        // await driver.findElement(By.css('#tdlnkDetails')).click();
+        await driver.findElement(By.css('#tdlnkDetails')).click();
         await driver.wait(until.elementLocated(By.css('#ctl00_ContentPlaceHolder2_lbldetailPrice')), 10000);
         console.log('detail page!!!!');
     
@@ -97,25 +89,14 @@ const getProductFromPOS = async (number_of_repeat, onetime) => {
           let price, qty, last_edit, description, pre_inventory_page, barcode1, barcode2, barcode3;
     
           try {
-            // price = await driver.findElement(By.css('#ctl00_ContentPlaceHolder2_lbldetailPrice')).getText();
+            price = await driver.findElement(By.css('#ctl00_ContentPlaceHolder2_lbldetailPrice')).getText();
             qty = await driver.findElement(By.css('#ctl00_ContentPlaceHolder2_lbldetailQtyonHand')).getText();
-            // last_edit = await driver.findElement(By.css('#ctl00_ContentPlaceHolder2_lbldetailEdit')).getText();
+            last_edit = await driver.findElement(By.css('#ctl00_ContentPlaceHolder2_lbldetailEdit')).getText();
             description = await driver.findElement(By.css('#ctl00_ContentPlaceHolder2_lbldetaildesc')).getText();
             pre_inventory_page = await driver.findElement(By.css('#ctl00_ContentPlaceHolder2_lbldetailsku')).getText();
     
-            await driver.wait(async () => {
-              const isDisplayed = await driver.findElement(By.id('mpeBarcode_backgroundElement')).isDisplayed();
-              return !isDisplayed;
-            }, 10000);
-          
-            let barcodebutton = await driver.findElement(By.css("#ctl00_ContentPlaceHolder2_lnkdetailbarcode"));
-
-            await driver.executeScript('arguments[0].scrollIntoView(true);', barcodebutton);
-
-            await driver.sleep(1000);
-            await barcodebutton.click();
+            await driver.findElement(By.css('#ctl00_ContentPlaceHolder2_lnkdetailbarcode')).click();
             await driver.wait(until.elementLocated(By.css('#ctl00_ContentPlaceHolder2_gvBarcode')), 10000);
-
             await driver.sleep(1000);
     
             const barcode_table = await driver.findElement(By.css('#ctl00_ContentPlaceHolder2_gvBarcode')).getAttribute('outerHTML');
@@ -143,25 +124,12 @@ const getProductFromPOS = async (number_of_repeat, onetime) => {
             console.log('j>>>', j);
     
             await driver.sleep(1000);
-            const exitbutton = await driver.findElement(By.css("#ctl00_ContentPlaceHolder2_btnBarcodeMpehide"));
-            await driver.executeScript('arguments[0].scrollIntoView(true);', exitbutton);
-            await driver.sleep(1000);
-            await exitbutton.click();
-
-            // await driver.sleep(1000);
-
-            // await driver.executeScript('document.querySelector("#ctl00_ContentPlaceHolder2_btnBarcodeMpehide").click();');
+            await driver.executeScript('document.querySelector("#ctl00_ContentPlaceHolder2_btnBarcodeMpehide").click();');
             await driver.wait(until.elementLocated(By.css('#ctl00_ContentPlaceHolder2_downbtn')), 10000);
     
             console.log('clicked the exit button');
     
-            let downbutton = await driver.findElement(By.css('#ctl00_ContentPlaceHolder2_downbtn'));
-
-            await driver.executeScript('arguments[0].scrollIntoView(true);', downbutton);
-            await driver.sleep(1000);
-            await downbutton.click();
-
-            // await driver.findElement(By.css('#ctl00_ContentPlaceHolder2_downbtn')).click();
+            await driver.findElement(By.css('#ctl00_ContentPlaceHolder2_downbtn')).click();
     
             await driver.sleep(1000);
     
@@ -181,11 +149,7 @@ const getProductFromPOS = async (number_of_repeat, onetime) => {
         flag++;
         console.log('flag>>>', flag);
     
-        let listbutton = driver.findElement(By.css('#tdlnkList'));
-        await driver.executeScript('arguments[0].scrollIntoView(true);', listbutton);
-        await listbutton.click();
-
-        // await driver.findElement(By.css('#tdlnkList')).click();
+        await driver.findElement(By.css('#tdlnkList')).click();
         await driver.wait(until.elementLocated(By.css('#ctl00_ContentPlaceHolder2_chkwildcardsearch')), 10000);
     
         console.log('clicked list');
@@ -202,7 +166,7 @@ const getProductFromPOS = async (number_of_repeat, onetime) => {
     }
     
     
-  driver.close();
+  driver.quit();
 
   return product_detail;
 };
@@ -214,7 +178,7 @@ const get_number_of_pages = async () => {
   
 
   let driver = new webdriver.Builder()
-  .forBrowser(webdriver.Browser.CHROME)
+  .forBrowser(webdriver.Browser.EDGE)
   .setChromeOptions(options)
   .build();
 
@@ -230,19 +194,19 @@ const get_number_of_pages = async () => {
 
   const station_url = await driver.getCurrentUrl();
 
-    await driver.findElement(By.css('#ctl00_ContentPlaceHolder2_gvStationmanager_ctl10_imgSelectStation')).click();
+    await driver.findElement(By.css('#ctl00_ContentPlaceHolder2_gvStationmanager_ctl08_imgSelectStation')).click();
      
 
   await driver.sleep(1000);
   await driver.navigate().forward();
 
   console.log('station!!!!');
-
+  
   let elements = driver.findElements(By.css("#ctl00_ContentPlaceHolder2_Label6ctl00_ContentPlaceHolder2_Label6"));
-    console.log('test>>>', elements);
-    if (elements !== "") {
-      await driver.findElement(By.css('#ctl00_ContentPlaceHolder2_btnCloseMntnce')).click();
-    }
+  console.log('test>>>', elements);
+  if (elements !== "") {
+    await driver.findElement(By.css('#ctl00_ContentPlaceHolder2_btnCloseMntnce')).click();
+  }
 
   await driver.findElement(By.css('#ctl00_lnkexpcolInventory')).click();
 
@@ -274,7 +238,7 @@ const get_number_of_pages = async () => {
   } while (pre_pageContent !== cur_pageContent);
 
 
-  driver.close();
+  driver.quit();
 
   return number_of_pages;
 
