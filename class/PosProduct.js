@@ -1,7 +1,7 @@
 const { By, until, Builder} = require('selenium-webdriver');
 const webdriver = require('selenium-webdriver');
 const chrome = require('selenium-webdriver/chrome');
-const firefox = require('selenium-webdriver/edge');
+const firefox = require('selenium-webdriver/firefox');
 
 const fs = require('fs');
 const cheerio = require("cheerio");
@@ -27,32 +27,32 @@ const getProductFromPOS = async (number_of_repeat, onetime) => {
   
 
   let driver = new webdriver.Builder()
-  .forBrowser(webdriver.Browser.CHROME)
-  // .setChromeOptions(options)
+  .forBrowser(webdriver.Browser.FIREFOX)
+  .setChromeOptions(options)
   .build();
 
   await driver.get(url);
-  await driver.findElement(By.css('#txtuserid')).sendKeys('Shopify');
-  await driver.findElement(By.css('#txtpwd')).sendKeys('APInewpassword123');
-  await driver.findElement(By.css('#txtstore')).sendKeys('1233');
-  await driver.findElement(By.css('#chkremember')).click();
-  await driver.findElement(By.css('#lnkLogin')).click();
+  await driver.findElement(By.id('txtuserid')).sendKeys('Shopify');
+  await driver.findElement(By.id('txtpwd')).sendKeys('APInewpassword123');
+  await driver.findElement(By.id('txtstore')).sendKeys('1233');
+  await driver.findElement(By.id('chkremember')).click();
+  await driver.findElement(By.id('lnkLogin')).click();
 
   await driver.sleep(1000);
   await driver.navigate().forward();
 
-  await driver.findElement(By.css('#ctl00_ContentPlaceHolder2_gvStationmanager_ctl09_imgSelectStation')).click();
+  await driver.findElement(By.id('ctl00_ContentPlaceHolder2_gvStationmanager_ctl09_imgSelectStation')).click();
  
     await driver.sleep(1000);
     await driver.navigate().forward();
 
     console.log('station!!!!');
-    let elements = driver.findElements(By.css("#ctl00_ContentPlaceHolder2_Label6ctl00_ContentPlaceHolder2_Label6"));
+    let elements = driver.findElements(By.id("ctl00_ContentPlaceHolder2_Label6ctl00_ContentPlaceHolder2_Label6"));
     console.log('test>>>', elements);
     if ((await elements).length > 0) {
-      await driver.findElements(By.css('#ctl00_ContentPlaceHolder2_btnCloseMntnce')).click();
+      await driver.findElements(By.id('ctl00_ContentPlaceHolder2_btnCloseMntnce')).click();
     }
-    await driver.findElement(By.css('#ctl00_lnkexpcolInventory')).click();
+    await driver.findElement(By.id('ctl00_lnkexpcolInventory')).click();
 
     await driver.sleep(1000);
     await driver.navigate().forward();
@@ -61,8 +61,8 @@ const getProductFromPOS = async (number_of_repeat, onetime) => {
     try{
       for (let j = 0; j < onetime * number_of_repeat; j++) {
         // Wait for the Next button to be clickable
-        await driver.wait(until.elementLocated(By.css('#ctl00_ContentPlaceHolder2_lnkNextInvList')), 10000);
-        let nextbutton = await driver.findElement(By.css('#ctl00_ContentPlaceHolder2_lnkNextInvList'));
+        await driver.wait(until.elementLocated(By.id('ctl00_ContentPlaceHolder2_lnkNextInvList')), 10000);
+        let nextbutton = await driver.findElement(By.id('ctl00_ContentPlaceHolder2_lnkNextInvList'));
     
           await driver.executeScript('arguments[0].scrollIntoView(true);', nextbutton);
           await driver.sleep(1000);
@@ -81,29 +81,29 @@ const getProductFromPOS = async (number_of_repeat, onetime) => {
 
     try {
       do {
-        await driver.findElement(By.css('#tdlnkDetails')).click();
-        await driver.wait(until.elementLocated(By.css('#ctl00_ContentPlaceHolder2_lbldetailPrice')), 10000);
+        await driver.findElement(By.id('tdlnkDetails')).click();
+        await driver.wait(until.elementLocated(By.id('ctl00_ContentPlaceHolder2_lbldetailPrice')), 10000);
         console.log('detail page!!!!');
     
         for (let j = 0; j < 15; j++) {
           let price, qty, last_edit, description, pre_inventory_page, barcode1, barcode2, barcode3;
     
           try {
-            price = await driver.findElement(By.css('#ctl00_ContentPlaceHolder2_lbldetailPrice')).getText();
-            qty = await driver.findElement(By.css('#ctl00_ContentPlaceHolder2_lbldetailQtyonHand')).getText();
-            last_edit = await driver.findElement(By.css('#ctl00_ContentPlaceHolder2_lbldetailEdit')).getText();
-            description = await driver.findElement(By.css('#ctl00_ContentPlaceHolder2_lbldetaildesc')).getText();
-            pre_inventory_page = await driver.findElement(By.css('#ctl00_ContentPlaceHolder2_lbldetailsku')).getText();
+            price = await driver.findElement(By.id('ctl00_ContentPlaceHolder2_lbldetailPrice')).getText();
+            qty = await driver.findElement(By.id('ctl00_ContentPlaceHolder2_lbldetailQtyonHand')).getText();
+            last_edit = await driver.findElement(By.id('ctl00_ContentPlaceHolder2_lbldetailEdit')).getText();
+            description = await driver.findElement(By.id('ctl00_ContentPlaceHolder2_lbldetaildesc')).getText();
+            pre_inventory_page = await driver.findElement(By.id('ctl00_ContentPlaceHolder2_lbldetailsku')).getText();
     
-            await driver.findElement(By.css('#ctl00_ContentPlaceHolder2_lnkdetailbarcode')).click();
-            await driver.wait(until.elementLocated(By.css('#ctl00_ContentPlaceHolder2_gvBarcode')), 10000);
+            await driver.findElement(By.id('ctl00_ContentPlaceHolder2_lnkdetailbarcode')).click();
+            await driver.wait(until.elementLocated(By.id('ctl00_ContentPlaceHolder2_gvBarcode')), 10000);
             await driver.sleep(1000);
     
-            const barcode_table = await driver.findElement(By.css('#ctl00_ContentPlaceHolder2_gvBarcode')).getAttribute('outerHTML');
+            const barcode_table = await driver.findElement(By.id('ctl00_ContentPlaceHolder2_gvBarcode')).getAttribute('outerHTML');
             const $ = cheerio.load(barcode_table);
-            barcode1 = $("#ctl00_ContentPlaceHolder2_gvBarcode_ctl02_lblBarcode").text();
-            barcode2 = $('#ctl00_ContentPlaceHolder2_gvBarcode_ctl03_lblBarcode').text();
-            barcode3 = $('#ctl00_ContentPlaceHolder2_gvBarcode_ctl04_lblBarcode').text();
+            barcode1 = $("ctl00_ContentPlaceHolder2_gvBarcode_ctl02_lblBarcode").text();
+            barcode2 = $('ctl00_ContentPlaceHolder2_gvBarcode_ctl03_lblBarcode').text();
+            barcode3 = $('ctl00_ContentPlaceHolder2_gvBarcode_ctl04_lblBarcode').text();
     
             const new_data = {
               barcode1: barcode1,
@@ -125,17 +125,17 @@ const getProductFromPOS = async (number_of_repeat, onetime) => {
     
             await driver.sleep(1000);
             await driver.executeScript('document.querySelector("#ctl00_ContentPlaceHolder2_btnBarcodeMpehide").click();');
-            await driver.wait(until.elementLocated(By.css('#ctl00_ContentPlaceHolder2_downbtn')), 10000);
+            await driver.wait(until.elementLocated(By.id('ctl00_ContentPlaceHolder2_downbtn')), 10000);
     
             console.log('clicked the exit button');
     
-            await driver.findElement(By.css('#ctl00_ContentPlaceHolder2_downbtn')).click();
+            await driver.findElement(By.id('ctl00_ContentPlaceHolder2_downbtn')).click();
     
             await driver.sleep(1000);
     
             console.log('next product');
     
-            cur_inventory_page = await driver.findElement(By.css('#ctl00_ContentPlaceHolder2_lbldetailsku')).getText();
+            cur_inventory_page = await driver.findElement(By.id('ctl00_ContentPlaceHolder2_lbldetailsku')).getText();
           } catch (error) {
             console.error(`An error occurred in cycle ${count}:`, error);
           }
@@ -149,8 +149,8 @@ const getProductFromPOS = async (number_of_repeat, onetime) => {
         flag++;
         console.log('flag>>>', flag);
     
-        await driver.findElement(By.css('#tdlnkList')).click();
-        await driver.wait(until.elementLocated(By.css('#ctl00_ContentPlaceHolder2_chkwildcardsearch')), 10000);
+        await driver.findElement(By.id('tdlnkList')).click();
+        await driver.wait(until.elementLocated(By.id('ctl00_ContentPlaceHolder2_chkwildcardsearch')), 10000);
     
         console.log('clicked list');
     
@@ -164,7 +164,6 @@ const getProductFromPOS = async (number_of_repeat, onetime) => {
     } catch (error) {
       console.error('An error occurred:', error);
     }
-    
     
   driver.quit();
 
@@ -183,18 +182,18 @@ const get_number_of_pages = async () => {
   .build();
 
   await driver.get(url);
-  await driver.findElement(By.css('#txtuserid')).sendKeys('Shopify');
-  await driver.findElement(By.css('#txtpwd')).sendKeys('APInewpassword123');
-  await driver.findElement(By.css('#txtstore')).sendKeys('1233');
-  await driver.findElement(By.css('#chkremember')).click();
-  await driver.findElement(By.css('#lnkLogin')).click();
+  await driver.findElement(By.id('txtuserid')).sendKeys('Shopify');
+  await driver.findElement(By.id('txtpwd')).sendKeys('APInewpassword123');
+  await driver.findElement(By.id('txtstore')).sendKeys('1233');
+  await driver.findElement(By.id('chkremember')).click();
+  await driver.findElement(By.id('lnkLogin')).click();
 
   await driver.sleep(1000);
   await driver.navigate().forward();
 
   const station_url = await driver.getCurrentUrl();
 
-    await driver.findElement(By.css('#ctl00_ContentPlaceHolder2_gvStationmanager_ctl08_imgSelectStation')).click();
+    await driver.findElement(By.id('ctl00_ContentPlaceHolder2_gvStationmanager_ctl08_imgSelectStation')).click();
      
 
   await driver.sleep(1000);
@@ -202,20 +201,20 @@ const get_number_of_pages = async () => {
 
   console.log('station!!!!');
   
-  let elements = driver.findElements(By.css("#ctl00_ContentPlaceHolder2_Label6ctl00_ContentPlaceHolder2_Label6"));
+  let elements = driver.findElements(By.id("#ctl00_ContentPlaceHolder2_Label6ctl00_ContentPlaceHolder2_Label6"));
   console.log('test>>>', elements);
   if (elements !== "") {
-    await driver.findElement(By.css('#ctl00_ContentPlaceHolder2_btnCloseMntnce')).click();
+    await driver.findElement(By.id('ctl00_ContentPlaceHolder2_btnCloseMntnce')).click();
   }
 
-  await driver.findElement(By.css('#ctl00_lnkexpcolInventory')).click();
+  await driver.findElement(By.id('ctl00_lnkexpcolInventory')).click();
 
   await driver.sleep(1000);
   await driver.navigate().forward();
   console.log('inventory!!!!');
 
   let number_of_pages = 0;
-  let cur_pageContent = await driver.findElement(By.css('#ctl00_ContentPlaceHolder2_gvInventoryList')).getAttribute('outerHTML');
+  let cur_pageContent = await driver.findElement(By.id('ctl00_ContentPlaceHolder2_gvInventoryList')).getAttribute('outerHTML');
   let pre_pageContent;
 
   do {
@@ -223,7 +222,7 @@ const get_number_of_pages = async () => {
 
     // Wait for the Next button to be clickable
     const nextButton = await driver.wait(
-      until.elementLocated(By.css('#ctl00_ContentPlaceHolder2_lnkNextInvList')),
+      until.elementLocated(By.id('ctl00_ContentPlaceHolder2_lnkNextInvList')),
       10000
     );
 
@@ -232,7 +231,7 @@ const get_number_of_pages = async () => {
     console.log('Next button clicked');
 
     await driver.sleep(1000);
-    cur_pageContent = await driver.findElement(By.css('#ctl00_ContentPlaceHolder2_gvInventoryList')).getAttribute('outerHTML');
+    cur_pageContent = await driver.findElement(By.id('ctl00_ContentPlaceHolder2_gvInventoryList')).getAttribute('outerHTML');
 
     number_of_pages++;
   } while (pre_pageContent !== cur_pageContent);
