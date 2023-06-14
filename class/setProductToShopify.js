@@ -93,10 +93,10 @@ const update_Products_To_Shopify = async (shop_products, pos_products) => {
             if (variant.barcode === barcode) {
               console.log('barcode equal');
    
-              if (variant.price !== pos_product.price) {
-                updated_variant.price = pos_product.price;
-                update = true;
-              }
+              // if (variant.price !== pos_product.price) {
+              //   updated_variant.price = pos_product.price;
+              //   update = true;
+              // }
               if (variant.inventory_quantity !== pos_product.qty) {
                 updated_variant.inventory_quantity = pos_product.qty;
                 update = true;

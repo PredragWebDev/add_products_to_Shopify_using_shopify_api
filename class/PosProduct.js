@@ -2,6 +2,7 @@ const { By, until, Builder} = require('selenium-webdriver');
 const webdriver = require('selenium-webdriver');
 const chrome = require('selenium-webdriver/chrome');
 const firefox = require('selenium-webdriver/firefox');
+const puppeteer = require("puppeteer");
 
 const fs = require('fs');
 const cheerio = require("cheerio");
@@ -22,97 +23,107 @@ const getProductFromPOS = async (number_of_repeat, onetime) => {
   let count = 0;
   let product_detail = [];
 
-  let options = new chrome.Options();
-  options.headless();
+  let browser = await puppeteer.launch({ headless: false });
+
+  let page = await browser.newPage();
+
+  await page.goto(url, { waitUntil: 'networkidle0', timeout: 0 });
+  await page.type("#txtuserid", "Shopify");
+  await page.type("#txtpwd", "APInewpassword123");
+  await page.type("#txtstore", "1233");
+  await page.click("#chkremember");
+  // await page.click("#lnkLogin");
+  await page.evaluate(() => {
+    // Click the exit button using JavaScript evaluation
+      document.querySelector('#lnkLogin').click();
+  });
   
+  await page.waitForNavigation({ waitUntil: 'networkidle0' });
 
-  let driver = new webdriver.Builder()
-  .forBrowser(webdriver.Browser.FIREFOX)
-  .setChromeOptions(options)
-  .build();
+  await page.goForward();
 
-  await driver.get(url);
-  await driver.findElement(By.id('txtuserid')).sendKeys('Shopify');
-  await driver.findElement(By.id('txtpwd')).sendKeys('APInewpassword123');
-  await driver.findElement(By.id('txtstore')).sendKeys('1233');
-  await driver.findElement(By.id('chkremember')).click();
-  await driver.findElement(By.id('lnkLogin')).click();
+  // const station_url = page.url();
 
-  await driver.sleep(1000);
-  await driver.navigate().forward();
+  await page.click("#ctl00_ContentPlaceHolder2_gvStationmanager_ctl09_imgSelectStation");
+  await page.waitForNavigation({ waitUntil: 'networkidle0' });
 
-  await driver.findElement(By.id('ctl00_ContentPlaceHolder2_gvStationmanager_ctl09_imgSelectStation')).click();
- 
-    await driver.sleep(1000);
-    await driver.navigate().forward();
+  await page.goForward();
 
-    console.log('station!!!!');
-    let elements = driver.findElements(By.id("ctl00_ContentPlaceHolder2_Label6ctl00_ContentPlaceHolder2_Label6"));
-    console.log('test>>>', elements);
-    if ((await elements).length > 0) {
-      await driver.findElements(By.id('ctl00_ContentPlaceHolder2_btnCloseMntnce')).click();
+  console.log('station!!!!');
+
+  // let elements = driver.findElements(By.id("ctl00_ContentPlaceHolder2_Label6ctl00_ContentPlaceHolder2_Label6"));
+  // console.log('test>>>', elements);
+  // if ((await elements).length > 0) {
+  //   await driver.findElements(By.id('ctl00_ContentPlaceHolder2_btnCloseMntnce')).click();
+  // }
+  await page.click("#ctl00_lnkexpcolInventory");
+
+  await page.waitForNavigation({ waitUntil: 'networkidle0' });
+
+  await page.goForward();
+  console.log('inventory!!!!');
+
+  try{
+    for (let j = 0; j < onetime * number_of_repeat; j++) {
+      // Wait for the Next button to be clickable
+      await page.evaluate(() => {
+        // Click the exit button using JavaScript evaluation
+          document.querySelector('#ctl00_ContentPlaceHolder2_lnkNextInvList').click();
+        });
+      // await page.click('#ctl00_ContentPlaceHolder2_lnkNextInvList');
+      await page.waitForTimeout(1000);
+
+      console.log('clicked next button');
     }
-    await driver.findElement(By.id('ctl00_lnkexpcolInventory')).click();
-
-    await driver.sleep(1000);
-    await driver.navigate().forward();
-    console.log('inventory!!!!');
-
-    try{
-      for (let j = 0; j < onetime * number_of_repeat; j++) {
-        // Wait for the Next button to be clickable
-        await driver.wait(until.elementLocated(By.id('ctl00_ContentPlaceHolder2_lnkNextInvList')), 10000);
-        let nextbutton = await driver.findElement(By.id('ctl00_ContentPlaceHolder2_lnkNextInvList'));
-    
-          await driver.executeScript('arguments[0].scrollIntoView(true);', nextbutton);
-          await driver.sleep(1000);
-          await nextbutton.click();
-    
-          console.log('Next button clicked');
-        
-          await driver.sleep(1000);
-      }
-    } catch (error) {
-      console.log('error occured when click the next button', error);
-    }
+  } catch (error) {
+    console.log('error occured when click the next button', error);
+  }
     
 
-    let flag = 0;
+  let flag = 0;
 
     try {
       do {
-        await driver.findElement(By.id('tdlnkDetails')).click();
-        await driver.wait(until.elementLocated(By.id('ctl00_ContentPlaceHolder2_lbldetailPrice')), 10000);
+        await page.click("#tdlnkDetails");
+        await page.waitForSelector('#ctl00_ContentPlaceHolder2_lbldetailPrice', { timeout: 10000 });
         console.log('detail page!!!!');
     
         for (let j = 0; j < 15; j++) {
           let price, qty, last_edit, description, pre_inventory_page, barcode1, barcode2, barcode3;
     
           try {
-            price = await driver.findElement(By.id('ctl00_ContentPlaceHolder2_lbldetailPrice')).getText();
-            qty = await driver.findElement(By.id('ctl00_ContentPlaceHolder2_lbldetailQtyonHand')).getText();
-            last_edit = await driver.findElement(By.id('ctl00_ContentPlaceHolder2_lbldetailEdit')).getText();
-            description = await driver.findElement(By.id('ctl00_ContentPlaceHolder2_lbldetaildesc')).getText();
-            pre_inventory_page = await driver.findElement(By.id('ctl00_ContentPlaceHolder2_lbldetailsku')).getText();
+            // price = await page.$eval('#ctl00_ContentPlaceHolder2_lbldetailPrice', el => el.innerHTML);
+            qty = await page.$eval('#ctl00_ContentPlaceHolder2_lbldetailQtyonHand', el => el.innerHTML);
+            // last_edit = await page.$eval('#ctl00_ContentPlaceHolder2_lbldetailEdit', el => el.innerHTML);
+            description = await page.$eval('#ctl00_ContentPlaceHolder2_lbldetaildesc', el => el.innerHTML);
+            pre_inventory_page = cur_inventory_page;
     
-            await driver.findElement(By.id('ctl00_ContentPlaceHolder2_lnkdetailbarcode')).click();
-            await driver.wait(until.elementLocated(By.id('ctl00_ContentPlaceHolder2_gvBarcode')), 10000);
-            await driver.sleep(1000);
+            await page.waitForTimeout(1000);
+            await page.evaluate(() => {
+            // Click the exit button using JavaScript evaluation
+              document.querySelector('#ctl00_ContentPlaceHolder2_lnkdetailbarcode').click();
+            });
+            // await page.click("#ctl00_ContentPlaceHolder2_lnkdetailbarcode");
+
+            await page.waitForSelector('#ctl00_ContentPlaceHolder2_gvBarcode', { timeout: 10000 });
+
+            await page.waitForTimeout(1000);
     
-            const barcode_table = await driver.findElement(By.id('ctl00_ContentPlaceHolder2_gvBarcode')).getAttribute('outerHTML');
+            const barcode_table = await page.$eval('#ctl00_ContentPlaceHolder2_gvBarcode', el => el.outerHTML);
             const $ = cheerio.load(barcode_table);
-            barcode1 = $("ctl00_ContentPlaceHolder2_gvBarcode_ctl02_lblBarcode").text();
-            barcode2 = $('ctl00_ContentPlaceHolder2_gvBarcode_ctl03_lblBarcode').text();
-            barcode3 = $('ctl00_ContentPlaceHolder2_gvBarcode_ctl04_lblBarcode').text();
+            barcode1 = $("#ctl00_ContentPlaceHolder2_gvBarcode_ctl02_lblBarcode").text();
+            barcode2 = $('#ctl00_ContentPlaceHolder2_gvBarcode_ctl03_lblBarcode').text();
+            barcode3 = $('#ctl00_ContentPlaceHolder2_gvBarcode_ctl04_lblBarcode').text();
+
     
             const new_data = {
               barcode1: barcode1,
               barcode2: barcode2,
               barcode3: barcode3,
               description: description,
-              price: price,
+              // price: price,
               qty: qty,
-              last_edit: last_edit
+              // last_edit: last_edit
             };
     
             product_detail.push(new_data);
@@ -123,36 +134,57 @@ const getProductFromPOS = async (number_of_repeat, onetime) => {
             console.log('count', count);
             console.log('j>>>', j);
     
-            await driver.sleep(1000);
-            await driver.executeScript('document.querySelector("#ctl00_ContentPlaceHolder2_btnBarcodeMpehide").click();');
-            await driver.wait(until.elementLocated(By.id('ctl00_ContentPlaceHolder2_downbtn')), 10000);
+            await page.waitForTimeout(1000);
+            await page.evaluate(() => {
+            // Click the exit button using JavaScript evaluation
+            document.querySelector('#ctl00_ContentPlaceHolder2_btnBarcodeMpehide').click();
+            });
+
+            if (j === 14) {
+              console.log('13 >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>');
+              // await page.click('#tdlnkList');
+              await page.waitForTimeout(1000);
+              await page.evaluate(() => {
+                // Click the exit button using JavaScript evaluation
+                document.querySelector('#tdlnkList').click();
+                });
+              // await page.waitForNavigation({waitUntil: 'networkidle0'});
+              // await page.waitForSelector('#ctl00_ContentPlaceHolder2_chkwildcardsearch', { timeout: 10000 });
+              console.log("clicked list");
+              await page.waitForTimeout(1000);
+              await page.click('#ctl00_ContentPlaceHolder2_lnkNextInvList');
+              await page.waitForTimeout(1000);
+            }
+            else {
+              await page.waitForSelector('#ctl00_ContentPlaceHolder2_downbtn', { timeout: 10000 });
     
-            console.log('clicked the exit button');
+              console.log('clicked the exit button');
+              await page.evaluate(() => {
+                // Click the exit button using JavaScript evaluation
+                document.querySelector('#ctl00_ContentPlaceHolder2_downbtn').click();
+              });
+              // await page.click('#ctl00_ContentPlaceHolder2_downbtn');
+
+              await page.waitForTimeout(1000)
+      
+              console.log('next product');
+              // cur_inventory_page = await page.$eval('#ctl00_ContentPlaceHolder2_lbldetailsku', el => el.innerHTML);
+              // if (cur_inventory_page === pre_inventory_page) {
+              //   console.log('break>>><<<');
+              //   break;
+              // }
+            }
     
-            await driver.findElement(By.id('ctl00_ContentPlaceHolder2_downbtn')).click();
-    
-            await driver.sleep(1000);
-    
-            console.log('next product');
-    
-            cur_inventory_page = await driver.findElement(By.id('ctl00_ContentPlaceHolder2_lbldetailsku')).getText();
+            
           } catch (error) {
             console.error(`An error occurred in cycle ${count}:`, error);
           }
     
-          if (cur_inventory_page === pre_inventory_page) {
-            console.log('break>>><<<');
-            break;
-          }
+          
         }
     
         flag++;
         console.log('flag>>>', flag);
-    
-        await driver.findElement(By.id('tdlnkList')).click();
-        await driver.wait(until.elementLocated(By.id('ctl00_ContentPlaceHolder2_chkwildcardsearch')), 10000);
-    
-        console.log('clicked list');
     
         if (flag === onetime) {
           flag = 0;
@@ -165,7 +197,7 @@ const getProductFromPOS = async (number_of_repeat, onetime) => {
       console.error('An error occurred:', error);
     }
     
-  driver.quit();
+  browser.close();
 
   return product_detail;
 };
