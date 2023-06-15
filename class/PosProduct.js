@@ -23,7 +23,7 @@ const getProductFromPOS = async (number_of_repeat, onetime) => {
   let count = 0;
   let product_detail = [];
 
-  let browser = await puppeteer.launch({ headless: false });
+  let browser = await puppeteer.launch({ headless: true });
 
   let page = await browser.newPage();
 
@@ -37,7 +37,7 @@ const getProductFromPOS = async (number_of_repeat, onetime) => {
     // Click the exit button using JavaScript evaluation
       document.querySelector('#lnkLogin').click();
   });
-  
+
   await page.waitForNavigation({ waitUntil: 'networkidle0' });
 
   await page.goForward();
@@ -179,7 +179,6 @@ const getProductFromPOS = async (number_of_repeat, onetime) => {
           } catch (error) {
             console.error(`An error occurred in cycle ${count}:`, error);
           }
-    
           
         }
     
@@ -191,6 +190,7 @@ const getProductFromPOS = async (number_of_repeat, onetime) => {
     
           break;
         }
+        await page.waitForTimeout(30000);
     
       } while (pre_inventory_page !== cur_inventory_page);
     } catch (error) {
@@ -207,7 +207,6 @@ const get_number_of_pages = async () => {
   let options = new chrome.Options();
   options.headless();
   
-
   let driver = new webdriver.Builder()
   .forBrowser(webdriver.Browser.EDGE)
   .setChromeOptions(options)
