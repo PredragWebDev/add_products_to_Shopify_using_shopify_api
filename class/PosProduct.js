@@ -76,7 +76,7 @@ const getProductFromPOS = async (number_of_repeat, onetime) => {
 
       console.log('clicked next button');
       if (j % 10 === 0) {
-        // await page.waitForTimeout(10000);
+        await page.waitForTimeout(10000);
       }
     }
   } catch (error) {
@@ -89,9 +89,6 @@ const getProductFromPOS = async (number_of_repeat, onetime) => {
     try {
       do {
         await page.click("#tdlnkDetails");
-
-        await page.waitForTimeout(1000);
-
         await page.waitForSelector('#ctl00_ContentPlaceHolder2_lbldetailPrice', { timeout: 10000 });
         console.log('detail page!!!!');
     
@@ -141,13 +138,17 @@ const getProductFromPOS = async (number_of_repeat, onetime) => {
             console.log('count', count);
             console.log('j>>>', j);
     
-            // await page.waitForTimeout(1000);
+            await page.waitForTimeout(1000);
             await page.evaluate(() => {
             // Click the exit button using JavaScript evaluation
             document.querySelector('#ctl00_ContentPlaceHolder2_btnBarcodeMpehide').click();
             });
 
+            // await page.click('#ctl00_ContentPlaceHolder2_btnBarcodeMpehide');
+            await page.waitForTimeout(1000);
+
             if (j === 14) {
+              console.log('13 >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>');
               // await page.click('#tdlnkList');
               cur_inventory_page = await page.$eval('#ctl00_ContentPlaceHolder2_lbldetailsku', el => el.innerHTML);
 
@@ -158,13 +159,11 @@ const getProductFromPOS = async (number_of_repeat, onetime) => {
                 document.querySelector('#tdlnkList').click();
                 });
               // await page.waitForNavigation({waitUntil: 'networkidle0'});
-              await page.waitForSelector('#ctl00_ContentPlaceHolder2_chkwildcardsearch', { timeout: 10000 });
+              // await page.waitForSelector('#ctl00_ContentPlaceHolder2_chkwildcardsearch', { timeout: 10000 });
               console.log("clicked list");
-              // await page.waitForTimeout(1000);
+              await page.waitForTimeout(1000);
               await page.click('#ctl00_ContentPlaceHolder2_lnkNextInvList');
               await page.waitForTimeout(1000);
-              console.log('14 >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>');
-
             }
             else {
               await page.waitForSelector('#ctl00_ContentPlaceHolder2_downbtn', { timeout: 10000 });

@@ -61,16 +61,16 @@ app.listen(3000, async function () {
   const shop_products = await get_list_from_shopify();
 
   // const number_of_pages = await get_number_of_pages();
-  const number_of_pages = 15;
+  const number_of_pages = 1;
 
   console.log('number of pages>>>', number_of_pages);
 
-  const onetime = 3;
+  const onetime = 1;
   // await mainprocess(shop_products, number_of_pages, onetime);
   
-  let i = 0;
+  let i = 15;
 
-  for ( i = 0 ; i< Math.ceil(number_of_pages/onetime); i=i+1) {
+  for ( i = 145 ; i< 145 + Math.ceil(number_of_pages/onetime); i=i+1) {
     const workerData = {shop_products, from:i, to:i+1, onetime};
 
     const worker = new Worker('./class/worker.js', {workerData});
