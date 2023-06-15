@@ -61,17 +61,17 @@ app.listen(3000, async function () {
   const shop_products = await get_list_from_shopify();
 
   // const number_of_pages = await get_number_of_pages();
-  const number_of_pages = 150;
+  const number_of_pages = 15;
 
   console.log('number of pages>>>', number_of_pages);
 
-  const onetime = 4;
+  const onetime = 3;
   // await mainprocess(shop_products, number_of_pages, onetime);
   
   let i = 0;
 
-  for ( i = 0 ; i< Math.ceil(number_of_pages/onetime)-5; i=i+5) {
-    const workerData = {shop_products, from:i, to:i+5, onetime};
+  for ( i = 0 ; i< Math.ceil(number_of_pages/onetime); i=i+1) {
+    const workerData = {shop_products, from:i, to:i+1, onetime};
 
     const worker = new Worker('./class/worker.js', {workerData});
     worker.postMessage(workerData);
@@ -91,22 +91,22 @@ app.listen(3000, async function () {
   }
 
   // if (Math.ceil(number_of_pages/onetime)-i+5 < 5 && Math.ceil(number_of_pages/onetime) - i !== 0){
-    const workerData = {shop_products, from:i-5, to:Math.ceil(number_of_pages/onetime), onetime};
-    // const workerData = {shop_products, from:i, to:1, onetime};
-    const worker = new Worker('./class/worker.js', {workerData});
-    worker.postMessage(workerData);
-    worker.on('exit', (code) => {
-      console.log('Worker stopped with exit code', code);
-    });
+    // const workerData = {shop_products, from:i-2, to:Math.ceil(number_of_pages/onetime), onetime};
+    // // const workerData = {shop_products, from:i, to:1, onetime};
+    // const worker = new Worker('./class/worker.js', {workerData});
+    // worker.postMessage(workerData);
+    // worker.on('exit', (code) => {
+    //   console.log('Worker stopped with exit code', code);
+    // });
   
-    worker.on('error', (err) =>{
-      console.log(err)
-    });
+    // worker.on('error', (err) =>{
+    //   console.log(err)
+    // });
 
-    worker.on('message', (result) => {
-      fs.appendFileSync('product.json', result);
-      console.log('received message from worker', result);
-    });
+    // worker.on('message', (result) => {
+    //   fs.appendFileSync('product.json', result);
+    //   console.log('received message from worker', result);
+    // });
     // await process(shop_products, i, Math.ceil(number_of_pages/onetime), onetime);
   // }
   
