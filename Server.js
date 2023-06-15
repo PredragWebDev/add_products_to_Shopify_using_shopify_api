@@ -65,34 +65,34 @@ app.listen(3000, async function () {
 
   console.log('number of pages>>>', number_of_pages);
 
-  const onetime = 15;
+  const onetime = 4;
   // await mainprocess(shop_products, number_of_pages, onetime);
   
   let i = 0;
 
-  // for ( i = 0 ; i< Math.ceil(number_of_pages/onetime)-5; i=i+5) {
-  //   const workerData = {shop_products, from:i, to:i+5, onetime};
+  for ( i = 0 ; i< Math.ceil(number_of_pages/onetime)-5; i=i+5) {
+    const workerData = {shop_products, from:i, to:i+5, onetime};
 
-  //   const worker = new Worker('./class/worker.js', {workerData});
-  //   worker.postMessage(workerData);
-  //   worker.on('exit', (code) => {
-  //     console.log('Worker stopped with exit code', code);
-  //   });
+    const worker = new Worker('./class/worker.js', {workerData});
+    worker.postMessage(workerData);
+    worker.on('exit', (code) => {
+      console.log('Worker stopped with exit code', code);
+    });
   
-  //   worker.on('error', (err) =>{
-  //     console.log(err)
-  //   });
+    worker.on('error', (err) =>{
+      console.log(err)
+    });
 
-  //   worker.on('message', (result) => {
-  //     fs.appendFileSync('product.json', result);
-  //     console.log('received message from worker', result);
-  //   });
-  //   // process(shop_products, i, i+5, onetime);
-  // }
+    worker.on('message', (result) => {
+      fs.appendFileSync('product.json', result);
+      console.log('received message from worker', result);
+    });
+    // process(shop_products, i, i+5, onetime);
+  }
 
   // if (Math.ceil(number_of_pages/onetime)-i+5 < 5 && Math.ceil(number_of_pages/onetime) - i !== 0){
-    // const workerData = {shop_products, from:i-5, to:Math.ceil(number_of_pages/onetime), onetime};
-    const workerData = {shop_products, from:i, to:1, onetime};
+    const workerData = {shop_products, from:i-5, to:Math.ceil(number_of_pages/onetime), onetime};
+    // const workerData = {shop_products, from:i, to:1, onetime};
     const worker = new Worker('./class/worker.js', {workerData});
     worker.postMessage(workerData);
     worker.on('exit', (code) => {

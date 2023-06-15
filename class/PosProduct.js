@@ -23,7 +23,7 @@ const getProductFromPOS = async (number_of_repeat, onetime) => {
   let count = 0;
   let product_detail = [];
 
-  let browser = await puppeteer.launch({ headless: true });
+  let browser = await puppeteer.launch({ headless: false });
 
   let page = await browser.newPage();
 
@@ -74,6 +74,9 @@ const getProductFromPOS = async (number_of_repeat, onetime) => {
       await page.waitForTimeout(1000);
 
       console.log('clicked next button');
+      if (j % 10 === 0) {
+        await page.waitForTimeout(10000);
+      }
     }
   } catch (error) {
     console.log('error occured when click the next button', error);
@@ -107,7 +110,7 @@ const getProductFromPOS = async (number_of_repeat, onetime) => {
 
             await page.waitForSelector('#ctl00_ContentPlaceHolder2_gvBarcode', { timeout: 10000 });
 
-            await page.waitForTimeout(1000);
+            // await page.waitForTimeout(1000);
     
             const barcode_table = await page.$eval('#ctl00_ContentPlaceHolder2_gvBarcode', el => el.outerHTML);
             const $ = cheerio.load(barcode_table);
@@ -143,7 +146,10 @@ const getProductFromPOS = async (number_of_repeat, onetime) => {
             if (j === 14) {
               console.log('13 >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>');
               // await page.click('#tdlnkList');
+              cur_inventory_page = await page.$eval('#ctl00_ContentPlaceHolder2_lbldetailsku', el => el.innerHTML);
+
               await page.waitForTimeout(1000);
+              // await page.waitForTimeout(30000);
               await page.evaluate(() => {
                 // Click the exit button using JavaScript evaluation
                 document.querySelector('#tdlnkList').click();
@@ -168,11 +174,11 @@ const getProductFromPOS = async (number_of_repeat, onetime) => {
               await page.waitForTimeout(1000)
       
               console.log('next product');
-              // cur_inventory_page = await page.$eval('#ctl00_ContentPlaceHolder2_lbldetailsku', el => el.innerHTML);
-              // if (cur_inventory_page === pre_inventory_page) {
-              //   console.log('break>>><<<');
-              //   break;
-              // }
+              cur_inventory_page = await page.$eval('#ctl00_ContentPlaceHolder2_lbldetailsku', el => el.innerHTML);
+              if (cur_inventory_page === pre_inventory_page) {
+                console.log('break>>><<<');
+                break;
+              }
             }
     
             
@@ -190,7 +196,7 @@ const getProductFromPOS = async (number_of_repeat, onetime) => {
     
           break;
         }
-        await page.waitForTimeout(30000);
+        
     
       } while (pre_inventory_page !== cur_inventory_page);
     } catch (error) {

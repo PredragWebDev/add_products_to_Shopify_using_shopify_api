@@ -17,7 +17,7 @@ const process = async (shop_products, from, to, onetime) => {
         result = [...result, ...products];
     }
 
-    const jsonResult = JSON.stringify(result);
+    const jsonResult = JSON.stringify(result, null, 2);
 
     return(jsonResult);
   }
