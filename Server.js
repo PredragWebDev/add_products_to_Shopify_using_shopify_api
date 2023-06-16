@@ -61,36 +61,101 @@ app.listen(3000, async function () {
   const shop_products = await get_list_from_shopify();
 
   // const number_of_pages = await get_number_of_pages();
-  const number_of_pages = 75;
+  const number_of_pages = 108;
 
   console.log('number of pages>>>', number_of_pages);
 
-  const onetime = 3;
-  const number_of_browsers = 5;
+  let onetime = 3;
+  let step = 3;
+  let number_of_browsers = 5;
   // await mainprocess(shop_products, number_of_pages, onetime);
   
   let i = 0;
 
-  for ( i = 0 ; i< number_of_browsers; i ++) {
-    const workerData = {shop_products, number_of_pages, number_of_browsers, onetime, index_of_browser:i};
+  let j = 0;
 
-    const worker = new Worker('./class/worker.js', {workerData});
-    worker.postMessage(workerData);
-    worker.on('exit', (code) => {
-      console.log('Worker stopped with exit code', code);
-    });
+  let end = Math.ceil((number_of_pages/number_of_browsers*step/2));
+  let page_starter = 0;
   
-    worker.on('error', (err) =>{
-      console.log(err)
-    });
+  for ( j = 0; j < end; j++) {
+    if (j !== 0) {
+      page_starter += step * number_of_browsers;
+    }
 
-    worker.on('message', (result) => {
-      fs.appendFileSync('product.json', result);
-      console.log('received message from worker', result);
-    });
-    // process(shop_products, i, i+5, onetime);
+    for ( i = 0 ; i< number_of_browsers; i ++) {
+      const workerData = {shop_products, page_starter, step, onetime, index_of_browser:i};
+
+      const worker = new Worker('./class/worker.js', {workerData});
+      worker.postMessage(workerData);
+      worker.on('exit', (code) => {
+        console.log('Worker stopped with exit code', code);
+      });
+    
+      worker.on('error', (err) =>{
+        console.log(err)
+      });
+
+      worker.on('message', (result) => {
+        fs.appendFileSync('product.json', result);
+        console.log('received message from worker', result);
+      });
+      // process(shop_products, i, i+5, onetime);
+    }
+    // console.log('will try after 7mins');
+    await new Promise(resolve => setTimeout(resolve, 420000));
   }
 
+  console.log('completed half!!!!');
+  page_starter += step * number_of_browsers;
+
+  end = Math.ceil((number_of_pages - end * number_of_browsers * step/2));
+  number_of_browsers = 2;
+
+  for ( j = 0; j < end; j++) {
+    if (j !== 0) {
+      page_starter += step * number_of_browsers;
+    }
+
+    for ( i = 0 ; i< number_of_browsers; i ++) {
+      const workerData = {shop_products, page_starter, step, onetime, index_of_browser:i};
+
+      const worker = new Worker('./class/worker.js', {workerData});
+      worker.postMessage(workerData);
+      worker.on('exit', (code) => {
+        console.log('Worker stopped with exit code', code);
+      });
+    
+      worker.on('error', (err) =>{
+        console.log(err)
+      });
+
+      worker.on('message', (result) => {
+        fs.appendFileSync('product.json', result);
+        console.log('received message from worker', result);
+      });
+      // process(shop_products, i, i+5, onetime);
+    }
+    // console.log('will try after 5mins');
+    await new Promise(resolve => setTimeout(resolve, 420000));
+  }
+
+  
+
+  // last = number_of_pages - (Math.floor(number_of_pages/(onetime * number_of_browsers))*(onetime * number_of_browsers));
+
+  // console.log('last>>>', last);
+
+  // console.log('test>>>>', Math.floor(number_of_pages/(number_of_browsers*onetime))*number_of_browsers*onetime);
+
+
+  // if (onetime > 0) {
+  //   if (last % number_of_browsers > 1) {
+  //     number_of_browsers -= 1;
+  //   }
+  //   else {
+  //     number_of_browsers = 1;
+  //   }
+  // }
   // if (Math.ceil(number_of_pages/onetime)-i+5 < 5 && Math.ceil(number_of_pages/onetime) - i !== 0){
     // const workerData = {shop_products, from:i-2, to:Math.ceil(number_of_pages/onetime), onetime};
     // // const workerData = {shop_products, from:i, to:1, onetime};

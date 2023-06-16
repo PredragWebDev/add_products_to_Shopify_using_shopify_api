@@ -19,7 +19,7 @@ let price = 0,
 let pre_inventory_page = '';
 let cur_inventory_page = '';
 
-const getProductFromPOS = async (number_of_pages, number_of_browsers, onetime, index_of_browser) => {
+const getProductFromPOS = async (page_starter, step, onetime, index_of_browser) => {
   let count = 0;
   let product_detail = [];
 
@@ -64,7 +64,7 @@ const getProductFromPOS = async (number_of_pages, number_of_browsers, onetime, i
   console.log('inventory!!!!');
 
   try{
-    for (let j = 0; j < onetime * index_of_browser; j++) {
+    for (let j = 0; j < page_starter + step * index_of_browser; j++) {
       // Wait for the Next button to be clickable
       await page.waitForSelector('#ctl00_ContentPlaceHolder2_lnkNextInvList')
       await page.evaluate(() => {
@@ -87,27 +87,27 @@ const getProductFromPOS = async (number_of_pages, number_of_browsers, onetime, i
 
     try {
 
-      for (let a = 0; a < Math.floor(number_of_pages/(onetime * number_of_browsers)); a ++) {
+      // for (let a = 0; a < Math.floor(number_of_pages/(onetime * number_of_browsers)); a ++) {
       
-        try{
-          for (let j = 0; j < onetime * number_of_browsers; j++) {
-            // Wait for the Next button to be clickable
-            await page.waitForSelector('#ctl00_ContentPlaceHolder2_lnkNextInvList')
-            await page.evaluate(() => {
-              // Click the exit button using JavaScript evaluation
-                document.querySelector('#ctl00_ContentPlaceHolder2_lnkNextInvList').click();
-              });
-            // await page.click('#ctl00_ContentPlaceHolder2_lnkNextInvList');
-            await page.waitForTimeout(1000);
+        // try{
+        //   for (let j = 0; j < onetime * number_of_browsers; j++) {
+        //     // Wait for the Next button to be clickable
+        //     await page.waitForSelector('#ctl00_ContentPlaceHolder2_lnkNextInvList')
+        //     await page.evaluate(() => {
+        //       // Click the exit button using JavaScript evaluation
+        //         document.querySelector('#ctl00_ContentPlaceHolder2_lnkNextInvList').click();
+        //       });
+        //     // await page.click('#ctl00_ContentPlaceHolder2_lnkNextInvList');
+        //     await page.waitForTimeout(1000);
       
-            console.log('clicked next button');
-            // if (j % 10 === 0) {
-            //   await page.waitForTimeout(10000);
-            // }
-          }
-        } catch (error) {
-          console.log('error occured when click the next button', error);
-        }
+        //     console.log('clicked next button');
+        //     // if (j % 10 === 0) {
+        //     //   await page.waitForTimeout(10000);
+        //     // }
+        //   }
+        // } catch (error) {
+        //   console.log('error occured when click the next button', error);
+        // }
 
         do {
 
@@ -152,10 +152,13 @@ const getProductFromPOS = async (number_of_pages, number_of_browsers, onetime, i
                 barcode1: barcode1,
                 barcode2: barcode2,
                 barcode3: barcode3,
-                description: description,
-                // price: price,
+                title: title,
+                price: price,
                 qty: qty,
-                // last_edit: last_edit
+                vendor: vendor,
+                type: type,
+                size: size,
+                cost:cost
               };
       
               product_detail.push(new_data);
@@ -232,117 +235,117 @@ const getProductFromPOS = async (number_of_pages, number_of_browsers, onetime, i
       
         } while (pre_inventory_page !== cur_inventory_page);
 
-        await page.waitForTimeout(300000);
-      }
+        // await page.waitForTimeout(600000);
+      // }
 
-      if (index_of_browser === 4) {
-        for (let i = 0; i < number_of_pages - (Math.floor(number_of_pages/(onetime * number_of_browsers))*(onetime * number_of_browsers)); i ++) {
-          await page.click("#tdlnkDetails");
-          await page.waitForSelector('#ctl00_ContentPlaceHolder2_lbldetailPrice', { timeout: 10000 });
-          console.log('detail page!!!!');
+      // if (index_of_browser === 4) {
+      //   for (let i = 0; i < number_of_pages - (Math.floor(number_of_pages/(onetime * number_of_browsers))*(onetime * number_of_browsers)); i ++) {
+      //     await page.click("#tdlnkDetails");
+      //     await page.waitForSelector('#ctl00_ContentPlaceHolder2_lbldetailPrice', { timeout: 10000 });
+      //     console.log('detail page!!!!');
       
-          let price, qty, title, vendor, type, size, cost, pre_inventory_page, barcode1, barcode2, barcode3;
+      //     let price, qty, title, vendor, type, size, cost, pre_inventory_page, barcode1, barcode2, barcode3;
       
-            try {
-              price = await page.$eval('#ctl00_ContentPlaceHolder2_lbldetailPrice', el => el.innerHTML);
-              qty = await page.$eval('#ctl00_ContentPlaceHolder2_lbldetailQtyonHand', el => el.innerHTML);
-              // last_edit = await page.$eval('#ctl00_ContentPlaceHolder2_lbldetailEdit', el => el.innerHTML);
-              vendor = await page.$eval('#ctl00_ContentPlaceHolder2_lbldetailvendor', el => el.innerHTML);
-              title = await page.$eval('#ctl00_ContentPlaceHolder2_lbldetaildesc', el => el.innerHTML);
-              type = await page.$eval('#ctl00_ContentPlaceHolder2_lbldetaildepartment', el => el.innerHTML);
-              size = await page.$eval('#ctl00_ContentPlaceHolder2_lbldetailsize', el => el.innerHTML);
-              cost = await page.$eval('#ctl00_ContentPlaceHolder2_lbldetaillastcost', el => el.innerHTML);
+      //       try {
+      //         price = await page.$eval('#ctl00_ContentPlaceHolder2_lbldetailPrice', el => el.innerHTML);
+      //         qty = await page.$eval('#ctl00_ContentPlaceHolder2_lbldetailQtyonHand', el => el.innerHTML);
+      //         // last_edit = await page.$eval('#ctl00_ContentPlaceHolder2_lbldetailEdit', el => el.innerHTML);
+      //         vendor = await page.$eval('#ctl00_ContentPlaceHolder2_lbldetailvendor', el => el.innerHTML);
+      //         title = await page.$eval('#ctl00_ContentPlaceHolder2_lbldetaildesc', el => el.innerHTML);
+      //         type = await page.$eval('#ctl00_ContentPlaceHolder2_lbldetaildepartment', el => el.innerHTML);
+      //         size = await page.$eval('#ctl00_ContentPlaceHolder2_lbldetailsize', el => el.innerHTML);
+      //         cost = await page.$eval('#ctl00_ContentPlaceHolder2_lbldetaillastcost', el => el.innerHTML);
     
-            await page.waitForTimeout(1000);
-            await page.evaluate(() => {
-            // Click the exit button using JavaScript evaluation
-              document.querySelector('#ctl00_ContentPlaceHolder2_lnkdetailbarcode').click();
-            });
-            // await page.click("#ctl00_ContentPlaceHolder2_lnkdetailbarcode");
+      //       await page.waitForTimeout(1000);
+      //       await page.evaluate(() => {
+      //       // Click the exit button using JavaScript evaluation
+      //         document.querySelector('#ctl00_ContentPlaceHolder2_lnkdetailbarcode').click();
+      //       });
+      //       // await page.click("#ctl00_ContentPlaceHolder2_lnkdetailbarcode");
 
-            await page.waitForSelector('#ctl00_ContentPlaceHolder2_gvBarcode', { timeout: 10000 });
+      //       await page.waitForSelector('#ctl00_ContentPlaceHolder2_gvBarcode', { timeout: 10000 });
 
-            // await page.waitForTimeout(1000);
+      //       // await page.waitForTimeout(1000);
     
-            const barcode_table = await page.$eval('#ctl00_ContentPlaceHolder2_gvBarcode', el => el.outerHTML);
-            const $ = cheerio.load(barcode_table);
-            barcode1 = $("#ctl00_ContentPlaceHolder2_gvBarcode_ctl02_lblBarcode").text();
-            barcode2 = $('#ctl00_ContentPlaceHolder2_gvBarcode_ctl03_lblBarcode').text();
-            barcode3 = $('#ctl00_ContentPlaceHolder2_gvBarcode_ctl04_lblBarcode').text();
+      //       const barcode_table = await page.$eval('#ctl00_ContentPlaceHolder2_gvBarcode', el => el.outerHTML);
+      //       const $ = cheerio.load(barcode_table);
+      //       barcode1 = $("#ctl00_ContentPlaceHolder2_gvBarcode_ctl02_lblBarcode").text();
+      //       barcode2 = $('#ctl00_ContentPlaceHolder2_gvBarcode_ctl03_lblBarcode').text();
+      //       barcode3 = $('#ctl00_ContentPlaceHolder2_gvBarcode_ctl04_lblBarcode').text();
 
     
-            const new_data = {
-              barcode1: barcode1,
-              barcode2: barcode2,
-              barcode3: barcode3,
-              description: description,
-              // price: price,
-              qty: qty,
-              // last_edit: last_edit
-            };
+      //       const new_data = {
+      //         barcode1: barcode1,
+      //         barcode2: barcode2,
+      //         barcode3: barcode3,
+      //         description: description,
+      //         // price: price,
+      //         qty: qty,
+      //         // last_edit: last_edit
+      //       };
     
-            product_detail.push(new_data);
+      //       product_detail.push(new_data);
     
-            count++;
+      //       count++;
     
-            console.log('detail>>>', new_data);
-            console.log('count', count);
-            console.log('j>>>', j);
+      //       console.log('detail>>>', new_data);
+      //       console.log('count', count);
+      //       console.log('j>>>', j);
     
-            await page.waitForTimeout(1000);
-            await page.evaluate(() => {
-            // Click the exit button using JavaScript evaluation
-            document.querySelector('#ctl00_ContentPlaceHolder2_btnBarcodeMpehide').click();
-            });
+      //       await page.waitForTimeout(1000);
+      //       await page.evaluate(() => {
+      //       // Click the exit button using JavaScript evaluation
+      //       document.querySelector('#ctl00_ContentPlaceHolder2_btnBarcodeMpehide').click();
+      //       });
 
-            // await page.click('#ctl00_ContentPlaceHolder2_btnBarcodeMpehide');
-            await page.waitForTimeout(1000);
+      //       // await page.click('#ctl00_ContentPlaceHolder2_btnBarcodeMpehide');
+      //       await page.waitForTimeout(1000);
 
-            if (j === 14) {
-              console.log('13 >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>');
-              // await page.click('#tdlnkList');
-              cur_inventory_page = await page.$eval('#ctl00_ContentPlaceHolder2_lbldetailsku', el => el.innerHTML);
+      //       if (j === 14) {
+      //         console.log('13 >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>');
+      //         // await page.click('#tdlnkList');
+      //         cur_inventory_page = await page.$eval('#ctl00_ContentPlaceHolder2_lbldetailsku', el => el.innerHTML);
 
-              await page.waitForTimeout(1000);
-              // await page.waitForTimeout(30000);
-              await page.evaluate(() => {
-                // Click the exit button using JavaScript evaluation
-                document.querySelector('#tdlnkList').click();
-                });
-              // await page.waitForNavigation({waitUntil: 'networkidle0'});
-              // await page.waitForSelector('#ctl00_ContentPlaceHolder2_chkwildcardsearch', { timeout: 10000 });
-              console.log("clicked list");
-              await page.waitForTimeout(1000);
-              await page.click('#ctl00_ContentPlaceHolder2_lnkNextInvList');
-              await page.waitForTimeout(1000);
-            }
-            else {
-              await page.waitForSelector('#ctl00_ContentPlaceHolder2_downbtn', { timeout: 10000 });
+      //         await page.waitForTimeout(1000);
+      //         // await page.waitForTimeout(30000);
+      //         await page.evaluate(() => {
+      //           // Click the exit button using JavaScript evaluation
+      //           document.querySelector('#tdlnkList').click();
+      //           });
+      //         // await page.waitForNavigation({waitUntil: 'networkidle0'});
+      //         // await page.waitForSelector('#ctl00_ContentPlaceHolder2_chkwildcardsearch', { timeout: 10000 });
+      //         console.log("clicked list");
+      //         await page.waitForTimeout(1000);
+      //         await page.click('#ctl00_ContentPlaceHolder2_lnkNextInvList');
+      //         await page.waitForTimeout(1000);
+      //       }
+      //       else {
+      //         await page.waitForSelector('#ctl00_ContentPlaceHolder2_downbtn', { timeout: 10000 });
     
-              console.log('clicked the exit button');
-              await page.evaluate(() => {
-                // Click the exit button using JavaScript evaluation
-                document.querySelector('#ctl00_ContentPlaceHolder2_downbtn').click();
-              });
-              // await page.click('#ctl00_ContentPlaceHolder2_downbtn');
+      //         console.log('clicked the exit button');
+      //         await page.evaluate(() => {
+      //           // Click the exit button using JavaScript evaluation
+      //           document.querySelector('#ctl00_ContentPlaceHolder2_downbtn').click();
+      //         });
+      //         // await page.click('#ctl00_ContentPlaceHolder2_downbtn');
 
-              await page.waitForTimeout(1000)
+      //         await page.waitForTimeout(1000)
       
-              console.log('next product');
-              cur_inventory_page = await page.$eval('#ctl00_ContentPlaceHolder2_lbldetailsku', el => el.innerHTML);
-              if (cur_inventory_page === pre_inventory_page) {
-                console.log('break>>><<<');
-                break;
-              }
-            }
+      //         console.log('next product');
+      //         cur_inventory_page = await page.$eval('#ctl00_ContentPlaceHolder2_lbldetailsku', el => el.innerHTML);
+      //         if (cur_inventory_page === pre_inventory_page) {
+      //           console.log('break>>><<<');
+      //           break;
+      //         }
+      //       }
     
             
-          } catch (error) {
-            console.error(`An error occurred in cycle ${count}:`, error);
-          }
+      //     } catch (error) {
+      //       console.error(`An error occurred in cycle ${count}:`, error);
+      //     }
           
-        }
-      }
+      //   }
+      // }
     } catch (error) {
       console.error('An error occurred:', error);
     }
