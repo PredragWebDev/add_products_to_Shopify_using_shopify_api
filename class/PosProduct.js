@@ -211,7 +211,7 @@ const getProductFromPOS = async (page_starter, step, onetime, index_of_browser) 
                 console.log('next product');
                 cur_inventory_page = await page.$eval('#ctl00_ContentPlaceHolder2_lbldetailsku', el => el.innerHTML);
                 if (cur_inventory_page === pre_inventory_page) {
-                  console.log('break>>><<<');
+                  console.log('break>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>><<<');
                   break;
                 }
               }

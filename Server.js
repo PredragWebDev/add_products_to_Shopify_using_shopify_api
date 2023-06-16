@@ -5,6 +5,7 @@ const fs = require('fs');
 const {getProductFromPOS, get_number_of_pages} = require('./class/PosProduct');
 const {get_list_from_shopify, update_Products_To_Shopify} = require('./class/setProductToShopify');
 const {Worker} = require('worker_threads');
+const { start } = require('repl');
 let pos_products = []
 app.use(express.static('public'));
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -61,24 +62,26 @@ app.listen(3000, async function () {
   const shop_products = await get_list_from_shopify();
 
   // const number_of_pages = await get_number_of_pages();
-  const number_of_pages = 108;
+  const number_of_pages = 150;
 
   console.log('number of pages>>>', number_of_pages);
 
-  let onetime = 3;
-  let step = 3;
-  let number_of_browsers = 5;
+  let onetime = 2;
+  let step = 2;
+  let number_of_browsers = 7;
+  let timeout = 420000;
   // await mainprocess(shop_products, number_of_pages, onetime);
   
   let i = 0;
 
   let j = 0;
 
-  let end = Math.ceil((number_of_pages/number_of_browsers*step/2));
+  let end = 2;
   let page_starter = 0;
   
   for ( j = 0; j < end; j++) {
     if (j !== 0) {
+
       page_starter += step * number_of_browsers;
     }
 
@@ -102,14 +105,17 @@ app.listen(3000, async function () {
       // process(shop_products, i, i+5, onetime);
     }
     // console.log('will try after 7mins');
-    await new Promise(resolve => setTimeout(resolve, 420000));
+    await new Promise(resolve => setTimeout(resolve, timeout));
   }
 
   console.log('completed half!!!!');
   page_starter += step * number_of_browsers;
 
-  end = Math.ceil((number_of_pages - end * number_of_browsers * step/2));
-  number_of_browsers = 2;
+  end = 3;
+  number_of_browsers =5;
+
+  step = 3;
+  onetime = 3;
 
   for ( j = 0; j < end; j++) {
     if (j !== 0) {
@@ -136,7 +142,77 @@ app.listen(3000, async function () {
       // process(shop_products, i, i+5, onetime);
     }
     // console.log('will try after 5mins');
-    await new Promise(resolve => setTimeout(resolve, 420000));
+    await new Promise(resolve => setTimeout(resolve, timeout));
+  }
+
+  page_starter += step * number_of_browsers;
+
+  end = 15;
+  number_of_browsers = 2;
+  step = 2;
+  onetime = 2;
+  
+  for ( j = 0; j < end; j++) {
+    if (j !== 0) {
+      page_starter += step * number_of_browsers;
+    }
+
+    for ( i = 0 ; i< number_of_browsers; i ++) {
+      const workerData = {shop_products, page_starter, step, onetime, index_of_browser:i};
+
+      const worker = new Worker('./class/worker.js', {workerData});
+      worker.postMessage(workerData);
+      worker.on('exit', (code) => {
+        console.log('Worker stopped with exit code', code);
+      });
+    
+      worker.on('error', (err) =>{
+        console.log(err)
+      });
+
+      worker.on('message', (result) => {
+        fs.appendFileSync('product.json', result);
+        console.log('received message from worker', result);
+      });
+      // process(shop_products, i, i+5, onetime);
+    }
+    // console.log('will try after 5mins');
+    await new Promise(resolve => setTimeout(resolve, timeout));
+  }
+
+  page_starter += step * number_of_browsers;
+
+  end = number_of_pages - page_starter;
+  number_of_browsers = 1;
+  step = 1;
+  onetime = 1;
+  
+  for ( j = 0; j < end; j++) {
+    if (j !== 0) {
+      page_starter += step * number_of_browsers;
+    }
+
+    for ( i = 0 ; i< number_of_browsers; i ++) {
+      const workerData = {shop_products, page_starter, step, onetime, index_of_browser:i};
+
+      const worker = new Worker('./class/worker.js', {workerData});
+      worker.postMessage(workerData);
+      worker.on('exit', (code) => {
+        console.log('Worker stopped with exit code', code);
+      });
+    
+      worker.on('error', (err) =>{
+        console.log(err)
+      });
+
+      worker.on('message', (result) => {
+        fs.appendFileSync('product.json', result);
+        console.log('received message from worker', result);
+      });
+      // process(shop_products, i, i+5, onetime);
+    }
+    // console.log('will try after 5mins');
+    await new Promise(resolve => setTimeout(resolve, timeout));
   }
 
   
