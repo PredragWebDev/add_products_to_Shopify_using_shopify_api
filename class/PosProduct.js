@@ -22,8 +22,10 @@ let cur_inventory_page = '';
 const getProductFromPOS = async (page_starter, step, onetime, index_of_browser) => {
   let count = 0;
   let product_detail = [];
+  
 
-  let browser = await puppeteer.launch({ headless: true });
+  console.log('start>>>>>>>>>>>>>>>>>>');
+  let browser = await puppeteer.launch({ headless: false });
 
   let page = await browser.newPage();
 
@@ -116,70 +118,85 @@ const getProductFromPOS = async (page_starter, step, onetime, index_of_browser) 
           console.log('detail page!!!!');
       
           for (let j = 0; j < 15; j++) {
-            let price, qty, title, vendor, type, size, cost, pre_inventory_page, barcode1, barcode2, barcode3;
+            let price, qty, title, vendor, last_edit, type, size, cost, pre_inventory_page, barcode1, barcode2, barcode3;
       
             try {
               price = await page.$eval('#ctl00_ContentPlaceHolder2_lbldetailPrice', el => el.innerHTML);
               qty = await page.$eval('#ctl00_ContentPlaceHolder2_lbldetailQtyonHand', el => el.innerHTML);
-              // last_edit = await page.$eval('#ctl00_ContentPlaceHolder2_lbldetailEdit', el => el.innerHTML);
+              last_edit = await page.$eval('#ctl00_ContentPlaceHolder2_lbldetailEdit', el => el.innerHTML);
               vendor = await page.$eval('#ctl00_ContentPlaceHolder2_lbldetailvendor', el => el.innerHTML);
               title = await page.$eval('#ctl00_ContentPlaceHolder2_lbldetaildesc', el => el.innerHTML);
               type = await page.$eval('#ctl00_ContentPlaceHolder2_lbldetaildepartment', el => el.innerHTML);
               size = await page.$eval('#ctl00_ContentPlaceHolder2_lbldetailsize', el => el.innerHTML);
               cost = await page.$eval('#ctl00_ContentPlaceHolder2_lbldetaillastcost', el => el.innerHTML);
 
-              pre_inventory_page = cur_inventory_page;
-      
-              await page.waitForTimeout(1000);
-              await page.evaluate(() => {
-              // Click the exit button using JavaScript evaluation
-                document.querySelector('#ctl00_ContentPlaceHolder2_lnkdetailbarcode').click();
-              });
-              // await page.click("#ctl00_ContentPlaceHolder2_lnkdetailbarcode");
+              let last_edit_date = new Date(last_edit);
+              let cur_date = new Date();
 
-              await page.waitForSelector('#ctl00_ContentPlaceHolder2_gvBarcode', { timeout: 10000 });
 
-              // await page.waitForTimeout(1000);
+              if (cur_date - last_edit_date < 3600000 * 24) {
+                pre_inventory_page = cur_inventory_page = cur_inventory_page = await page.$eval('#ctl00_ContentPlaceHolder2_lbldetailsku', el => el.innerHTML);;
       
-              const barcode_table = await page.$eval('#ctl00_ContentPlaceHolder2_gvBarcode', el => el.outerHTML);
-              const $ = cheerio.load(barcode_table);
-              barcode1 = $("#ctl00_ContentPlaceHolder2_gvBarcode_ctl02_lblBarcode").text();
-              barcode2 = $('#ctl00_ContentPlaceHolder2_gvBarcode_ctl03_lblBarcode').text();
-              barcode3 = $('#ctl00_ContentPlaceHolder2_gvBarcode_ctl04_lblBarcode').text();
+                await page.waitForTimeout(1000);
+                await page.evaluate(() => {
+                // Click the exit button using JavaScript evaluation
+                  document.querySelector('#ctl00_ContentPlaceHolder2_lnkdetailbarcode').click();
+                });
+                // await page.click("#ctl00_ContentPlaceHolder2_lnkdetailbarcode");
+  
+                await page.waitForSelector('#ctl00_ContentPlaceHolder2_gvBarcode', { timeout: 10000 });
+  
+                // await page.waitForTimeout(1000);
+        
+                const barcode_table = await page.$eval('#ctl00_ContentPlaceHolder2_gvBarcode', el => el.outerHTML);
+                const $ = cheerio.load(barcode_table);
+                barcode1 = $("#ctl00_ContentPlaceHolder2_gvBarcode_ctl02_lblBarcode").text();
+                barcode2 = $('#ctl00_ContentPlaceHolder2_gvBarcode_ctl03_lblBarcode').text();
+                barcode3 = $('#ctl00_ContentPlaceHolder2_gvBarcode_ctl04_lblBarcode').text();
+  
+        
+                const new_data = {
+                  barcode1: barcode1,
+                  barcode2: barcode2,
+                  barcode3: barcode3,
+                  title: title,
+                  price: price,
+                  qty: qty,
+                  vendor: vendor,
+                  type: type,
+                  size: size,
+                  cost:cost
+                };
+        
+                product_detail.push(new_data);
+        
+                count++;
+        
+                console.log('detail>>>', new_data);
+                console.log('count', count);
+                console.log('j>>>', j);
+        
+                await page.waitForTimeout(1000);
+                await page.evaluate(() => {
+                // Click the exit button using JavaScript evaluation
+                document.querySelector('#ctl00_ContentPlaceHolder2_btnBarcodeMpehide').click();
+                });
+  
+                // await page.click('#ctl00_ContentPlaceHolder2_btnBarcodeMpehide');
+                await page.waitForTimeout(1000);
 
+                await page.waitForSelector('#ctl00_ContentPlaceHolder2_downbtn', { timeout: 10000 });
       
-              const new_data = {
-                barcode1: barcode1,
-                barcode2: barcode2,
-                barcode3: barcode3,
-                title: title,
-                price: price,
-                qty: qty,
-                vendor: vendor,
-                type: type,
-                size: size,
-                cost:cost
-              };
-      
-              product_detail.push(new_data);
-      
-              count++;
-      
-              console.log('detail>>>', new_data);
-              console.log('count', count);
-              console.log('j>>>', j);
-      
-              await page.waitForTimeout(1000);
-              await page.evaluate(() => {
-              // Click the exit button using JavaScript evaluation
-              document.querySelector('#ctl00_ContentPlaceHolder2_btnBarcodeMpehide').click();
-              });
+                console.log('clicked the exit button');
+                
+              }
+              else {
+                console.log("Not updated!");
+              }
 
-              // await page.click('#ctl00_ContentPlaceHolder2_btnBarcodeMpehide');
-              await page.waitForTimeout(1000);
 
               if (j === 14) {
-                console.log('13 >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>');
+                // console.log('13 >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>');
                 // await page.click('#tdlnkList');
                 cur_inventory_page = await page.$eval('#ctl00_ContentPlaceHolder2_lbldetailsku', el => el.innerHTML);
 
@@ -188,32 +205,43 @@ const getProductFromPOS = async (page_starter, step, onetime, index_of_browser) 
                 await page.evaluate(() => {
                   // Click the exit button using JavaScript evaluation
                   document.querySelector('#tdlnkList').click();
-                  });
+                });
                 // await page.waitForNavigation({waitUntil: 'networkidle0'});
-                // await page.waitForSelector('#ctl00_ContentPlaceHolder2_chkwildcardsearch', { timeout: 10000 });
+                await page.waitForSelector('#ctl00_ContentPlaceHolder2_chkwildcardsearch', { timeout: 10000 });
                 console.log("clicked list");
                 await page.waitForTimeout(1000);
                 await page.click('#ctl00_ContentPlaceHolder2_lnkNextInvList');
                 await page.waitForTimeout(1000);
               }
               else {
-                await page.waitForSelector('#ctl00_ContentPlaceHolder2_downbtn', { timeout: 10000 });
-      
-                console.log('clicked the exit button');
-                await page.evaluate(() => {
-                  // Click the exit button using JavaScript evaluation
-                  document.querySelector('#ctl00_ContentPlaceHolder2_downbtn').click();
-                });
-                // await page.click('#ctl00_ContentPlaceHolder2_downbtn');
+                
+                // await page.evaluate(() => {
+                //   // Click the exit button using JavaScript evaluation
+                //   document.querySelector('#ctl00_ContentPlaceHolder2_downbtn').click();
+                // });
+                await page.click('#ctl00_ContentPlaceHolder2_downbtn');
 
-                await page.waitForTimeout(1000)
-        
-                console.log('next product');
-                cur_inventory_page = await page.$eval('#ctl00_ContentPlaceHolder2_lbldetailsku', el => el.innerHTML);
-                if (cur_inventory_page === pre_inventory_page) {
+                try {
+                  await page.waitForFunction(async(pre_inventory_page) => {
+                    const cur_page = document.querySelector('#ctl00_ContentPlaceHolder2_lbldetailsku').innerHTML;
+  
+                    console.log('cure>>>', cur_page);
+                    console.log('pre>>>>', pre_inventory_page);
+                    return cur_page !== pre_inventory_page;
+                  
+                  }, {timeout:30000}, pre_inventry_page)
+                }
+                catch {
                   console.log('break>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>><<<');
                   break;
                 }
+
+                cur_inventory_page = await page.$eval('#ctl00_ContentPlaceHolder2_updetail', el => el.innerHTML);
+
+                // await page.waitForTimeout(1000)
+        
+                console.log('next product');
+              
               }
       
               
@@ -225,7 +253,7 @@ const getProductFromPOS = async (page_starter, step, onetime, index_of_browser) 
       
           flag++;
           console.log('flag>>>', flag);
-      
+
           if (flag === onetime) {
             flag = 0;
       
@@ -377,7 +405,7 @@ const get_number_of_pages = async () => {
 
   const station_url = await driver.getCurrentUrl();
 
-    await driver.findElement(By.id('ctl00_ContentPlaceHolder2_gvStationmanager_ctl08_imgSelectStation')).click();
+    await driver.findElement(By.id('ctl00_ContentPlaceHolder2_gvStationmanager_ctl09_imgSelectStation')).click();
      
 
   await driver.sleep(1000);
@@ -385,11 +413,11 @@ const get_number_of_pages = async () => {
 
   console.log('station!!!!');
   
-  let elements = driver.findElements(By.id("#ctl00_ContentPlaceHolder2_Label6ctl00_ContentPlaceHolder2_Label6"));
-  console.log('test>>>', elements);
-  if (elements !== "") {
-    await driver.findElement(By.id('ctl00_ContentPlaceHolder2_btnCloseMntnce')).click();
-  }
+  // let elements = driver.findElements(By.id("#ctl00_ContentPlaceHolder2_Label6ctl00_ContentPlaceHolder2_Label6"));
+  // console.log('test>>>', elements);
+  // if ((await elements).length > 0) {
+  //   await driver.findElement(By.id('ctl00_ContentPlaceHolder2_btnCloseMntnce')).click();
+  // }
 
   await driver.findElement(By.id('ctl00_lnkexpcolInventory')).click();
 

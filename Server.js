@@ -59,30 +59,55 @@ const process = async (shop_products, from, to, onetime) => {
  
 app.listen(3000, async function () {
   console.log('app listening on port 3000!')
-  const shop_products = await get_list_from_shopify();
+  // const shop_products = await get_list_from_shopify();
+  const shop_products = [];
 
   // const number_of_pages = await get_number_of_pages();
   const number_of_pages = 150;
 
   console.log('number of pages>>>', number_of_pages);
-
-  let onetime = 2;
-  let step = 2;
-  let number_of_browsers = 7;
-  let timeout = 420000;
+  
+  let timeout = 60000;
   // await mainprocess(shop_products, number_of_pages, onetime);
   
   let i = 0;
 
   let j = 0;
 
-  let end = 2;
+  let end = 10;
   let page_starter = 0;
-  
-  for ( j = 0; j < end; j++) {
-    if (j !== 0) {
+  let number_of_browsers = 7;
+  let onetime = 2;
+  let step = 2;
 
-      page_starter += step * number_of_browsers;
+  do {
+    
+    switch (j) {
+      case 0:
+        number_of_browsers = 7;
+        onetime = 2;
+        step = 2;
+        break;
+      case 3:
+        number_of_browsers = 6;
+        onetime = 2;
+        step = 2;
+        break;
+      case 6:
+        number_of_browsers = 5;
+        onetime = 2;
+        step = 2;
+        break;
+      case 9:
+        number_of_browsers = 3;
+        onetime = 2;
+        step =2;
+        break;
+      case 14:
+        number_of_browsers = 1;
+        step = 2;
+        onetime = 2;
+        break;
     }
 
     for ( i = 0 ; i< number_of_browsers; i ++) {
@@ -99,121 +124,132 @@ app.listen(3000, async function () {
       });
 
       worker.on('message', (result) => {
-        fs.appendFileSync('product.json', result);
-        console.log('received message from worker', result);
+        try {
+          fs.appendFileSync('product.json', result);
+        }
+        catch (err) {
+          console.log('Server Error!!!', err);
+        }
+        
       });
       // process(shop_products, i, i+5, onetime);
     }
     // console.log('will try after 7mins');
     await new Promise(resolve => setTimeout(resolve, timeout));
-  }
 
-  console.log('completed half!!!!');
-  page_starter += step * number_of_browsers;
+    page_starter += step * number_of_browsers;
+    j ++;
 
-  end = 3;
-  number_of_browsers =5;
+  } while (page_starter < number_of_pages)
 
-  step = 3;
-  onetime = 3;
+    // await new Promise(resolve => setTimeout(resolve, timeout));
 
-  for ( j = 0; j < end; j++) {
-    if (j !== 0) {
-      page_starter += step * number_of_browsers;
-    }
+  // console.log('completed half!!!!');
+  // page_starter += step * number_of_browsers;
 
-    for ( i = 0 ; i< number_of_browsers; i ++) {
-      const workerData = {shop_products, page_starter, step, onetime, index_of_browser:i};
+  // end = 4;
+  // number_of_browsers =5;
 
-      const worker = new Worker('./class/worker.js', {workerData});
-      worker.postMessage(workerData);
-      worker.on('exit', (code) => {
-        console.log('Worker stopped with exit code', code);
-      });
+  // step = 2;
+  // onetime = 2;
+
+  // for ( j = 0; j < end; j++) {
+  //   if (j !== 0) {
+  //     page_starter += step * number_of_browsers;
+  //   }
+
+  //   for ( i = 0 ; i< number_of_browsers; i ++) {
+  //     const workerData = {shop_products, page_starter, step, onetime, index_of_browser:i};
+
+  //     const worker = new Worker('./class/worker.js', {workerData});
+  //     worker.postMessage(workerData);
+  //     worker.on('exit', (code) => {
+  //       console.log('Worker stopped with exit code', code);
+  //     });
     
-      worker.on('error', (err) =>{
-        console.log(err)
-      });
+  //     worker.on('error', (err) =>{
+  //       console.log(err)
+  //     });
 
-      worker.on('message', (result) => {
-        fs.appendFileSync('product.json', result);
-        console.log('received message from worker', result);
-      });
-      // process(shop_products, i, i+5, onetime);
-    }
-    // console.log('will try after 5mins');
-    await new Promise(resolve => setTimeout(resolve, timeout));
-  }
+  //     worker.on('message', (result) => {
+  //       fs.appendFileSync('product.json', result);
+  //       console.log('received message from worker', result);
+  //     });
+  //     // process(shop_products, i, i+5, onetime);
+  //   }
+  //   // console.log('will try after 5mins');
+  //   await new Promise(resolve => setTimeout(resolve, timeout));
+  // }
 
-  page_starter += step * number_of_browsers;
+  // page_starter += step * number_of_browsers;
 
-  end = 15;
-  number_of_browsers = 2;
-  step = 2;
-  onetime = 2;
+  // end = 6;
+  // number_of_browsers = 3;
+  // step = 2;
+  // onetime = 2;
   
-  for ( j = 0; j < end; j++) {
-    if (j !== 0) {
-      page_starter += step * number_of_browsers;
-    }
+  // for ( j = 0; j < end; j++) {
+  //   if (j !== 0) {
+  //     page_starter += step * number_of_browsers;
+  //   }
 
-    for ( i = 0 ; i< number_of_browsers; i ++) {
-      const workerData = {shop_products, page_starter, step, onetime, index_of_browser:i};
+  //   for ( i = 0 ; i< number_of_browsers; i ++) {
+  //     const workerData = {shop_products, page_starter, step, onetime, index_of_browser:i};
 
-      const worker = new Worker('./class/worker.js', {workerData});
-      worker.postMessage(workerData);
-      worker.on('exit', (code) => {
-        console.log('Worker stopped with exit code', code);
-      });
+  //     const worker = new Worker('./class/worker.js', {workerData});
+  //     worker.postMessage(workerData);
+  //     worker.on('exit', (code) => {
+  //       console.log('Worker stopped with exit code', code);
+  //     });
     
-      worker.on('error', (err) =>{
-        console.log(err)
-      });
+  //     worker.on('error', (err) =>{
+  //       console.log(err)
+  //     });
 
-      worker.on('message', (result) => {
-        fs.appendFileSync('product.json', result);
-        console.log('received message from worker', result);
-      });
-      // process(shop_products, i, i+5, onetime);
-    }
-    // console.log('will try after 5mins');
-    await new Promise(resolve => setTimeout(resolve, timeout));
-  }
+  //     worker.on('message', (result) => {
+  //       fs.appendFileSync('product.json', result);
+  //       console.log('received message from worker', result);
+  //     });
+  //     // process(shop_products, i, i+5, onetime);
+  //   }
+  //   // console.log('will try after 5mins');
+  //   await new Promise(resolve => setTimeout(resolve, timeout));
+  // }
 
-  page_starter += step * number_of_browsers;
+  // page_starter += step * number_of_browsers;
 
-  end = number_of_pages - page_starter;
-  number_of_browsers = 1;
-  step = 1;
-  onetime = 1;
+  // end = number_of_pages - page_starter;
+  // number_of_browsers = 1;
+  // step = 1;
+  // onetime = 1;
   
-  for ( j = 0; j < end; j++) {
-    if (j !== 0) {
-      page_starter += step * number_of_browsers;
-    }
+  // for ( j = 0; j < end; j++) {
+  //   if (j !== 0) {
+  //     page_starter += step * number_of_browsers;
+  //   }
 
-    for ( i = 0 ; i< number_of_browsers; i ++) {
-      const workerData = {shop_products, page_starter, step, onetime, index_of_browser:i};
+  //   for ( i = 0 ; i< number_of_browsers; i ++) {
+  //     const workerData = {shop_products, page_starter, step, onetime, index_of_browser:i};
 
-      const worker = new Worker('./class/worker.js', {workerData});
-      worker.postMessage(workerData);
-      worker.on('exit', (code) => {
-        console.log('Worker stopped with exit code', code);
-      });
+  //     const worker = new Worker('./class/worker.js', {workerData});
+  //     worker.postMessage(workerData);
+  //     worker.on('exit', (code) => {
+  //       console.log('Worker stopped with exit code', code);
+  //     });
     
-      worker.on('error', (err) =>{
-        console.log(err)
-      });
+  //     worker.on('error', (err) =>{
+  //       console.log(err)
+  //     });
 
-      worker.on('message', (result) => {
-        fs.appendFileSync('product.json', result);
-        console.log('received message from worker', result);
-      });
-      // process(shop_products, i, i+5, onetime);
-    }
-    // console.log('will try after 5mins');
-    await new Promise(resolve => setTimeout(resolve, timeout));
-  }
+  //     worker.on('message', (result) => {
+  //       fs.appendFileSync('product.json', result);
+  //       console.log('received message from worker', result);
+  //     });
+  //     // process(shop_products, i, i+5, onetime);
+  //   }
+  //   // console.log('will try after 5mins');
+  //   await new Promise(resolve => setTimeout(resolve, timeout));
+  // }
 
   
 
