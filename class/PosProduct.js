@@ -6,6 +6,7 @@ const puppeteer = require("puppeteer");
 
 const fs = require('fs');
 const cheerio = require("cheerio");
+const { promises } = require('dns');
 
 const url = 'https://lightningpos.com/POSLogin.aspx?flag=1?Hg=1080&Wg=1920';
 
@@ -25,7 +26,7 @@ const getProductFromPOS = async (page_starter, step, onetime, index_of_browser) 
   
 
   console.log('start>>>>>>>>>>>>>>>>>>');
-  let browser = await puppeteer.launch({ headless: false });
+  let browser = await puppeteer.launch({ headless: true });
 
   let page = await browser.newPage();
 
@@ -69,19 +70,40 @@ const getProductFromPOS = async (page_starter, step, onetime, index_of_browser) 
     for (let j = 0; j < page_starter + step * index_of_browser; j++) {
       // Wait for the Next button to be clickable
       await page.waitForSelector('#ctl00_ContentPlaceHolder2_lnkNextInvList')
-      await page.evaluate(() => {
-        // Click the exit button using JavaScript evaluation
-          document.querySelector('#ctl00_ContentPlaceHolder2_lnkNextInvList').click();
-        });
-      // await page.click('#ctl00_ContentPlaceHolder2_lnkNextInvList');
+      // await page.evaluate(() => {
+      //   // Click the exit button using JavaScript evaluation
+      //     document.querySelector('#ctl00_ContentPlaceHolder2_lnkNextInvList').click();
+      //   });
+      await page.click('#ctl00_ContentPlaceHolder2_lnkNextInvList');
       await page.waitForTimeout(1000);
 
       console.log('clicked next button');
+
+      // if (j < 70 ){
+      //   await new Promise(resolve => setTimeout(resolve, 1000));
+      // }
+      // if ( 70 < j < 100) {
+      //   await new Promise(resolve => setTimeout(resolve, 3000));
+      // }
+      // if ( 100< j < 120) {
+      //   await new Promise(resolve => setTimeout(resolve, 4000));
+      // }
+
+      // if (j === 120) {
+      //   await new Promise(resolve => setTimeout(resolve, 60000));
+      // }
+
+      // if (j === 140) {
+      //   await new Promise(resolve => setTimeout(resolve, 90000));
+      // }
+
       // if (j % 10 === 0) {
       //   await page.waitForTimeout(10000);
       // }
     }
   } catch (error) {
+    fs.appendFileSync('error.txt', error);
+
     console.log('error occured when click the next button', error);
   }
 
@@ -114,6 +136,11 @@ const getProductFromPOS = async (page_starter, step, onetime, index_of_browser) 
         do {
 
           await page.click("#tdlnkDetails");
+          
+          // await page.waitForFunction(async ()=> {
+          //   const elements = await page.$$("#ctl00_ContentPlaceHolder2_lbldetailPrice");
+          //   return elements.length > 0
+          // }, {timeout:60000} )
           await page.waitForSelector('#ctl00_ContentPlaceHolder2_lbldetailPrice', { timeout: 10000 });
           console.log('detail page!!!!');
       
@@ -133,9 +160,12 @@ const getProductFromPOS = async (page_starter, step, onetime, index_of_browser) 
               let last_edit_date = new Date(last_edit);
               let cur_date = new Date();
 
+              console.log('title>>>>', title);
 
-              if (cur_date - last_edit_date < 3600000 * 24) {
-                pre_inventory_page = cur_inventory_page = cur_inventory_page = await page.$eval('#ctl00_ContentPlaceHolder2_lbldetailsku', el => el.innerHTML);;
+              console.log('last edited>>>>', last_edit_date);
+              pre_inventory_page = cur_inventory_page = cur_inventory_page = await page.$eval('#ctl00_ContentPlaceHolder2_lbldetailsku', el => el.innerHTML);;
+
+              if (cur_date - last_edit_date < 3600000 * 24 * 15) {
       
                 await page.waitForTimeout(1000);
                 await page.evaluate(() => {
@@ -219,6 +249,23 @@ const getProductFromPOS = async (page_starter, step, onetime, index_of_browser) 
                 //   // Click the exit button using JavaScript evaluation
                 //   document.querySelector('#ctl00_ContentPlaceHolder2_downbtn').click();
                 // });
+                // let elements = driver.findElements(By.id("ctl00_ContentPlaceHolder2_downbtn"));
+                // let elements = driver.findElements(By.id("ctl00_ContentPlaceHolder2_downbtn"));
+                
+                const elements = await page.$$("#ctl00_ContentPlaceHolder2_downbtn");
+
+                try {
+                  await page.waitForFunction(async(elements) => {
+                    return elements.length > 0
+                  }, {timeout:30000}, elements)
+                }
+                catch (err) {
+                  console.log("Can't find the down button!", err)
+                  // fs.appendFileSync('error.txt', err);
+
+                  break;
+                }
+
                 await page.click('#ctl00_ContentPlaceHolder2_downbtn');
 
                 try {
@@ -229,11 +276,18 @@ const getProductFromPOS = async (page_starter, step, onetime, index_of_browser) 
                     console.log('pre>>>>', pre_inventory_page);
                     return cur_page !== pre_inventory_page;
                   
-                  }, {timeout:30000}, pre_inventry_page)
+                  }, {timeout:30000}, pre_inventory_page)
                 }
-                catch {
+                catch (err) {
                   console.log('break>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>><<<');
+                  // fs.appendFileSync('error.txt', err);
+
                   break;
+                }
+
+                if (page_starter >= 130) {
+                  await new Promise(resolve => setTimeout(resolve, 3000));
+
                 }
 
                 cur_inventory_page = await page.$eval('#ctl00_ContentPlaceHolder2_updetail', el => el.innerHTML);
@@ -246,7 +300,8 @@ const getProductFromPOS = async (page_starter, step, onetime, index_of_browser) 
       
               
             } catch (error) {
-              console.error(`An error occurred in cycle ${count}:`, error);
+              console.log(`An error occurred in cycle ${count}:`, error);
+
             }
             
           }
@@ -376,6 +431,8 @@ const getProductFromPOS = async (page_starter, step, onetime, index_of_browser) 
       // }
     } catch (error) {
       console.error('An error occurred:', error);
+      fs.appendFileSync('error.txt', err);
+
     }
     
   browser.close();

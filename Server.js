@@ -67,13 +67,13 @@ app.listen(3000, async function () {
 
   console.log('number of pages>>>', number_of_pages);
   
-  let timeout = 60000;
+  
   // await mainprocess(shop_products, number_of_pages, onetime);
   
   let i = 0;
 
   let j = 0;
-
+  let timeout = 600000;
   let end = 10;
   let page_starter = 0;
   let number_of_browsers = 7;
@@ -101,14 +101,20 @@ app.listen(3000, async function () {
       case 9:
         number_of_browsers = 3;
         onetime = 2;
-        step =2;
+        step =2
         break;
-      case 14:
+      case 11:
         number_of_browsers = 1;
-        step = 2;
-        onetime = 2;
+        step = 1;
+        onetime = 1;
         break;
+      case 24:
+        number_of_browsers = 1;
+        step = 1;
+        onetime = 1;
     }
+
+    // if (j >= 24) {
 
     for ( i = 0 ; i< number_of_browsers; i ++) {
       const workerData = {shop_products, page_starter, step, onetime, index_of_browser:i};
@@ -125,7 +131,8 @@ app.listen(3000, async function () {
 
       worker.on('message', (result) => {
         try {
-          fs.appendFileSync('product.json', result);
+          if (result.length > 0)
+            fs.appendFileSync('product.json', result);
         }
         catch (err) {
           console.log('Server Error!!!', err);
@@ -137,21 +144,34 @@ app.listen(3000, async function () {
     // console.log('will try after 7mins');
     await new Promise(resolve => setTimeout(resolve, timeout));
 
+    if (j >= 11) {
+      await new Promise(resolve => setTimeout(resolve, 120000));
+    }
+    if (j >= 24) {
+      await new Promise(resolve => setTimeout(resolve, 60000));
+    }
+    // }
+
     page_starter += step * number_of_browsers;
     j ++;
 
+    console.log('page starter>>>>', page_starter);
+
   } while (page_starter < number_of_pages)
+
+  console.log('the end')
 
     // await new Promise(resolve => setTimeout(resolve, timeout));
 
   // console.log('completed half!!!!');
   // page_starter += step * number_of_browsers;
 
-  // end = 4;
-  // number_of_browsers =5;
+  // page_starter = 0
+  // end = 1;
+  // number_of_browsers =1;
 
-  // step = 2;
-  // onetime = 2;
+  // step = 1;
+  // onetime = 1;
 
   // for ( j = 0; j < end; j++) {
   //   if (j !== 0) {
@@ -173,7 +193,6 @@ app.listen(3000, async function () {
 
   //     worker.on('message', (result) => {
   //       fs.appendFileSync('product.json', result);
-  //       console.log('received message from worker', result);
   //     });
   //     // process(shop_products, i, i+5, onetime);
   //   }
