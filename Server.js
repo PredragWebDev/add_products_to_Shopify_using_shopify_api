@@ -60,6 +60,7 @@ const process = async (shop_products, from, to, onetime) => {
 app.listen(3000, async function () {
   console.log('app listening on port 3000!')
   const shop_products = await get_list_from_shopify();
+  let count_updated = 0;
   // const shop_products = [];
 
   const sku_of_products = await get_sku_of_products();
@@ -144,8 +145,11 @@ app.listen(3000, async function () {
   
     worker.on('message', (result) => {
       try {
-        if (result.length > 0)
-          fs.appendFileSync('product.json', result);
+        console.log('resut>>>>', result.count_updated);
+        if (result.length > 0) {
+          fs.appendFileSync('product.json', result.jsonResult);
+          count_updated += result.count_updated;
+        }
       }
       catch (err) {
         console.log('Server Error!!!', err);
@@ -153,8 +157,9 @@ app.listen(3000, async function () {
       
     });
   }
-  await new Promise(resolve => setTimeout(resolve, 480000));
+  await new Promise(resolve => setTimeout(resolve, 240000));
 
+  console.log('updated end', count_updated)
 
   // do {
     
