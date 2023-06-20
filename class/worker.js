@@ -3,16 +3,16 @@ const {getProductFromPOS} = require('./PosProduct');
 const {update_Products_To_Shopify} = require('./setProductToShopify');
 // const fs = require("fs");
 
-const process = async (shop_products, page_starter, step, onetime, index_of_browser) => {
+const process = async (shop_products, sku_of_products, from, to) => {
     // let result = [];
 
     // const products = await getProductFromPOS(4, 15);
     // result = [...result, ...products];
     // for (let i =from; i< to; i++) {
-      const products = await getProductFromPOS(page_starter, step, onetime, index_of_browser);
+      const products = await getProductFromPOS(sku_of_products, from, to);
       // console.log("repeat>>>>", i);
   
-    //   update_Products_To_Shopify(shop_products, JSON.stringify(products));
+      update_Products_To_Shopify(shop_products, JSON.stringify(products));
   
     //     result = [...result, ...products];
     // // }
@@ -22,7 +22,7 @@ const process = async (shop_products, page_starter, step, onetime, index_of_brow
     return(jsonResult);
   }
 
-  process(workerData.shop_products, workerData.page_starter, workerData.step, workerData.onetime, workerData.index_of_browser)
+  process(workerData.shop_products, workerData.sku_of_products, workerData.from, workerData.to)
   .then((result) => {
     parentPort.postMessage(result);
     parentPort.close();
