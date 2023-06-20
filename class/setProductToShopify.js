@@ -2,8 +2,28 @@ const Shopify = require('shopify-api-node');
 const fs = require('fs');
 const axios = require('axios');
 const XLSX = require('xlsx');
+const { response } = require('express');
 
-let count_of_updated = 0;
+// var os = require('os');
+// if (os.platform() == 'win32') {  
+//     if (os.arch() == 'ia32') {
+//         var chilkat = require('@chilkat/ck-node11-win-ia32');
+//     } else {
+//         var chilkat = require('@chilkat/ck-node11-win64'); 
+//     }
+// } else if (os.platform() == 'linux') {
+//     if (os.arch() == 'arm') {
+//         var chilkat = require('@chilkat/ck-node11-arm');
+//     } else if (os.arch() == 'x86') {
+//         var chilkat = require('@chilkat/ck-node11-linux32');
+//     } else {
+//         var chilkat = require('@chilkat/ck-node11-linux64');
+//     }
+// } else if (os.platform() == 'darwin') {
+//     var chilkat = require('@chilkat/ck-node11-macosx');
+// }
+
+
 
 const read_Excel_file = async () => {
   const workbook = XLSX.readFile('./cityhive.xlsx');
@@ -47,6 +67,8 @@ const get_list_from_shopify = async () => {
 
 const update_Products_To_Shopify = async (shop_products, pos_products) => {
 
+  let count_of_updated = 0;
+
   const POS_products = JSON.parse(pos_products);
   const shopifyProducts = JSON.parse(shop_products);
 
@@ -58,6 +80,10 @@ const update_Products_To_Shopify = async (shop_products, pos_products) => {
     accessToken: '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',
     autoLimit : { calls: 2, interval: 1000, bucketSize: 30 }
   });
+
+  let location = await shopify.location.list();
+
+  console.log('location ids>>>>', location);
 
   for (const pos_product of POS_products) {
     let barcode = '';
@@ -84,9 +110,7 @@ const update_Products_To_Shopify = async (shop_products, pos_products) => {
         let update = false;
 
         for (const shopifyProduct of shopifyProducts) {
-          let updated_variants = {
-            variants:[]
-          };
+          let updated_variants = []
           shopifyProduct.variants?.map(async (variant) => {
             let updated_variant = variant;
 
@@ -97,30 +121,51 @@ const update_Products_To_Shopify = async (shop_products, pos_products) => {
               //   updated_variant.price = pos_product.price;
               //   update = true;
               // }
-              if (variant.inventory_quantity !== pos_product.qty) {
-                updated_variant.inventory_quantity = pos_product.qty;
-                update = true;
-              }
               
-              console.log("price>>>", variant.price);
-              console.log("qty>>>>", variant.inventory_quantity);
+              if (variant.inventory_quantity !== Number(pos_product.qty)) {
+                
+                update = true;
+                
+                const inventory_item_id = variant.inventory_item_id;
+                console.log('pos qty>>>', pos_product.qty);
+                console.log('shopify qty>>>', variant.inventory_quantity);
+                const qty = Number(pos_product.qty) - variant.inventory_quantity;
+                console.log('variant qty>>>>', qty);
+                
+                const reaponse = await shopify.inventoryLevel.adjust({
+                  inventory_item_id: inventory_item_id,
+                  location_id: 82881544473,
+                  available_adjustment: qty
+                })
+                updated_variant.inventory_quantity = pos_product.qty;
+
+                
+                console.log('response>>>>>>>>>>', reaponse);
+                
+              }
+
+            updated_variants.push(updated_variant);
+
             }
-            updated_variants.variants.push(updated_variant);
+            updated_variants.push(variant);
+
           });
 
           if (update) {
             count_of_updated ++;
-            const temp = await shopify.product.update(shopifyProduct.id, updated_variants);
-            console.log(`updated the ${count_of_updated} products`);
             update = false;
+
+            const jsonData = JSON.stringify(updated_variants, null, 2);
+
+            fs.appendFileSync('updated products.json', jsonData);
           }
 
         }
       }
     }
   }
-  console.log(`updated the ${count_of_updated} products`);
-  console.log('update end!');
+
+  return count_of_updated;
   
 }
 

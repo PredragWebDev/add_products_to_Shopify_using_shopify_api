@@ -9,6 +9,7 @@
   "license": "ISC",
   "description": "returns the weather conditions",
   "dependencies": {
+    "@chilkat/ck-node11-win64": "^9.50.90",
     "axios": "^1.4.0",
     "body-parser": "^1.20.1",
     "cheerio": "^1.0.0-rc.12",

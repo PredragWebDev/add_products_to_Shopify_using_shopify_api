@@ -27,7 +27,7 @@ const getProductFromPOS = async (sku_of_products, from, to) => {
 
   console.log('start>>>>>>>>>>>>>>>>>>', from);
   console.log('to>>>>>>', to);
-  
+
   let browser = await puppeteer.launch({ headless: true });
 
   let page = await browser.newPage();
@@ -123,9 +123,9 @@ const getProductFromPOS = async (sku_of_products, from, to) => {
             let last_edit_date = new Date(last_edit);
             let cur_date = new Date();
 
-            console.log('title>>>>', title);
+            // console.log('title>>>>', title);
 
-            console.log('last edited>>>>', last_edit_date);
+            // console.log('last edited>>>>', last_edit_date);
             pre_inventory_page = cur_inventory_page = cur_inventory_page = await page.$eval('#ctl00_ContentPlaceHolder2_lbldetailsku', el => el.innerHTML);;
 
             // if (cur_date - last_edit_date < 3600000 * 24 * 15) {
