@@ -87,6 +87,7 @@ const update_Products_To_Shopify = async (shop_products, pos_products) => {
 
   for (const pos_product of POS_products) {
     let barcode = '';
+    let is_new = true;
     for (let i = 0; i < 3; i++) {
       switch (i) {
         case 0:
@@ -109,13 +110,15 @@ const update_Products_To_Shopify = async (shop_products, pos_products) => {
       if (barcode !== '') {
         let update = false;
 
+        let updated_variants = []
         for (const shopifyProduct of shopifyProducts) {
-          let updated_variants = []
-          shopifyProduct.variants?.map(async (variant) => {
+          // shopifyProduct.variants?.map(async (variant) => {
+          for (variant of shopifyProduct.variants) {
             let updated_variant = variant;
 
             if (variant.barcode === barcode) {
               console.log('barcode equal');
+              is_new = false;
    
               // if (variant.price !== pos_product.price) {
               //   updated_variant.price = pos_product.price;
@@ -124,6 +127,7 @@ const update_Products_To_Shopify = async (shop_products, pos_products) => {
               
               if (variant.inventory_quantity !== Number(pos_product.qty)) {
                 
+                console.log('qty not equal');
                 update = true;
                 
                 const inventory_item_id = variant.inventory_item_id;
@@ -138,34 +142,58 @@ const update_Products_To_Shopify = async (shop_products, pos_products) => {
                   available_adjustment: qty
                 })
                 updated_variant.inventory_quantity = pos_product.qty;
-
                 
                 console.log('response>>>>>>>>>>', reaponse);
                 
+                updated_variants.push(updated_variant);
+                count_of_updated ++;
               }
 
-            updated_variants.push(updated_variant);
-
+              console.log('qty equal');
             }
-            updated_variants.push(variant);
-
-          });
-
-          if (update) {
-            count_of_updated ++;
-            update = false;
-
-            const jsonData = JSON.stringify(updated_variants, null, 2);
-
-            fs.appendFileSync('updated products.json', jsonData);
           }
+          // });
 
+          // if (update) {
+          //   update = false;
+
+          // }
+          
         }
+
+        // if (is_new === true) {
+        //   const new_products = {
+        //     id:pos_product.sku,
+        //     title:pos_product.title,
+        //     vendor:pos_product.vendor,
+        //     product_type:pos_product.type,
+        //     status:'draft',
+        //     variants: [
+        //       {
+        //         title:pos_product.size,
+        //         price:pos_product.price,
+        //         inventory_policy: 'deny',
+        //         compare_at_price: pos_product.cost,
+        //         fulfillment_service: 'manual',
+        //         inventory_management: 'shopify',
+        //         barcode: barcode,
+        //         inventory_quantity: pos_product.qty
+        //       }
+        //     ]
+        //   }
+
+        //   const product = await shopify.product.create(new_products);
+
+        //   console.log('created the product>>', product);
+        // }
+        const jsonData = JSON.stringify(updated_variants, null, 2);
+
+        fs.appendFileSync('updated products.json', jsonData);
       }
     }
   }
 
-  return count_of_updated;
+  console.log('updated', count_of_updated);
   
 }
 

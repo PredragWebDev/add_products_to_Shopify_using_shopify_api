@@ -23,10 +23,6 @@ let cur_inventory_page = '';
 const getProductFromPOS = async (sku_of_products, from, to) => {
   let count = 0;
   let product_detail = [];
-  
-
-  console.log('start>>>>>>>>>>>>>>>>>>', from);
-  console.log('to>>>>>>', to);
 
   let browser = await puppeteer.launch({ headless: true });
 
@@ -68,25 +64,6 @@ const getProductFromPOS = async (sku_of_products, from, to) => {
   await page.goForward();
   console.log('inventory!!!!');
 
-  // try{
-  //   for (let j = 0; j < page_starter + step * index_of_browser; j++) {
-  //     // Wait for the Next button to be clickable
-  //     await page.waitForSelector('#ctl00_ContentPlaceHolder2_lnkNextInvList')
-  //     // await page.evaluate(() => {
-  //     //   // Click the exit button using JavaScript evaluation
-  //     //     document.querySelector('#ctl00_ContentPlaceHolder2_lnkNextInvList').click();
-  //     //   });
-  //     await page.click('#ctl00_ContentPlaceHolder2_lnkNextInvList');
-  //     await page.waitForTimeout(1000);
-
-  //     console.log('clicked next button');
-  //   }
-  // } catch (error) {
-  //   fs.appendFileSync('error.txt', error);
-
-  //   console.log('error occured when click the next button', error);
-  // }
-
   let flag = 0;
 
     try {
@@ -108,9 +85,10 @@ const getProductFromPOS = async (sku_of_products, from, to) => {
         await page.waitForSelector('#ctl00_ContentPlaceHolder2_lbldetailPrice', { timeout: 10000 });
         console.log('detail page!!!!');
     
-        let price, qty, title, vendor, last_edit, type, size, cost, pre_inventory_page, barcode1, barcode2, barcode3;
+        let sku, price, qty, title, vendor, last_edit, type, size, cost, pre_inventory_page, barcode1, barcode2, barcode3;
     
           try {
+            sku = await page.$eval('#ctl00_ContentPlaceHolder2_lbldetailsku', el => el.innerHTML);
             price = await page.$eval('#ctl00_ContentPlaceHolder2_lbldetailPrice', el => el.innerHTML);
             qty = await page.$eval('#ctl00_ContentPlaceHolder2_lbldetailQtyonHand', el => el.innerHTML);
             last_edit = await page.$eval('#ctl00_ContentPlaceHolder2_lbldetailEdit', el => el.innerHTML);
@@ -157,7 +135,8 @@ const getProductFromPOS = async (sku_of_products, from, to) => {
                 vendor: vendor,
                 type: type,
                 size: size,
-                cost:cost
+                cost:cost,
+                sku:sku
               };
       
               product_detail.push(new_data);
@@ -330,7 +309,7 @@ const getProductFromPOS = async (sku_of_products, from, to) => {
 
 const get_sku_of_products = async () => {
 
-  let browser = await puppeteer.launch({ headless: false });
+  let browser = await puppeteer.launch({ headless: true });
 
   let page = await browser.newPage();
 

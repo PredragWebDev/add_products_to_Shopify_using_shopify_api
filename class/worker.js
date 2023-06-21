@@ -7,11 +7,11 @@ const process = async (shop_products, sku_of_products, from, to) => {
    
     const products = await getProductFromPOS(sku_of_products, from, to);
 
-    const count_updated = update_Products_To_Shopify(shop_products, JSON.stringify(products));
+    update_Products_To_Shopify(shop_products, JSON.stringify(products));
 
     const jsonResult = JSON.stringify(products, null, 2);
 
-    return({jsonResult, count_updated});
+    return(jsonResult);
   }
 
   process(workerData.shop_products, workerData.sku_of_products, workerData.from, workerData.to)
